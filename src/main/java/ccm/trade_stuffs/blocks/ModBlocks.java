@@ -15,7 +15,7 @@ import ccm.trade_stuffs.utils.lib.Properties;
  */
 public class ModBlocks
 {
-
+s
     public static TradeStationBlock tradeStation;
     public static BankBlock         bank;
     public static SafeBlock         safe;
