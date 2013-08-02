@@ -1,0 +1,31 @@
+// CCM Modding, Trade Stuffs
+
+buildscript{
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'com.github.abrarsyed.gmcp:GMCP:0.6.2'
+	}
+}
+
+apply plugin: "gmcp"
+
+group = 'ccm.trade_stuffs'
+version = "Beta.${System.env.BUILD_NUMBER}"
+archivesBaseName = 'TradeStuffs'
+
+minecraft {
+	minecraftVersion = '1.6.2'
+}
+
+processResources{
+	eachFile { file ->
+		if(!(file.getPath().endsWith('png')))
+			expand version: version, mcversion: minecraft.minecraftVersion
+	}
+}
+
+jar{
+	appendix = 'universal'
+}
