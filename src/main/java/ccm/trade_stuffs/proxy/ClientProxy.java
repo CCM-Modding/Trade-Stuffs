@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import ccm.trade_stuffs.client.inventory.gui.GUIBank;
 import ccm.trade_stuffs.client.inventory.gui.GUITrade;
 import ccm.trade_stuffs.client.inventory.gui.GUIWallet;
+import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.tileentity.Bank;
 import ccm.trade_stuffs.tileentity.TradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -54,7 +55,8 @@ public class ClientProxy extends CommonProxy
                 return new GUIBank(player.inventory, (Bank) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_WALLET:
                 return new GUIWallet(player);
-
+            case Guis.GUI_SAFE:
+                return new ContainerWallet(player);
             default:
                 return null;
         }

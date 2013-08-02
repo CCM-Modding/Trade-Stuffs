@@ -25,4 +25,8 @@ public final class Guis
     public static final int              GUI_BANK           = 2;
     public static final ResourceLocation TEXTURE_GUI_BANK   = new ResourceLocation(Archive.MOD_ID,
                                                                                    "guis/guiBank.png");
+
+    public static final int              GUI_SAFE           = 3;
+    public static final ResourceLocation TEXTURE_GUI_SAFE   = new ResourceLocation(Archive.MOD_ID,
+                                                                                   "guis/guiSafe.png");
 }

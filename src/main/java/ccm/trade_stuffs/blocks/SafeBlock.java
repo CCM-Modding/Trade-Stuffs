@@ -11,35 +11,35 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.tileentity.Bank;
+import ccm.trade_stuffs.tileentity.Safe;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
- * BankBlock
+ * SafeBlock
  * <p>
  * 
  * @author Captain_Shadows
  */
-public class BankBlock extends BlockContainer
+public class SafeBlock extends BlockContainer
 {
 
     /**
      * @param id
      */
-    public BankBlock(final int id)
+    public SafeBlock(final int id)
     {
         super(id, Material.iron);
         setCreativeTab(CreativeTabs.tabDecorations);
-        setUnlocalizedName("bank");
-        setResistance(6000000.0F);
+        setUnlocalizedName("safe");
+        setHardness(40);
+        setResistance(1000);
         setStepSound(soundStoneFootstep);
-        setBlockUnbreakable();
     }
 
     @Override
     public TileEntity createNewTileEntity(final World world)
     {
-        return new Bank();
+        return new Safe();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class BankBlock extends BlockContainer
         final TileEntity tile = world.getBlockTileEntity(x, y, z);
         if (tile != null)
         {
-            player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);
+            player.openGui(TradeStuffs.instance, Guis.GUI_SAFE, world, x, y, z);
             return true;
         }
         return false;

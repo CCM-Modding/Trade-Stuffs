@@ -3,11 +3,13 @@
  */
 package ccm.trade_stuffs.tileentity;
 
-
 /**
- * TradeStation
+ * Safe
+ * <p>
  * 
  * @author Captain_Shadows
  */
-public class TradeStation extends BaseInventory
-{}
+public class Safe extends BaseInventory
+{
+
+}
