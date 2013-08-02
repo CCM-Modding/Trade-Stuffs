@@ -24,6 +24,7 @@ import ccm.trade_stuffs.api.CoinTypes;
  */
 public class CoinItem extends BaseItem
 {
+
     /**
      * @param id
      */

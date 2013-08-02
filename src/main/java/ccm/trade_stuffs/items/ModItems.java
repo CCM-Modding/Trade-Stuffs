@@ -25,11 +25,8 @@ public class ModItems
 
     public static void init()
     {
-        System.out.println("Coin");
         coin = new CoinItem(Properties.coinsID);
-        System.out.println("Wallet");
         wallet = new WalletItem(Properties.walletID);
-        System.out.println("Trade Item");
         tradeStation = new ItemReed(Properties.tradeStationItemID, ModBlocks.tradeStation);
     }
 }
