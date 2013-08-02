@@ -88,6 +88,13 @@ public class CoinType
         return "coin_" + name;
     }
 
+    public String getTypeName()
+    {
+        final Char[] string = name.toCharArray();
+        string[0].u
+        return ;
+    }
+
     /**
      * Registers the coin's Icon
      */
@@ -176,14 +183,26 @@ public class CoinType
         {
             builder.append("Mod = ").append(modID).append(", ");
         }
+        else
+        {
+            builder.append("Mod = NULL");
+        }
         if (name != null)
         {
             builder.append("Name = ").append(name).append(", ");
+        }
+        else
+        {
+            builder.append("Name = NULL");
         }
         builder.append("Value = ").append(value).append(", ");
         if (icon != null)
         {
             builder.append("Icon = ").append(icon);
+        }
+        else
+        {
+            builder.append("Icon = NULL");
         }
         builder.append("]");
         return builder.toString();
