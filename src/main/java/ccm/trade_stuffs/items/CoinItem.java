@@ -80,11 +80,7 @@ public class CoinItem extends BaseItem
                                final List list,
                                final boolean color)
     {
-        final StringBuilder sb = new StringBuilder();
-        for (final CoinType coin : CoinTypes.getTypes())
-        {
-
-        }
+        CoinTypes.getTypes().get(item.getItemDamage()).getName();
         list.add(palyer);
     }
 }

@@ -90,7 +90,8 @@ public class CoinType
 
     public String getTypeName()
     {
-        final String firstLetter = name.substring(0);
+        final char[] firstChar = new char[] { name.charAt(0) };
+        final String firstLetter = String.copyValueOf(firstChar).toUpperCase();
         firstLetter.toUpperCase();
         final String rest = name.substring(1);
         return firstLetter + rest;
