@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * Bank
  * <p>
- *
+ * 
  * @author Captain_Shadows
  */
 public class Bank extends TileEntity implements IInventory
@@ -128,7 +128,4 @@ public class Bank extends TileEntity implements IInventory
     {
 
     }
-}
-{
-
 }

@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.tileentity.Bank;
-import ccm.trade_stuffs.tileentity.TradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -32,6 +31,9 @@ public class BankBlock extends BlockContainer
         super(id, Material.iron);
         setCreativeTab(CreativeTabs.tabDecorations);
         setUnlocalizedName("bank");
+        setResistance(6000000.0F);
+        setStepSound(soundStoneFootstep);
+        setBlockUnbreakable();
     }
 
     @Override
@@ -62,7 +64,7 @@ public class BankBlock extends BlockContainer
         {
             return false;
         }
-        final TradeStation tile = (TradeStation) world.getBlockTileEntity(x, y, z);
+        final Bank tile = (Bank) world.getBlockTileEntity(x, y, z);
         if (tile != null)
         {
             player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);

@@ -30,6 +30,7 @@ public abstract class CommonProxy implements IGuiHandler
     public void registerTileEntitys()
     {
         GameRegistry.registerTileEntity(TradeStation.class, "CCM.TILE.ENTITY.TRADE.STATION");
+        GameRegistry.registerTileEntity(Bank.class, "CCM.TILE.ENTITY.BANK");
     }
 
     @Override
