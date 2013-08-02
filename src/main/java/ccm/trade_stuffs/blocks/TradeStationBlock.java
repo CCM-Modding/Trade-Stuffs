@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TradeStation;
 
 /**
@@ -43,7 +42,6 @@ public class TradeStationBlock extends BlockContainer
         super(id, Material.rock);
         setCreativeTab(CreativeTabs.tabDecorations);
         setUnlocalizedName("tradeStation");
-        func_111022_d("tradeStation");
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);
         setBlockUnbreakable();
@@ -85,34 +83,26 @@ public class TradeStationBlock extends BlockContainer
      * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
     @Override
-    public void addCollisionBoxesToList(final World par1World,
-                                        final int par2,
-                                        final int par3,
-                                        final int par4,
-                                        final AxisAlignedBB par5AxisAlignedBB,
-                                        final List par6List,
-                                        final Entity par7Entity)
+    public void addCollisionBoxesToList(final World world,
+                                        final int x,
+                                        final int y,
+                                        final int z,
+                                        final AxisAlignedBB colisionBoc,
+                                        final List list,
+                                        final Entity entity)
     {
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3125F, 1.0F);
-        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        super.addCollisionBoxesToList(world, x, y, z, colisionBoc, list, entity);
         final float f = 0.125F;
         setBlockBounds(0.0F, 0.0F, 0.0F, f, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        super.addCollisionBoxesToList(world, x, y, z, colisionBoc, list, entity);
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, f);
-        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        super.addCollisionBoxesToList(world, x, y, z, colisionBoc, list, entity);
         setBlockBounds(1.0F - f, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        super.addCollisionBoxesToList(world, x, y, z, colisionBoc, list, entity);
         setBlockBounds(0.0F, 0.0F, 1.0F - f, 1.0F, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        super.addCollisionBoxesToList(world, x, y, z, colisionBoc, list, entity);
         setBlockBoundsForItemRender();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static Icon func_94375_b(final String par0Str)
-    {
-        return par0Str.equals("inner") ? ModBlocks.tradeStation.caildronInnerIcon
-                                      : (par0Str.equals("bottom") ? ModBlocks.tradeStation.cauldronBottomIcon
-                                                                 : null);
     }
 
     /**
@@ -177,7 +167,7 @@ public class TradeStationBlock extends BlockContainer
     @Override
     public int idDropped(final int par1, final Random par2Random, final int par3)
     {
-        return ModItems.tradeStation.itemID;
+        return blockID;
     }
 
     @Override
@@ -187,6 +177,6 @@ public class TradeStationBlock extends BlockContainer
      */
     public int idPicked(final World par1World, final int par2, final int par3, final int par4)
     {
-        return ModItems.tradeStation.itemID;
+        return blockID;
     }
 }
