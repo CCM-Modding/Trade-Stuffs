@@ -21,11 +21,23 @@ public final class CoinTypes
      */
     private static List<CoinType> types = new ArrayList<CoinType>();
 
+    /**
+     * @param modID
+     *            ID of the mod adding this type of coin
+     * @param name
+     *            Name of the type
+     * @param value
+     *            Value of the coin, based on copper coins (copper = 1)
+     */
     public static void registerCoinType(final String modID, final String name, final int value)
     {
         registerCoinType(new CoinType(modID, name, value));
     }
 
+    /**
+     * @param type
+     *            Add a new type of coin
+     */
     public static void registerCoinType(final CoinType type)
     {
         types.add(type);
@@ -44,10 +56,13 @@ public final class CoinTypes
         return copy;
     }
 
+    /**
+     * Registers all the basic coins
+     */
     static
     {
         registerCoinType(Archive.MOD_ID, "copper", 1);
-        registerCoinType(Archive.MOD_ID, "silver", 5);
-        registerCoinType(Archive.MOD_ID, "gold", 10);
+        registerCoinType(Archive.MOD_ID, "silver", 25);
+        registerCoinType(Archive.MOD_ID, "gold", 100);
     }
 }

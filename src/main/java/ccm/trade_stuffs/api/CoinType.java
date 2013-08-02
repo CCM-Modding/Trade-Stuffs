@@ -35,11 +35,11 @@ public class CoinType
 
     /**
      * @param modID
-     *            Name of the mod registering this coin
+     *            ID of the mod adding this type of coin
      * @param name
-     *            Name of the coin
+     *            Name of the type
      * @param value
-     *            Value of the coin
+     *            Value of the coin, based on copper coins (copper = 1)
      */
     public CoinType(final String modID, final String name, final int value)
     {

@@ -16,28 +16,27 @@ import net.minecraft.inventory.Slot;
  */
 public class ContainerBase extends Container
 {
+    protected InventoryPlayer player;
+
     public ContainerBase(final InventoryPlayer player)
     {
-
+        this.player = player;
     }
 
-    public void addPlayerInventory(final InventoryPlayer player)
+    public void addPlayerInventory(final int x, final int y)
     {
         // Player's Inventory
         for (int row = 0; row < 3; row++)
         {
             for (int column = 0; column < 9; column++)
             {
-                addSlotToContainer(new Slot(player,
-                                            column + (row * 9) + 9,
-                                            8 + (column * 18),
-                                            94 + (row * 18)));
+                addSlotToContainer(new Slot(player, column + (row * 9) + 9, x + (column * 18), y + (row * 18)));
             }
         }
         // Player's Hot Bar
         for (int index = 0; index < 9; index++)
         {
-            addSlotToContainer(new Slot(player, index, 8 + (index * 18), 152));
+            addSlotToContainer(new Slot(player, index, x + (index * 18), y + 54));
         }
     }
 
