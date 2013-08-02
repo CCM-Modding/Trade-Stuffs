@@ -17,32 +17,54 @@ import net.minecraft.tileentity.TileEntity;
 public class TradeStation extends TileEntity implements IInventory
 {
 
+    private ItemStack[] inventory;
+
     @Override
     public int getSizeInventory()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return inventory.length;
     }
 
     @Override
-    public ItemStack getStackInSlot(final int i)
+    public ItemStack getStackInSlot(final int slot)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return inventory[slot];
     }
 
     @Override
-    public ItemStack decrStackSize(final int i, final int j)
+    public ItemStack decrStackSize(final int slot, final int amount)
     {
-        // TODO Auto-generated method stub
-        return null;
+        if (inventory[slot] != null)
+        {
+            ItemStack itemStack;
+            if (inventory[slot].stackSize <= amount)
+            {
+                itemStack = inventory[slot];
+                inventory[slot] = null;
+                onInventoryChanged();
+            } else
+            {
+                itemStack = inventory[slot].splitStack(amount);
+                if (inventory[slot].stackSize == 0)
+                {
+                    inventory[slot] = null;
+                }
+                onInventoryChanged();
+            }
+            return itemStack;
+        } else
+        {
+            return null;
+        }
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(final int i)
+    public ItemStack getStackInSlotOnClosing(final int slot)
     {
-        // TODO Auto-generated method stub
-        return null;
+        if (inventory[slot] != null)
+        {
+
+        }
     }
 
     @Override
@@ -55,28 +77,30 @@ public class TradeStation extends TileEntity implements IInventory
     @Override
     public String getInvName()
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public boolean isInvNameLocalized()
     {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public int getInventoryStackLimit()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return 64;
     }
 
     @Override
-    public boolean isUseableByPlayer(final EntityPlayer entityplayer)
+    public boolean isUseableByPlayer(final EntityPlayer player)
     {
+        return player.getDistance(xCoord, yCoord, yCoord) <= 10;
+    }
 
+    @Override
+    public boolean isItemValidForSlot(final int i, final ItemStack itemstack)
+    {
         return false;
     }
 
@@ -87,12 +111,4 @@ public class TradeStation extends TileEntity implements IInventory
     @Override
     public void closeChest()
     {}
-
-    @Override
-    public boolean isItemValidForSlot(final int i, final ItemStack itemstack)
-    {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
 }
