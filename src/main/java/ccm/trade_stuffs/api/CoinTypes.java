@@ -6,8 +6,6 @@ package ccm.trade_stuffs.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import ccm.trade_stuffs.utils.lib.Archive;
-
 /**
  * CoinTypes
  * <p>
@@ -61,8 +59,10 @@ public final class CoinTypes
      */
     static
     {
-        registerCoinType(Archive.MOD_ID, "copper", 1);
-        registerCoinType(Archive.MOD_ID, "silver", 25);
-        registerCoinType(Archive.MOD_ID, "gold", 100);
+        final String modID = "trade_stuffs";
+        registerCoinType(modID, "copper", 1);
+        registerCoinType(modID, "silver", 25);
+        registerCoinType(modID, "gold", 50);
+        registerCoinType(modID, "platinum", 100);
     }
 }
