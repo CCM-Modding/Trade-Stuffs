@@ -25,7 +25,8 @@ import ccm.trade_stuffs.utils.lib.Guis;
 public class WalletItem extends BaseItem
 {
     public static final String openedWallet = "CCM.WALLET.OPEN";
-    String[]                   types        = new String[] { "wallet_empty", "wallet_full" };
+    public static final String fullWallet   = "CCM.WALLET.FULL";
+    String[]                   types        = new String[] { "wallet", "wallet_empty", "wallet_full" };
     Icon[]                     icons        = new Icon[types.length];
 
     /**
@@ -61,8 +62,16 @@ public class WalletItem extends BaseItem
     {
         if (stack.getTagCompound().hasKey(openedWallet))
         {
-            return icons[1];
-        } else
+            if (stack.getTagCompound().hasKey(fullWallet))
+            {
+                return icons[2];
+            }
+            else
+            {
+                return icons[1];
+            }
+        }
+        else
         {
             return icons[0];
         }

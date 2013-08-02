@@ -63,13 +63,16 @@ public class SafeBlock extends BlockContainer
         if (side == ForgeDirection.UP.ordinal())
         {
             return top;
-        } else if (side == ForgeDirection.DOWN.ordinal())
-        {
-            return top;
-        } else
-        {
-            return blockIcon;
         }
+        else
+            if (side == ForgeDirection.DOWN.ordinal())
+            {
+                return top;
+            }
+            else
+            {
+                return blockIcon;
+            }
     }
 
     @Override

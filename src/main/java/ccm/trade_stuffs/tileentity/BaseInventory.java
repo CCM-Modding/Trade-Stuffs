@@ -44,7 +44,8 @@ public abstract class BaseInventory extends TileEntity implements IInventory
                 itemStack = inventory[slot];
                 inventory[slot] = null;
                 onInventoryChanged();
-            } else
+            }
+            else
             {
                 itemStack = inventory[slot].splitStack(amount);
                 if (inventory[slot].stackSize == 0)
@@ -54,7 +55,8 @@ public abstract class BaseInventory extends TileEntity implements IInventory
                 onInventoryChanged();
             }
             return itemStack;
-        } else
+        }
+        else
         {
             return null;
         }
@@ -68,7 +70,8 @@ public abstract class BaseInventory extends TileEntity implements IInventory
             final ItemStack itemStack = inventory[slot];
             inventory[slot] = null;
             return itemStack;
-        } else
+        }
+        else
         {
             return null;
         }

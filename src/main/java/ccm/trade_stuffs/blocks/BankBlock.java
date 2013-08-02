@@ -61,13 +61,16 @@ public class BankBlock extends BlockContainer
         if (side == ForgeDirection.UP.ordinal())
         {
             return top;
-        } else if (side == ForgeDirection.DOWN.ordinal())
-        {
-            return bottom;
-        } else
-        {
-            return blockIcon;
         }
+        else
+            if (side == ForgeDirection.DOWN.ordinal())
+            {
+                return bottom;
+            }
+            else
+            {
+                return blockIcon;
+            }
     }
 
     @Override

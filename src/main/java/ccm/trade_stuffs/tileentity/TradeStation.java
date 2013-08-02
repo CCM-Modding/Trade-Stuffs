@@ -3,7 +3,6 @@
  */
 package ccm.trade_stuffs.tileentity;
 
-
 /**
  * TradeStation
  * 
