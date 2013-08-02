@@ -3,17 +3,18 @@
  */
 package ccm.trade_stuffs.items;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.utils.lib.Archive;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * WalletItem
@@ -23,9 +24,9 @@ import ccm.trade_stuffs.utils.lib.Archive;
  */
 public class WalletItem extends BaseItem
 {
-
-    String[] types = new String[] { "wallet_empty", "wallet_full" };
-    Icon[]   icons = new Icon[types.length];
+    public static final String openedWallet = "CCM.WALLET.OPEN";
+    String[]                   types        = new String[] { "wallet_empty", "wallet_full" };
+    Icon[]                     icons        = new Icon[types.length];
 
     /**
      * @param id
@@ -33,27 +34,50 @@ public class WalletItem extends BaseItem
     public WalletItem(final int id)
     {
         super(id);
-        setHasSubtypes(true);
         setMaxDamage(0);
+        setMaxStackSize(1);
+        setNoRepair();
+    }
+
+    @Override
+    public ItemStack onItemRightClick(final ItemStack stack, final World world, final EntityPlayer player)
+    {
+        if (!world.isRemote)
+        {
+            stack.getTagCompound().setBoolean(openedWallet, true);
+            player.openGui(TradeStuffs.instance,
+                           Guis.GUI_WALLET,
+                           player.worldObj,
+                           (int) player.posX,
+                           (int) player.posY,
+                           (int) player.posZ);
+        }
+
+        return stack;
+    }
+
+    @Override
+    public Icon getIcon(final ItemStack stack, final int pass)
+    {
+        if (stack.getTagCompound().hasKey(openedWallet))
+        {
+            return icons[1];
+        } else
+        {
+            return icons[0];
+        }
+    }
+
+    @Override
+    public boolean getShareTag()
+    {
+        return true;
     }
 
     @Override
     public String getUnlocalizedName(final ItemStack item)
     {
         return "item." + types[item.getItemDamage()];
-    }
-
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(final int itemID, final CreativeTabs tab, final List items)
-    {
-        for (int i = 0; i < types.length; i++)
-        {
-            items.add(new ItemStack(itemID, 1, i));
-        }
     }
 
     @Override
