@@ -60,7 +60,7 @@ public class TradeStationBlock extends BlockContainer
         final TileEntity tile = world.getBlockTileEntity(x, y, z);
         if (tile != null)
         {
-            player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);
+            player.openGui(TradeStuffs.instance, Guis.GUI_TRADE, world, x, y, z);
             return true;
         }
         return false;

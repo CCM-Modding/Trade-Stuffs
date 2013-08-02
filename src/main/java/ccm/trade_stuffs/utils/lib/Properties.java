@@ -21,4 +21,6 @@ public class Properties
     public static int walletID;
 
     public static int bankID;
+
+    public static int safeID;
 }

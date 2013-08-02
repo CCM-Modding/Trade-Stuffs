@@ -28,6 +28,8 @@ public final class Config
 
         Properties.bankID = config.getBlock("Bank", 401).getInt();
 
+        Properties.safeID = config.getBlock("Safe", 402).getInt();
+
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
 
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
