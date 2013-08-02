@@ -20,7 +20,9 @@ public final class Config
 
     public static void load(final FMLPreInitializationEvent event)
     {
-        final Configuration config = new Configuration(event.getModConfigurationDirectory());
+        final Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+
+        config.load();
 
         Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
 
