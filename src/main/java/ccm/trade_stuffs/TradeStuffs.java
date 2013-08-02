@@ -3,8 +3,6 @@
  */
 package ccm.trade_stuffs;
 
-import net.minecraftforge.common.Configuration;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -13,10 +11,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
+import ccm.trade_stuffs.blocks.ModBlocks;
+import ccm.trade_stuffs.configuration.Config;
+import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.proxy.CommonProxy;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
-import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
  * TradeStuffs
@@ -38,18 +38,11 @@ public class TradeStuffs
     @EventHandler
     public void preInit(final FMLPreInitializationEvent event)
     {
-        final Configuration config = new Configuration(event.getModConfigurationDirectory());
+        Config.load(event);
 
-        Properties.coinsID = config.getItem("Coins", 4000).getInt();
+        ModBlocks.init();
 
-        Properties.walletID = config.getItem("Wallet", 4001).getInt();
-
-        Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
-
-        if (config.hasChanged())
-        {
-            config.save();
-        }
+        ModItems.init();
     }
 
     @EventHandler

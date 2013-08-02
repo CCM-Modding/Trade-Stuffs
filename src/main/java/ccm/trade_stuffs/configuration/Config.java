@@ -5,6 +5,8 @@ package ccm.trade_stuffs.configuration;
 
 import net.minecraftforge.common.Configuration;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -15,11 +17,10 @@ import ccm.trade_stuffs.utils.lib.Properties;
  */
 public final class Config
 {
-    public Configuration config;
 
-    public Config(File config)
+    public static void load(final FMLPreInitializationEvent event)
     {
-        config = new Configuration(config);
+        final Configuration config = new Configuration(event.getModConfigurationDirectory());
 
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
 
