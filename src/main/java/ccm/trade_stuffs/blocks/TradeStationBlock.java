@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,6 +32,8 @@ public class TradeStationBlock extends BlockContainer
 
     @SideOnly(Side.CLIENT)
     private Icon top;
+    @SideOnly(Side.CLIENT)
+    private Icon bottom;
 
     public TradeStationBlock(final int id)
     {
@@ -47,6 +50,22 @@ public class TradeStationBlock extends BlockContainer
     {
         blockIcon = register.registerIcon(Archive.MOD_ID + ":trade_side");
         top = register.registerIcon(Archive.MOD_ID + ":trade_top");
+        bottom = register.registerIcon("iron_block");
+    }
+
+    @Override
+    public Icon getIcon(final int side, final int meta)
+    {
+        if (side == ForgeDirection.UP.ordinal())
+        {
+            return top;
+        } else if (side == ForgeDirection.DOWN.ordinal())
+        {
+            return bottom;
+        } else
+        {
+            return blockIcon;
+        }
     }
 
     @Override

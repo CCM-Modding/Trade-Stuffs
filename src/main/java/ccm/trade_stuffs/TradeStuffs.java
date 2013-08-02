@@ -56,6 +56,10 @@ public class TradeStuffs
     public void init(final FMLInitializationEvent event)
     {
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+
+        proxy.registerTileEntitys();
+
+        proxy.initRenderingStuffs();
     }
 
     @EventHandler
