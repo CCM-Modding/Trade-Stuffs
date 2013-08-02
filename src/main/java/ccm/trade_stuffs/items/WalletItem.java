@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -45,7 +46,7 @@ public class WalletItem extends BaseItem
     {
         if (!world.isRemote)
         {
-            stack.getTagCompound().setBoolean(openedWallet, true);
+            NBTHelper.setBoolean(stack, openedWallet, true);
             player.openGui(TradeStuffs.instance,
                            Guis.GUI_WALLET,
                            player.worldObj,
@@ -60,9 +61,9 @@ public class WalletItem extends BaseItem
     @Override
     public Icon getIcon(final ItemStack stack, final int pass)
     {
-        if (stack.getTagCompound().hasKey(openedWallet))
+        if (NBTHelper.getBoolean(stack, openedWallet))
         {
-            if (stack.getTagCompound().hasKey(fullWallet))
+            if (NBTHelper.getBoolean(stack, fullWallet))
             {
                 return icons[2];
             }
