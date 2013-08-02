@@ -15,7 +15,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * TradeStationBlock
@@ -47,16 +49,30 @@ public class TradeStationBlock extends BlockContainer
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(final World par1World,
-                                    final int par2,
-                                    final int par3,
-                                    final int par4,
-                                    final EntityPlayer par5EntityPlayer,
-                                    final int par6,
-                                    final float par7,
-                                    final float par8,
-                                    final float par9)
+    public boolean onBlockActivated(final World world,
+                                    final int x,
+                                    final int y,
+                                    final int z,
+                                    final EntityPlayer player,
+                                    final int stuff,
+                                    final float clickX,
+                                    final float clickY,
+                                    final float clickZ)
     {
+        if (world.isRemote)
+        {
+            return true;
+        }
+        if (player.isSneaking())
+        {
+            return false;
+        }
+        final TradeStation tile = (TradeStation) world.getBlockTileEntity(x, y, z);
+        if (tile != null)
+        {
+            player.openGui(TradeStuffs.instance, Guis.GUI_TRADE, world, x, y, z);
+            return true;
+        }
         return false;
     }
 

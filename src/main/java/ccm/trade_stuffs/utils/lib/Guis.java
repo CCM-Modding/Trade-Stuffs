@@ -14,9 +14,11 @@ import net.minecraft.util.ResourceLocation;
 public final class Guis
 {
 
-    public static final int              GUI_1         = 0;
-    public static final ResourceLocation TEXTURE_GUI_1 = new ResourceLocation(Archive.MOD_ID, "guis/gui1.png");
+    public static final int              GUI_TRADE          = 0;
+    public static final ResourceLocation TEXTURE_GUI_TRADE  = new ResourceLocation(Archive.MOD_ID,
+                                                                                   "guis/guiTrade.png");
 
-    public static final int              GUI_2         = 1;
-    public static final ResourceLocation TEXTURE_GUI_2 = new ResourceLocation(Archive.MOD_ID, "guis/gui2.png");
+    public static final int              GUI_WALLET         = 1;
+    public static final ResourceLocation TEXTURE_GUI_WALLET = new ResourceLocation(Archive.MOD_ID,
+                                                                                   "guis/guiWallet.png");
 }

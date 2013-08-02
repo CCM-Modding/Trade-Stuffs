@@ -9,7 +9,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import ccm.trade_stuffs.inventory.ContainerTrade;
 import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * CommonProxy
@@ -35,6 +37,13 @@ public abstract class CommonProxy implements IGuiHandler
                                       final int y,
                                       final int z)
     {
-        return null;
+        switch (ID)
+        {
+            case Guis.GUI_TRADE:
+                return new ContainerTrade(player.inventory, (TradeStation) world.getBlockTileEntity(x, y, z));
+
+            default:
+                return null;
+        }
     }
 }
