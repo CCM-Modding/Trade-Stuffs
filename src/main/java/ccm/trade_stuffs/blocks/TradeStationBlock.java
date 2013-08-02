@@ -21,6 +21,11 @@ public class TradeStationBlock extends BlockContainer
     public TradeStationBlock(final int id)
     {
         super(id, Material.rock);
+        setUnlocalizedName("tradeStation");
+        func_111022_d("tradeStation");
+        setResistance(6000000.0F);
+        setStepSound(soundStoneFootstep);
+        setBlockUnbreakable();
     }
 
     @Override
