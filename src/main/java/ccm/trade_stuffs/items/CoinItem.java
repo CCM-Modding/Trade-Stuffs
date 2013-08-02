@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.api.CoinType;
 import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.utils.helper.JavaHelper;
 
 /**
  * CoinItem
@@ -80,7 +81,6 @@ public class CoinItem extends BaseItem
                                final List list,
                                final boolean color)
     {
-        CoinTypes.getTypes().get(item.getItemDamage()).getName();
-        list.add(palyer);
+        list.add(JavaHelper.tileCase("ssdd eD s  dsS"));
     }
 }

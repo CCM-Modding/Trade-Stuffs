@@ -22,16 +22,16 @@ public final class JavaHelper
             String currentString = input;
             for (int i = 0; i < input.length(); i++)
             {
-                final int first = lastSpace + 1;
-                final int last = lastSpace - 1;
-
+                int first = lastSpace + 1;
                 finished.append(currentString.substring(first, 1).toUpperCase());
                 lastSpace = currentString.indexOf(s);
-                finished.append(currentString.substring(1, lastSpace - 1));
+                first = lastSpace + 1;
+                final int last = lastSpace - 1;
+                finished.append(currentString.substring(1, last));
                 finished.append(s);
-                if (!(last <= currentString.length()))
+                if (!(first <= currentString.length()))
                 {
-                    currentString = currentString.substring(last, currentString.length());
+                    currentString = currentString.substring(first, currentString.length());
                 }
                 else
                 {
