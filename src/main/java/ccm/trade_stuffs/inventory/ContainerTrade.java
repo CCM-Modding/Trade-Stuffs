@@ -3,9 +3,7 @@
  */
 package ccm.trade_stuffs.inventory;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 
 import ccm.trade_stuffs.tileentity.TradeStation;
 
@@ -15,16 +13,13 @@ import ccm.trade_stuffs.tileentity.TradeStation;
  * 
  * @author Captain_Shadows
  */
-public class ContainerTrade extends Container
+public class ContainerTrade extends ContainerBase
 {
+    private final TradeStation trade;
+
     public ContainerTrade(final InventoryPlayer player, final TradeStation tile)
     {
-
-    }
-
-    @Override
-    public boolean canInteractWith(final EntityPlayer player)
-    {
-        return true;
+        super(player);
+        trade = tile;
     }
 }
