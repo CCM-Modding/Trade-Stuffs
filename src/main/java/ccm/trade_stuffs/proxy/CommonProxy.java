@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
  * 
  * @author Captain_Shadows
  */
-public class CommonProxy implements IGuiHandler
+public abstract class CommonProxy implements IGuiHandler
 {
 
     @Override
@@ -25,19 +25,6 @@ public class CommonProxy implements IGuiHandler
                                       final int y,
                                       final int z)
     {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Object getClientGuiElement(final int ID,
-                                      final EntityPlayer player,
-                                      final World world,
-                                      final int x,
-                                      final int y,
-                                      final int z)
-    {
-        // TODO Auto-generated method stub
         return null;
     }
 }

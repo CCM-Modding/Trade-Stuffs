@@ -23,7 +23,6 @@ public class ClientProxy extends CommonProxy
                                       final int y,
                                       final int z)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 }

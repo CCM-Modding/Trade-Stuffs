@@ -10,6 +10,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.configuration.Config;
@@ -48,7 +49,7 @@ public class TradeStuffs
     @EventHandler
     public void init(final FMLInitializationEvent event)
     {
-
+        NetworkRegistry.instance().registerGuiHandler(instance, proxy);
     }
 
     @EventHandler
