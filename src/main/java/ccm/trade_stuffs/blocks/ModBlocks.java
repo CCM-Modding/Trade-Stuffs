@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.blocks;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -18,7 +20,8 @@ public class ModBlocks
 
     public static void init()
     {
-        System.out.println("TradeBlock");
         tradeStation = new TradeStationBlock(Properties.tradeStationID);
+
+        GameRegistry.registerBlock(tradeStation, "CCM.TRADE.BLOCK");
     }
 }
