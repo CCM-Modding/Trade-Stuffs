@@ -6,7 +6,9 @@ package ccm.trade_stuffs.proxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+import ccm.trade_stuffs.client.inventory.gui.GUIBank;
 import ccm.trade_stuffs.client.inventory.gui.GUITrade;
+import ccm.trade_stuffs.tileentity.Bank;
 import ccm.trade_stuffs.tileentity.TradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -47,6 +49,10 @@ public class ClientProxy extends CommonProxy
         {
             case Guis.GUI_TRADE:
                 return new GUITrade(player.inventory, (TradeStation) world.getBlockTileEntity(x, y, z));
+            case Guis.GUI_BANK:
+                return new GUIBank(player.inventory, (Bank) world.getBlockTileEntity(x, y, z));
+            case Guis.GUI_WALLET:
+                return new GUIWallet(player);
 
             default:
                 return null;

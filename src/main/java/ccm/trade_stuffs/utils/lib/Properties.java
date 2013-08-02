@@ -19,4 +19,6 @@ public class Properties
     public static int coinsID;
 
     public static int walletID;
+
+    public static int bankID;
 }

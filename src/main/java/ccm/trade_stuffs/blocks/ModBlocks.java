@@ -17,11 +17,14 @@ public class ModBlocks
 {
 
     public static TradeStationBlock tradeStation;
+    public static BankBlock         bank;
 
     public static void init()
     {
         tradeStation = new TradeStationBlock(Properties.tradeStationID);
+        bank = new BankBlock(Properties.bankID);
 
         GameRegistry.registerBlock(tradeStation, "CCM.TRADE.BLOCK");
+        GameRegistry.registerBlock(bank, "CCM.BANK.BLOCK");
     }
 }
