@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 
 /**
  * TradeStation
- * <p>
  * 
  * @author Captain_Shadows
  */
