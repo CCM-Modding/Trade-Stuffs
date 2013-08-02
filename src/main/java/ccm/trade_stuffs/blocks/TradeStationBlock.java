@@ -5,13 +5,19 @@ package ccm.trade_stuffs.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -22,6 +28,10 @@ import ccm.trade_stuffs.utils.lib.Guis;
  */
 public class TradeStationBlock extends BlockContainer
 {
+
+    @SideOnly(Side.CLIENT)
+    private Icon top;
+
     public TradeStationBlock(final int id)
     {
         super(id, Material.rock);
@@ -30,6 +40,13 @@ public class TradeStationBlock extends BlockContainer
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);
         setBlockUnbreakable();
+    }
+
+    @Override
+    public void registerIcons(final IconRegister register)
+    {
+        blockIcon = register.registerIcon(Archive.MOD_ID + ":trade_side");
+        top = register.registerIcon(Archive.MOD_ID + ":trade_top");
     }
 
     @Override
