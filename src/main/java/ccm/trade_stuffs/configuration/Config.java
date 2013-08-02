@@ -26,7 +26,7 @@ public final class Config
 
         Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
 
-        Properties.bankID = config.getItem("Bank", 401).getInt();
+        Properties.bankID = config.getBlock("Bank", 401).getInt();
 
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
 

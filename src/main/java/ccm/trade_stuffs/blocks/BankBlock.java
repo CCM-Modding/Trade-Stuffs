@@ -5,6 +5,7 @@ package ccm.trade_stuffs.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -29,6 +30,8 @@ public class BankBlock extends BlockContainer
     public BankBlock(final int id)
     {
         super(id, Material.iron);
+        setCreativeTab(CreativeTabs.tabDecorations);
+        setUnlocalizedName("bank");
     }
 
     @Override

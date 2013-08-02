@@ -4,32 +4,31 @@
 package ccm.trade_stuffs.client.inventory.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.trade_stuffs.inventory.ContainerTrade;
-import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.inventory.ContainerWallet;
 
 /**
- * GUITrade
+ * GUIWallet
  * <p>
  * 
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class GUITrade extends GuiContainer
+public class GUIWallet extends GuiContainer
 {
-    private final TradeStation trade;
+    private final EntityPlayer player;
 
     /**
      * @param container
      */
-    public GUITrade(final InventoryPlayer player, final TradeStation tile)
+    public GUIWallet(final EntityPlayer player)
     {
-        super(new ContainerTrade(player, tile));
-        trade = tile;
+        super(new ContainerWallet(player));
+        this.player = player;
     }
 
     @Override

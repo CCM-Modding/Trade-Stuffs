@@ -11,6 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.ContainerTrade;
+import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.tileentity.Bank;
 import ccm.trade_stuffs.tileentity.TradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;

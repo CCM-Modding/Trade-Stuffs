@@ -38,5 +38,4 @@ public class GUIBank extends GuiContainer
         // TODO Auto-generated method stub
 
     }
-
 }

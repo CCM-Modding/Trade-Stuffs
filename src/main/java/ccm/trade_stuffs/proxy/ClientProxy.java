@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 import ccm.trade_stuffs.client.inventory.gui.GUIBank;
 import ccm.trade_stuffs.client.inventory.gui.GUITrade;
+import ccm.trade_stuffs.client.inventory.gui.GUIWallet;
 import ccm.trade_stuffs.tileentity.Bank;
 import ccm.trade_stuffs.tileentity.TradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;
