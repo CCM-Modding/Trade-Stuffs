@@ -7,6 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+import ccm.trade_stuffs.tileentity.TradeStation;
 
 /**
  * CommonProxy
@@ -16,6 +19,13 @@ import cpw.mods.fml.common.network.IGuiHandler;
  */
 public abstract class CommonProxy implements IGuiHandler
 {
+
+    public abstract void initRenderingStuffs();
+
+    public void registerTileEntitys()
+    {
+        GameRegistry.registerTileEntity(TradeStation.class, "CCM.TILE.ENTITY.TRADE.STATION");
+    }
 
     @Override
     public Object getServerGuiElement(final int ID,

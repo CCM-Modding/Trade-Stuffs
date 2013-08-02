@@ -30,12 +30,14 @@ import ccm.trade_stuffs.tileentity.TradeStation;
  */
 public class TradeStationBlock extends BlockContainer
 {
+    public static int renderID;
+
     @SideOnly(Side.CLIENT)
-    private Icon caildronInnerIcon;
+    private Icon      caildronInnerIcon;
     @SideOnly(Side.CLIENT)
-    private Icon cauldronTopIcon;
+    private Icon      cauldronTopIcon;
     @SideOnly(Side.CLIENT)
-    private Icon cauldronBottomIcon;
+    private Icon      cauldronBottomIcon;
 
     public TradeStationBlock(final int id)
     {
@@ -131,7 +133,7 @@ public class TradeStationBlock extends BlockContainer
     @Override
     public int getRenderType()
     {
-        return 24;
+        return renderID;
     }
 
     /**
