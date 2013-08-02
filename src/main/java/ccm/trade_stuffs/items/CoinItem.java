@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
@@ -71,5 +72,19 @@ public class CoinItem extends BaseItem
     public Icon getIconFromDamage(final int meta)
     {
         return CoinTypes.getTypes().get(meta).getIcon();
+    }
+
+    @Override
+    public void addInformation(final ItemStack item,
+                               final EntityPlayer palyer,
+                               final List list,
+                               final boolean color)
+    {
+        final StringBuilder sb = new StringBuilder();
+        for (final CoinType coin : CoinTypes.getTypes())
+        {
+
+        }
+        list.add(palyer);
     }
 }
