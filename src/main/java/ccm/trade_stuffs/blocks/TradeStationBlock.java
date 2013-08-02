@@ -50,7 +50,7 @@ public class TradeStationBlock extends BlockContainer
     {
         blockIcon = register.registerIcon(Archive.MOD_ID + ":trade_side");
         top = register.registerIcon(Archive.MOD_ID + ":trade_top");
-        bottom = register.registerIcon("iron_block");
+        bottom = register.registerIcon(Archive.MOD_ID + ":safe_bottom");
     }
 
     @Override

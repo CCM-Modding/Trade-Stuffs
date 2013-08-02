@@ -5,13 +5,20 @@ package ccm.trade_stuffs.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.tileentity.Bank;
+import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -22,6 +29,10 @@ import ccm.trade_stuffs.utils.lib.Guis;
  */
 public class BankBlock extends BlockContainer
 {
+    @SideOnly(Side.CLIENT)
+    private Icon top;
+    @SideOnly(Side.CLIENT)
+    private Icon bottom;
 
     /**
      * @param id
@@ -34,6 +45,29 @@ public class BankBlock extends BlockContainer
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);
         setBlockUnbreakable();
+    }
+
+    @Override
+    public void registerIcons(final IconRegister register)
+    {
+        blockIcon = register.registerIcon(Archive.MOD_ID + ":bank_side");
+        top = register.registerIcon(Archive.MOD_ID + ":bank_top");
+        bottom = register.registerIcon(Archive.MOD_ID + ":bank_bottom");
+    }
+
+    @Override
+    public Icon getIcon(final int side, final int meta)
+    {
+        if (side == ForgeDirection.UP.ordinal())
+        {
+            return top;
+        } else if (side == ForgeDirection.DOWN.ordinal())
+        {
+            return bottom;
+        } else
+        {
+            return blockIcon;
+        }
     }
 
     @Override
