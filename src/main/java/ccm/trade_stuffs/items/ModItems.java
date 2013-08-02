@@ -4,7 +4,9 @@
 package ccm.trade_stuffs.items;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemReed;
 
+import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -15,13 +17,16 @@ import ccm.trade_stuffs.utils.lib.Properties;
  */
 public class ModItems
 {
-    public static Item coin;
+    public static Item     coin;
 
-    public static Item wallet;
+    public static Item     wallet;
+
+    public static ItemReed tradeStation;
 
     public static void init()
     {
-        coin = new CoinItem(Properties.tradeStationID);
-        wallet = new WalletItem(Properties.tradeStationID);
+        coin = new CoinItem(Properties.coinsID);
+        wallet = new WalletItem(Properties.walletID);
+        tradeStation = new ItemReed(Properties.tradeStationItemID, ModBlocks.tradeStation);
     }
 }

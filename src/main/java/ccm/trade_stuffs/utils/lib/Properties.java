@@ -14,6 +14,8 @@ public class Properties
 
     public static int tradeStationID;
 
+    public static int tradeStationItemID;
+
     public static int coinsID;
 
     public static int walletID;

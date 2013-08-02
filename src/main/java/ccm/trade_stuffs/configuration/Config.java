@@ -22,11 +22,13 @@ public final class Config
     {
         final Configuration config = new Configuration(event.getModConfigurationDirectory());
 
+        Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
+
+        Properties.tradeStationItemID = config.getItem("TradeStationItem", 3999).getInt();
+
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
 
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
-
-        Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
 
         if (config.hasChanged())
         {

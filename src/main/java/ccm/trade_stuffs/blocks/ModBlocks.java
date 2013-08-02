@@ -3,8 +3,6 @@
  */
 package ccm.trade_stuffs.blocks;
 
-import net.minecraft.block.Block;
-
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -16,10 +14,11 @@ import ccm.trade_stuffs.utils.lib.Properties;
 public class ModBlocks
 {
 
-    public static Block tradeStation;
+    public static TradeStationBlock tradeStation;
 
     public static void init()
     {
+        System.out.println("TradeBlock");
         tradeStation = new TradeStationBlock(Properties.tradeStationID);
     }
 }
