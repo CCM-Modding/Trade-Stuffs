@@ -63,15 +63,19 @@ public class TradeStation extends TileEntity implements IInventory
     {
         if (inventory[slot] != null)
         {
-
+            final ItemStack itemStack = inventory[slot];
+            inventory[slot] = null;
+            return itemStack;
+        } else
+        {
+            return null;
         }
     }
 
     @Override
-    public void setInventorySlotContents(final int i, final ItemStack itemstack)
+    public void setInventorySlotContents(final int slot, final ItemStack itemStack)
     {
-        // TODO Auto-generated method stub
-
+        inventory[slot] = itemStack;
     }
 
     @Override
