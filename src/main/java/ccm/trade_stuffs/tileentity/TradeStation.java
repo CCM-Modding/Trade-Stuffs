@@ -6,6 +6,7 @@ package ccm.trade_stuffs.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -114,4 +115,16 @@ public class TradeStation extends TileEntity implements IInventory
     @Override
     public void closeChest()
     {}
+
+    @Override
+    public void readFromNBT(final NBTTagCompound nbt)
+    {
+
+    }
+
+    @Override
+    public void writeToNBT(final NBTTagCompound nbt)
+    {
+
+    }
 }
