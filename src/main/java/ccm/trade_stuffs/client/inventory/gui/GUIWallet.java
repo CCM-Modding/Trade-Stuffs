@@ -52,7 +52,24 @@ public class GUIWallet extends GuiContainer
     @Override
     protected void actionPerformed(final GuiButton button)
     {
+        final ContainerWallet container = (ContainerWallet) inventorySlots;
+        if (container != null)
+        {
+            if (container.wallet != null)
+            {
+                switch (button.id)
+                {
+                    case 0:
 
+                        break;
+                    case 1:
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 
     @Override
@@ -104,13 +121,13 @@ public class GUIWallet extends GuiContainer
         final ArrayList<String> text = new ArrayList<String>();
         if (isPointInRegion(125, 27, 20, 20, x, y))
         {
-            text.add("");
-            drawHoveringText(text, 120, 64, fontRenderer);
+            text.add("MOAR!");
+            drawHoveringText(text, 110, 64, fontRenderer);
         }
         if (isPointInRegion(98, 27, 20, 20, x, y))
         {
-            text.add("sd");
-            drawHoveringText(text, 92, 64, fontRenderer);
+            text.add("Ooups less");
+            drawHoveringText(text, 68, 64, fontRenderer);
         }
     }
 
