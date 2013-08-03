@@ -71,6 +71,14 @@ public class GUIWallet extends GuiContainer
                     sb.append("s");
                 }
                 fontRenderer.drawString(sb.toString(), 6, 6, 0, false);
+                if (value > 0)
+                {
+                    container.wallet.hasMoney(true);
+                }
+                else
+                {
+                    container.wallet.hasMoney(false);
+                }
             }
         }
     }

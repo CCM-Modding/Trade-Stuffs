@@ -9,7 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.trade_stuffs.utils.helper.NBTHelper;
 
 /**
  * WalletInventory
@@ -27,6 +29,11 @@ public class WalletInventory implements IInventory
     {
         wallet = item;
         readFromNBT(item.getTagCompound());
+    }
+
+    public void hasMoney(final boolean has)
+    {
+        NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
     }
 
     @Override
