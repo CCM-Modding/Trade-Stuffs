@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class ContainerWallet extends ContainerBase
 {
-    private final EntityPlayer player;s
+    private final EntityPlayer player;
 
     public ContainerWallet(final EntityPlayer player)
     {
