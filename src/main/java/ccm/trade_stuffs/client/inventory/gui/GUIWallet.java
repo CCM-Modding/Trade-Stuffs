@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.trade_stuffs.api.CoinTypes;
 import ccm.trade_stuffs.inventory.ContainerWallet;
-import ccm.trade_stuffs.inventory.WalletInventory;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -27,15 +27,12 @@ import ccm.trade_stuffs.utils.lib.Guis;
 @SideOnly(Side.CLIENT)
 public class GUIWallet extends GuiContainer
 {
-    private final WalletInventory wallet;
-
     /**
      * @param container
      */
     public GUIWallet(final ItemStack item, final EntityPlayer player)
     {
         super(new ContainerWallet(item, player));
-        wallet = new WalletInventory(item);
     }
 
     @Override
@@ -53,10 +50,29 @@ public class GUIWallet extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(final int x, final int y)
     {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("You have %s coin");
-
-        fontRenderer.drawString(sb.toString(), 6, 6, 0, false);
+        final ContainerWallet container = (ContainerWallet) inventorySlots;
+        if (container != null)
+        {
+            if (container.wallet != null)
+            {
+                final StringBuilder sb = new StringBuilder();
+                sb.append("You have ");
+                int value = 0;
+                for (final ItemStack item : container.wallet.getInventory())
+                {
+                    if (item != null)
+                    {
+                        value += CoinTypes.getTypes().get(item.getItemDamage()).getValueStack(item);
+                    }
+                }
+                sb.append(value + " coin");
+                if ((value != 1) || (value == 0))
+                {
+                    sb.append("s");
+                }
+                fontRenderer.drawString(sb.toString(), 6, 6, 0, false);
+            }
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  */
 public class ContainerWallet extends ContainerBase
 {
-    private final WalletInventory wallet;
+    public final WalletInventory wallet;
 
     public ContainerWallet(final ItemStack item, final EntityPlayer player)
     {

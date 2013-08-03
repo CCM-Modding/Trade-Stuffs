@@ -83,6 +83,11 @@ public class WalletInventory implements IInventory
         return 64;
     }
 
+    public ItemStack[] getInventory()
+    {
+        return inventory;
+    }
+
     @Override
     public void onInventoryChanged()
     {}
