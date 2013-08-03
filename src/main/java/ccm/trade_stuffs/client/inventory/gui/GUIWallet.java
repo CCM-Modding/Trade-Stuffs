@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.client.inventory.gui;
 
+import java.util.ArrayList;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.gui.GuiButton;
@@ -99,14 +101,16 @@ public class GUIWallet extends GuiContainer
                 }
             }
         }
-
+        final ArrayList<String> text = new ArrayList<String>();
         if (isPointInRegion(125, 27, 20, 20, x, y))
         {
-            System.out.println("Stuffs 1");
+            text.add("");
+            drawHoveringText(text, 120, 64, fontRenderer);
         }
         if (isPointInRegion(98, 27, 20, 20, x, y))
         {
-            System.out.println("Stuffs 2");
+            text.add("sd");
+            drawHoveringText(text, 92, 64, fontRenderer);
         }
     }
 
