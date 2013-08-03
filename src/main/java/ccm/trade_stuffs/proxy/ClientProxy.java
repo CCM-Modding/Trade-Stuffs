@@ -55,7 +55,7 @@ public class ClientProxy extends CommonProxy
             case Guis.GUI_BANK:
                 return new GUIBank(player.inventory, (Bank) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_WALLET:
-                return new GUIWallet(player);
+                return new GUIWallet(player.getCurrentEquippedItem(), player);
             case Guis.GUI_SAFE:
                 return new GUISafe(player.inventory, (Safe) world.getBlockTileEntity(x, y, z));
             default:

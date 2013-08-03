@@ -30,9 +30,9 @@ public class GUIWallet extends GuiContainer
     /**
      * @param container
      */
-    public GUIWallet(final EntityPlayer player)
+    public GUIWallet(final ItemStack item, final EntityPlayer player)
     {
-        super(new ContainerWallet(player));
+        super(new ContainerWallet(item, player));
     }
 
     @Override

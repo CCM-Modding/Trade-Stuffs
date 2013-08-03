@@ -86,19 +86,22 @@ public class WalletInventory implements IInventory
     @Override
     public void onInventoryChanged()
     {
-        if (wallet.getTagCompound() == null)
+        NBTTagCompound tag = wallet.getTagCompound();
+        if (tag == null)
         {
-            final NBTTagCompound tag = new NBTTagCompound();
+            tag = new NBTTagCompound();
             wallet.setTagCompound(tag);
         }
         writeToNBT(wallet.getTagCompound());
     }
 
+    public static final String INVENTORY_WALLET = "CCM.WALLET.INVENTORY";
+
     public void readFromNBT(final NBTTagCompound nbt)
     {
-        if (nbt.hasKey("CCM.TILE.ENTITY.INVENTORY"))
+        if (nbt.hasKey(INVENTORY_WALLET))
         {
-            setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList("container.inventory"),
+            setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList(INVENTORY_WALLET),
                                                               getSizeInventory()));
         }
     }
@@ -113,7 +116,7 @@ public class WalletInventory implements IInventory
 
     public void writeToNBT(final NBTTagCompound nbt)
     {
-        nbt.setTag("CCM.TILE.ENTITY.INVENTORY", InventoryHelper.writeInventoryToNBT(inventory));
+        nbt.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
     }
 
     @Override

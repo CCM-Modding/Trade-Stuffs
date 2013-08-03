@@ -7,9 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 import ccm.trade_stuffs.inventory.slot.InputSlot;
-import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.items.WalletItem;
-import ccm.trade_stuffs.utils.helper.FunctionHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
 /**
@@ -22,10 +20,10 @@ public class ContainerWallet extends ContainerBase
 {
     private final WalletInventory wallet;
 
-    public ContainerWallet(final EntityPlayer player)
+    public ContainerWallet(final ItemStack item, final EntityPlayer player)
     {
         super(player.inventory);
-        wallet = new WalletInventory(FunctionHelper.getCurrentItem(player, new ItemStack(ModItems.wallet)));
+        wallet = new WalletInventory(item);
         addPlayerInventory(8, 51);
         addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
         addSlotToContainer(new InputSlot(wallet, 2, 152, 29));
