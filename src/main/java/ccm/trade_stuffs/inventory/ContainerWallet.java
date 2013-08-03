@@ -27,14 +27,11 @@ public class ContainerWallet extends ContainerBase
         addPlayerInventory(8, 51);
         addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
         addSlotToContainer(new InputSlot(wallet, 2, 152, 29));
-        wallet.onInventoryChanged();
     }
 
     @Override
     public void onContainerClosed(final EntityPlayer player)
     {
-        super.onContainerClosed(player);
-
         if (!(player.worldObj.isRemote))
         {
             for (final ItemStack stack : player.inventory.mainInventory)
@@ -48,6 +45,8 @@ public class ContainerWallet extends ContainerBase
                 }
             }
         }
+
+        super.onContainerClosed(player);
     }
 
     @Override

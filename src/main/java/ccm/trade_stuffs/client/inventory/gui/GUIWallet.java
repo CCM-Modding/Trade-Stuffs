@@ -50,8 +50,6 @@ public class GUIWallet extends GuiContainer
     @Override
     public void onGuiClosed()
     {
-        super.onGuiClosed();
-
         if (mc.thePlayer != null)
         {
             for (final ItemStack stack : mc.thePlayer.inventory.mainInventory)
@@ -65,5 +63,7 @@ public class GUIWallet extends GuiContainer
                 }
             }
         }
+
+        super.onGuiClosed();
     }
 }
