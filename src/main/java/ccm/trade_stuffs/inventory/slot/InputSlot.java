@@ -28,13 +28,12 @@ public class InputSlot extends Slot
         return item.itemID == ModItems.coin.itemID;
     }
 
-    /**
-     * Helper method to put a stack in the slot.
-     */
     @Override
-    public void putStack(final ItemStack item)
+    public void onSlotChanged()
     {
-        inventory.setInventorySlotContents(item.getItemDamage(), item);
-        onSlotChanged();
+        super.onSlotChanged();
+        final ItemStack tmp = inventory.getStackInSlot(getSlotIndex());
+        inventory.setInventorySlotContents(2 + tmp.getItemDamage(), tmp);
+        inventory.setInventorySlotContents(getSlotIndex(), null);
     }
 }

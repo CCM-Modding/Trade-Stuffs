@@ -27,7 +27,7 @@ public class ContainerWallet extends ContainerBase
         wallet = new WalletInventory(item);
         addPlayerInventory(8, 51);
         addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
-        addSlotToContainer(new OutSlot(wallet, 2, 152, 29));
+        addSlotToContainer(new OutSlot(wallet, 1, 152, 29));
     }
 
     @Override
