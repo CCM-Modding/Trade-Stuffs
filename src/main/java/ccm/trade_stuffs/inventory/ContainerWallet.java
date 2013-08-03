@@ -54,7 +54,6 @@ public class ContainerWallet extends ContainerBase
     public ItemStack transferStackInSlot(final EntityPlayer player, final int slot)
     {
         // Hacky crash fix :P
-        wallet.onInventoryChanged();
         return null;
     }
 }
