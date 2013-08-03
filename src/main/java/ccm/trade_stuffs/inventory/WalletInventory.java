@@ -85,6 +85,11 @@ public class WalletInventory implements IInventory
     @Override
     public void onInventoryChanged()
     {
+        if (wallet.getTagCompound() == null)
+        {
+            final NBTTagCompound tag = new NBTTagCompound();
+            wallet.setTagCompound(tag);
+        }
         writeToNBT(wallet.getTagCompound());
     }
 
