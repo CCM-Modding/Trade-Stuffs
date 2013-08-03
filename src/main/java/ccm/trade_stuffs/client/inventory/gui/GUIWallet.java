@@ -66,7 +66,7 @@ public class GUIWallet extends GuiContainer
                     }
                 }
                 sb.append(value + " coin");
-                if ((value != 1) || (value == 0))
+                if (value != 1)
                 {
                     sb.append("s");
                 }
