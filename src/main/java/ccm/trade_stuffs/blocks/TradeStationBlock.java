@@ -39,7 +39,7 @@ public class TradeStationBlock extends BlockContainer
     {
         super(id, Material.rock);
         setCreativeTab(CreativeTabs.tabDecorations);
-        setUnlocalizedName(Archive.MOD_ID_BLOCK + ":tradeStation");
+        setUnlocalizedName(Archive.MOD_ID_BLOCK + "tradeStation");
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);
         setBlockUnbreakable();

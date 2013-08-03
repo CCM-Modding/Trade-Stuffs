@@ -90,7 +90,7 @@ public class WalletItem extends BaseItem
     @Override
     public String getUnlocalizedName(final ItemStack item)
     {
-        return Archive.MOD_ID + ":" + types[item.getItemDamage()];
+        return Archive.MOD_ID_ITEM + types[item.getItemDamage()];
     }
 
     @Override

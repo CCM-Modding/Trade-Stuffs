@@ -6,3 +6,6 @@ item.trade_stuffs:coin_copper.name=Copper Coin
 item.trade_stuffs:coin_silver.name=Silver Coin
 item.trade_stuffs:coin_gold.name=Gold Coin
 item.trade_stuffs:coin_platinum.name=Platinum Coin
+item.trade_stuffs:wallet.name=Wallet
+item.trade_stuffs:wallet_empty.name=Wallet
+item.trade_stuffs:wallet_full=Wallet

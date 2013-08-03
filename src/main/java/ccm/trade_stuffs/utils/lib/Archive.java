@@ -14,7 +14,9 @@ public final class Archive
 
     public static final String MOD_ID       = "trade_stuffs";
 
-    public static final String MOD_ID_BLOCK = "tile.trade_stuffs";
+    public static final String MOD_ID_BLOCK = "trade_stuffs:";
+
+    public static final String MOD_ID_ITEM  = "item.trade_stuffs:";
 
     public static final String MOD_NAME     = "Trade Stuffs";
 
