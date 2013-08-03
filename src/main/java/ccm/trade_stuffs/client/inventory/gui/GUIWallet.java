@@ -48,6 +48,15 @@ public class GUIWallet extends GuiContainer
     }
 
     @Override
+    protected void drawGuiContainerForegroundLayer(final int x, final int y)
+    {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("You have %s coin");
+
+        fontRenderer.drawString(sb.toString(), 6, 6, 0, false);
+    }
+
+    @Override
     public void onGuiClosed()
     {
         if (mc.thePlayer != null)
