@@ -33,7 +33,7 @@ public class InputSlot extends Slot
     {
         super.onSlotChanged();
         final ItemStack input = getStack();
-        final int indexed = 2 + input.getItemDamage();
+        final int indexed = input.getItemDamage() + 2;
         final int inputSize = input.stackSize;
         final ItemStack current = inventory.getStackInSlot(indexed);
         final int currentSize = current.stackSize;
@@ -42,7 +42,9 @@ public class InputSlot extends Slot
         {
             if (currentSize != current.getMaxStackSize())
             {
-
+                int tmp = inputSize + currentSize;
+                tmp -= current.getMaxStackSize();
+                System.out.println(tmp);
             }
         }
         else
