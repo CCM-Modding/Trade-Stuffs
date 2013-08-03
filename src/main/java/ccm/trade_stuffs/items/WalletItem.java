@@ -93,7 +93,7 @@ public class WalletItem extends BaseItem
     @Override
     public void registerIcons(final IconRegister register)
     {
-        for (int i = 0; i < types.length; i++)
+        for (int i = 0; i < types.length; i++)s
         {
             icons[i] = register.registerIcon(Archive.MOD_ID + ":" + types[i]);
         }
