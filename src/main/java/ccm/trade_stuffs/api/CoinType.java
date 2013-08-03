@@ -22,22 +22,27 @@ import ccm.trade_stuffs.utils.helper.JavaHelper;
 public class CoinType
 {
     /**
+     * long, serialVersionUID
+     */
+    private static final long serialVersionUID = -6507593853569541421L;
+
+    /**
      * Name of the mod registering this coin
      */
-    private String modID;
+    private String            modID;
 
     /**
      * Name of the coin
      */
-    private String name;
+    private String            name;
     /**
      * Value of the coin
      */
-    private int    value;
+    private int               value;
     /**
      * Icon of the coin
      */
-    private Icon   icon;
+    private Icon              icon;
 
     /**
      * @param modID
@@ -139,6 +144,16 @@ public class CoinType
     public void registerIcon(final IconRegister register)
     {
         icon = register.registerIcon(modID + ":" + getIconName());
+    }
+
+    /**
+     * A UID is a Unique Identifier
+     * 
+     * @return The UID of this class, used for version stuff
+     */
+    public long getUID()
+    {
+        return serialVersionUID;
     }
 
     @Override
