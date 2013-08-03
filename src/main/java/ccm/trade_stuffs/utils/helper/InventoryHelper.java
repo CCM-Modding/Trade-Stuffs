@@ -20,8 +20,8 @@ public final class InventoryHelper
 
     public static NBTTagList writeInventoryToNBT(final ItemStack[] stacks)
     {
-        NBTTagCompound nbt;
         final NBTTagList list = new NBTTagList();
+        NBTTagCompound nbt;
         for (int i = 0; i < stacks.length; i++)
         {
             if (stacks[i] == null)

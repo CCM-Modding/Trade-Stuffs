@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,6 +20,7 @@ import ccm.trade_stuffs.configuration.Config;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.network.PacketHandler;
 import ccm.trade_stuffs.proxy.CommonProxy;
+import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
 
@@ -60,6 +63,8 @@ public class TradeStuffs
         proxy.registerTileEntitys();
 
         proxy.initRenderingStuffs();
+
+        MinecraftForge.EVENT_BUS.register(new ItemHandler());
     }
 
     @EventHandler

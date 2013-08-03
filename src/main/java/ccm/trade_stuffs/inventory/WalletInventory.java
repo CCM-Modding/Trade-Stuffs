@@ -114,6 +114,17 @@ public class WalletInventory implements IInventory
         this.inventory = inventory;
     }
 
+    public void writeToNBT(final ItemStack item)
+    {
+        NBTTagCompound tag = item.getTagCompound();
+        if (tag == null)
+        {
+            tag = new NBTTagCompound();
+            item.setTagCompound(tag);
+        }
+        writeToNBT(item.getTagCompound());
+    }
+
     public void writeToNBT(final NBTTagCompound nbt)
     {
         nbt.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
