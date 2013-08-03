@@ -90,6 +90,7 @@ public class WalletInventory implements IInventory
 
     public void readFromNBT(final NBTTagCompound nbt)
     {
+        System.out.println(nbt);
         if (nbt.hasKey(INVENTORY_WALLET))
         {
             setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList(INVENTORY_WALLET),
@@ -112,8 +113,10 @@ public class WalletInventory implements IInventory
         {
             tag = new NBTTagCompound();
         }
+        System.out.println(tag);
         tag.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
         item.setTagCompound(tag);
+        System.out.println(tag);
     }
 
     @Override
