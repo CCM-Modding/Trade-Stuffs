@@ -4,7 +4,13 @@
 package ccm.trade_stuffs.api;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+
+import cpw.mods.fml.common.Loader;
+
+import ccm.trade_stuffs.api.utils.exeptions.FailedToMakeCoinType;
+import ccm.trade_stuffs.utils.helper.JavaHelper;
 
 /**
  * CoinType
@@ -18,20 +24,20 @@ public class CoinType
     /**
      * Name of the mod registering this coin
      */
-    private final String modID;
+    private String modID;
 
     /**
      * Name of the coin
      */
-    private final String name;
+    private String name;
     /**
      * Value of the coin
      */
-    private final int    value;
+    private int    value;
     /**
      * Icon of the coin
      */
-    private Icon         icon;
+    private Icon   icon;
 
     /**
      * @param modID
@@ -43,9 +49,33 @@ public class CoinType
      */
     public CoinType(final String modID, final String name, final int value)
     {
-        this.modID = modID;
-        this.name = name;
-        this.value = value;
+        boolean valid = false;
+        if (modID != null)
+        {
+            if (Loader.isModLoaded(modID))
+            {
+                if (name != null)
+                {
+                    if (value >= 1)
+                    {
+                        this.modID = modID;
+                        this.name = name;
+                        this.value = value;
+                        valid = true;
+                    }
+                }
+            }
+        }
+        if (!valid)
+        {
+            try
+            {
+                throw new FailedToMakeCoinType(modID, name, value);
+            } catch (final FailedToMakeCoinType e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -73,6 +103,16 @@ public class CoinType
     }
 
     /**
+     * @param item
+     *            The item stack containing this coin
+     * @return The value of the ItemStack as a whole
+     */
+    public int getValueStack(final ItemStack item)
+    {
+        return getValue() * item.stackSize;
+    }
+
+    /**
      * @return The icon of the coin
      */
     public Icon getIcon()
@@ -90,11 +130,7 @@ public class CoinType
 
     public String getTypeName()
     {
-        final char[] firstChar = new char[] { name.charAt(0) };
-        final String firstLetter = String.copyValueOf(firstChar).toUpperCase();
-        firstLetter.toUpperCase();
-        final String rest = name.substring(1);
-        return firstLetter + rest;
+        return JavaHelper.tileCase(name);
     }
 
     /**
@@ -181,30 +217,12 @@ public class CoinType
     {
         final StringBuilder builder = new StringBuilder();
         builder.append("CoinType [");
-        if (modID != null)
-        {
-            builder.append("Mod = ").append(modID).append(", ");
-        }
-        else
-        {
-            builder.append("Mod = NULL");
-        }
-        if (name != null)
-        {
-            builder.append("Name = ").append(name).append(", ");
-        }
-        else
-        {
-            builder.append("Name = NULL");
-        }
+        builder.append("Mod = ").append(modID).append(", ");
+        builder.append("Name = ").append(name).append(", ");
         builder.append("Value = ").append(value).append(", ");
         if (icon != null)
         {
-            builder.append("Icon = ").append(icon);
-        }
-        else
-        {
-            builder.append("Icon = NULL");
+            builder.append("icon=").append(icon);
         }
         builder.append("]");
         return builder.toString();

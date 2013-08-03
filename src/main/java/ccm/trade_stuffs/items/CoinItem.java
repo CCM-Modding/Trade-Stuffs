@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.api.CoinType;
 import ccm.trade_stuffs.api.CoinTypes;
-import ccm.trade_stuffs.utils.helper.JavaHelper;
 
 /**
  * CoinItem
@@ -81,6 +80,27 @@ public class CoinItem extends BaseItem
                                final List list,
                                final boolean color)
     {
-        list.add(JavaHelper.tileCase("ssdd eD s  dsS"));
+        final CoinType current = CoinTypes.getTypes().get(item.getItemDamage());
+        StringBuilder s = new StringBuilder();
+        s.append("You have ");
+        s.append(item.stackSize);
+        s.append(" ");
+        s.append(current.getTypeName());
+        s.append(" Coin");
+        if (item.stackSize > 1)
+        {
+            s.append("s");
+        }
+        list.add(s.toString());
+        s = new StringBuilder();
+        s.append("You have a total of ");
+        s.append(current.getValueStack(item));
+        s.append(" coin");
+        if (current.getValueStack(item) > 1)
+        {
+            s.append("s");
+        }
+        s.append(" in this stack");
+        list.add(s.toString());
     }
 }

@@ -11,34 +11,20 @@ package ccm.trade_stuffs.utils.helper;
  */
 public final class JavaHelper
 {
-    public static final String s = " ";
 
     public static String tileCase(final String input)
     {
-        if (input.contains(s))
+        if (input.contains(" "))
         {
-            final StringBuilder finished = new StringBuilder();
-            int lastSpace = -1;
-            String currentString = input;
-            for (int i = 0; i < input.length(); i++)
+            final String[] strings = input.split(" ");
+            final StringBuilder sb = new StringBuilder();
+            for (final String s : strings)
             {
-                int first = lastSpace + 1;
-                finished.append(currentString.substring(first, 1).toUpperCase());
-                lastSpace = currentString.indexOf(s);
-                first = lastSpace + 1;
-                final int last = lastSpace - 1;
-                finished.append(currentString.substring(1, last));
-                finished.append(s);
-                if (!(first <= currentString.length()))
-                {
-                    currentString = currentString.substring(first, currentString.length());
-                }
-                else
-                {
-                    break;
-                }
+                sb.append(s.substring(0, 1).toUpperCase() + s.substring(1));
+                sb.append(" ");
+                System.out.println(sb.toString());
             }
-            return finished.toString();
+            return sb.toString();
         }
         else
         {
