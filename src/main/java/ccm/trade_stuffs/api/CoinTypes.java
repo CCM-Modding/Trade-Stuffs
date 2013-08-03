@@ -17,9 +17,14 @@ import ccm.trade_stuffs.api.utils.exeptions.FailedToMakeCoinType;
 public final class CoinTypes
 {
     /**
+     * long, serialVersionUID
+     */
+    private static final long     serialVersionUID = -7687489046333823903L;
+
+    /**
      * All of the registered coin types
      */
-    private static List<CoinType> types = new ArrayList<CoinType>();
+    private static List<CoinType> types            = new ArrayList<CoinType>();
 
     /**
      * @param modID
@@ -80,6 +85,16 @@ public final class CoinTypes
             copy.add(type);
         }
         return copy;
+    }
+
+    /**
+     * A UID is a Unique Identifier
+     * 
+     * @return The UID of this class, used for version stuff
+     */
+    public long getUID()
+    {
+        return serialVersionUID;
     }
 
     static final String          modID    = "trade_stuffs";
