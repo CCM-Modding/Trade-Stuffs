@@ -93,14 +93,13 @@ public class CoinItem extends BaseItem
         }
         list.add(s.toString());
         s = new StringBuilder();
-        s.append("You have a total of ");
+        s.append("This is worth ");
         s.append(current.getValueStack(item));
         s.append(" coin");
         if (current.getValueStack(item) > 1)
         {
             s.append("s");
         }
-        s.append(" in this stack");
         list.add(s.toString());
     }
 }
