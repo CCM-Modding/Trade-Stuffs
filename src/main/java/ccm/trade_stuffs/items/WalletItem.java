@@ -61,7 +61,7 @@ public class WalletItem extends BaseItem
     @Override
     public Icon getIcon(final ItemStack stack, final int pass)
     {
-        if (NBTHelper.getBoolean(stack, openedWallet))s
+        if (NBTHelper.getBoolean(stack, openedWallet))
         {
             if (NBTHelper.getBoolean(stack, fullWallet))
             {
