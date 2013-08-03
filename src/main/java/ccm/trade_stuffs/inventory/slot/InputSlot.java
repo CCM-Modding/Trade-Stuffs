@@ -47,7 +47,10 @@ public class InputSlot extends Slot
                     {
                         int tmp = inputSize + currentSize;
                         tmp -= current.getMaxStackSize();
-                        System.out.println(tmp);
+                        input.stackSize = tmp;
+                        inventory.setInventorySlotContents(getSlotIndex(), input);
+                        current.stackSize = current.getMaxStackSize();
+                        inventory.setInventorySlotContents(indexed, current);
                     }
                 }
                 else
@@ -59,7 +62,8 @@ public class InputSlot extends Slot
             }
             else
             {
-
+                inventory.setInventorySlotContents(getSlotIndex(), null);
+                inventory.setInventorySlotContents(indexed, input);
             }
         }
     }

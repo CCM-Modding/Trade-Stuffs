@@ -5,6 +5,7 @@ package ccm.trade_stuffs.client.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,6 +34,23 @@ public class GUIWallet extends GuiContainer
     public GUIWallet(final ItemStack item, final EntityPlayer player)
     {
         super(new ContainerWallet(item, player));
+    }
+
+    @Override
+    public void initGui()
+    {
+        super.initGui();
+
+        buttonList.clear();
+
+        buttonList.add(new GuiButton(0, guiLeft + 125, guiTop + 27, 20, 20, "+"));
+        buttonList.add(new GuiButton(1, guiLeft + 98, guiTop + 27, 20, 20, "-"));
+    }
+
+    @Override
+    protected void actionPerformed(final GuiButton button)
+    {
+
     }
 
     @Override
@@ -81,6 +99,7 @@ public class GUIWallet extends GuiContainer
                 }
             }
         }
+
     }
 
     @Override
