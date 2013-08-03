@@ -65,15 +65,18 @@ public class WalletItem extends BaseItem
         {
             if (NBTHelper.getBoolean(stack, fullWallet))
             {
+                setDamage(stack, 2);
                 return icons[2];
             }
             else
             {
+                setDamage(stack, 1);
                 return icons[1];
             }
         }
         else
         {
+            setDamage(stack, 0);
             return icons[0];
         }
     }

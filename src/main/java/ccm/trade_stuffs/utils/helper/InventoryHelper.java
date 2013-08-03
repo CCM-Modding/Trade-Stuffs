@@ -3,6 +3,7 @@
  */
 package ccm.trade_stuffs.utils.helper;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -45,5 +46,29 @@ public final class InventoryHelper
             stacks[nbt.getInteger(slot)] = ItemStack.loadItemStackFromNBT(nbt);
         }
         return stacks;
+    }
+
+    public static ItemStack decreaseStackSize(final IInventory inventory, final int slot, final int amount)
+    {
+        if (inventory.getStackInSlot(slot) != null)
+        {
+            ItemStack itemStack;
+            if (inventory.getStackInSlot(slot).stackSize <= amount)
+            {
+                itemStack = inventory.getStackInSlot(slot);
+                inventory.setInventorySlotContents(slot, null);
+            }
+            else
+            {
+                itemStack = inventory.getStackInSlot(slot).splitStack(amount);
+                if (inventory.getStackInSlot(slot).stackSize == 0)
+                {
+                    inventory.setInventorySlotContents(slot, null);
+                }
+            }
+            inventory.onInventoryChanged();
+            return itemStack;
+        }
+        return null;
     }
 }

@@ -36,7 +36,7 @@ public class ContainerBase extends Container
         // Player's Hot Bar
         for (int index = 0; index < 9; index++)
         {
-            addSlotToContainer(new Slot(player, index, x + (index * 18), y + 54));
+            addSlotToContainer(new Slot(player, index, x + (index * 18), y + 58));
         }
     }
 

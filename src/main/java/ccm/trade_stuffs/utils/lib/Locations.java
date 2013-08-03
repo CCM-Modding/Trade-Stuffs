@@ -17,4 +17,6 @@ public class Locations
     public static final String CLIENT_PROXY = PROXY + "ClientProxy";
 
     public static final String SERVER_PROXY = PROXY + "CommonProxy";
+
+    public static final String GUI_LOC      = "textures/guis/";
 }

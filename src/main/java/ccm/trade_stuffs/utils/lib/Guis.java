@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.utils.lib;
 
+import static ccm.trade_stuffs.utils.lib.Locations.GUI_LOC;
+
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -16,17 +18,17 @@ public final class Guis
 
     public static final int              GUI_TRADE          = 0;
     public static final ResourceLocation TEXTURE_GUI_TRADE  = new ResourceLocation(Archive.MOD_ID,
-                                                                                   "guis/guiTrade.png");
+                                                                                   GUI_LOC + "guiTrade.png");
 
     public static final int              GUI_WALLET         = 1;
     public static final ResourceLocation TEXTURE_GUI_WALLET = new ResourceLocation(Archive.MOD_ID,
-                                                                                   "guis/guiWallet.png");
+                                                                                   GUI_LOC + "guiWallet.png");
 
     public static final int              GUI_BANK           = 2;
     public static final ResourceLocation TEXTURE_GUI_BANK   = new ResourceLocation(Archive.MOD_ID,
-                                                                                   "guis/guiBank.png");
+                                                                                   GUI_LOC + "guiBank.png");
 
     public static final int              GUI_SAFE           = 3;
     public static final ResourceLocation TEXTURE_GUI_SAFE   = new ResourceLocation(Archive.MOD_ID,
-                                                                                   "guis/guiSafe.png");
+                                                                                   GUI_LOC + "guiSafe.png");
 }

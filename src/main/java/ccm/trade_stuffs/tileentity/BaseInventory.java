@@ -36,30 +36,7 @@ public abstract class BaseInventory extends TileEntity implements IInventory
     @Override
     public ItemStack decrStackSize(final int slot, final int amount)
     {
-        if (inventory[slot] != null)
-        {
-            ItemStack itemStack;
-            if (inventory[slot].stackSize <= amount)
-            {
-                itemStack = inventory[slot];
-                inventory[slot] = null;
-                onInventoryChanged();
-            }
-            else
-            {
-                itemStack = inventory[slot].splitStack(amount);
-                if (inventory[slot].stackSize == 0)
-                {
-                    inventory[slot] = null;
-                }
-                onInventoryChanged();
-            }
-            return itemStack;
-        }
-        else
-        {
-            return null;
-        }
+        return InventoryHelper.decreaseStackSize(this, slot, amount);
     }
 
     @Override
