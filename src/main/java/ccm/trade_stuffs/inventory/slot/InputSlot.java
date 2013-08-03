@@ -33,7 +33,10 @@ public class InputSlot extends Slot
     {
         super.onSlotChanged();
         final ItemStack tmp = inventory.getStackInSlot(getSlotIndex());
-        inventory.setInventorySlotContents(2 + tmp.getItemDamage(), tmp);
-        inventory.setInventorySlotContents(getSlotIndex(), null);
+        if (tmp != null)
+        {
+            inventory.setInventorySlotContents(2 + tmp.getItemDamage(), tmp);
+            inventory.setInventorySlotContents(getSlotIndex(), null);
+        }
     }
 }
