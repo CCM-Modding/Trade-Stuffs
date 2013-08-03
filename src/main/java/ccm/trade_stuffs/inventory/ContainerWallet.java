@@ -20,18 +20,16 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  */
 public class ContainerWallet extends ContainerBase
 {
-    private final EntityPlayer    player;
-
     private final WalletInventory wallet;
 
     public ContainerWallet(final EntityPlayer player)
     {
         super(player.inventory);
-        this.player = player;
         wallet = new WalletInventory(FunctionHelper.getCurrentItem(player, new ItemStack(ModItems.wallet)));
         addPlayerInventory(8, 51);
         addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
-        addSlotToContainer(new InputSlot(wallet, 1, 152, 29));
+        addSlotToContainer(new InputSlot(wallet, 2, 152, 29));
+        wallet.onInventoryChanged();
     }
 
     @Override

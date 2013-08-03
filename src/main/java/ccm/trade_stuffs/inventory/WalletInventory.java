@@ -25,6 +25,7 @@ public class WalletInventory implements IInventory
     public WalletInventory(final ItemStack item)
     {
         wallet = item;
+        onInventoryChanged();
         readFromNBT(wallet.getTagCompound());
     }
 
