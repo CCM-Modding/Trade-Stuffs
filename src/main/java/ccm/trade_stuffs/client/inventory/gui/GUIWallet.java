@@ -100,6 +100,14 @@ public class GUIWallet extends GuiContainer
             }
         }
 
+        if (isPointInRegion(125, 27, 20, 20, x, y))
+        {
+            System.out.println("Stuffs 1");
+        }
+        if (isPointInRegion(98, 27, 20, 20, x, y))
+        {
+            System.out.println("Stuffs 2");
+        }
     }
 
     @Override
