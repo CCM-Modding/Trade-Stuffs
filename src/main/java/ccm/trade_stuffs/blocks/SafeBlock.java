@@ -43,7 +43,7 @@ public class SafeBlock extends BlockContainer
     {
         super(id, Material.iron);
         setCreativeTab(CreativeTabs.tabDecorations);
-        setUnlocalizedName("safe");
+        setUnlocalizedName(Archive.MOD_ID_BLOCK + ":safe");
         setHardness(40);
         setResistance(1000);
         setStepSound(soundStoneFootstep);

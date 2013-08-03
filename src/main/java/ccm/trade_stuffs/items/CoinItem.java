@@ -39,7 +39,8 @@ public class CoinItem extends BaseItem
     @Override
     public String getUnlocalizedName(final ItemStack item)
     {
-        return "item." + CoinTypes.getTypes().get(item.getItemDamage()).getIconName();
+        final CoinType type = CoinTypes.getTypes().get(item.getItemDamage());
+        return type.getModID() + ":" + type.getIconName();
     }
 
     /**

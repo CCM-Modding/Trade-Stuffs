@@ -41,7 +41,7 @@ public class BankBlock extends BlockContainer
     {
         super(id, Material.iron);
         setCreativeTab(CreativeTabs.tabDecorations);
-        setUnlocalizedName("bank");
+        setUnlocalizedName(Archive.MOD_ID_BLOCK + ":bank");
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);
         setBlockUnbreakable();
