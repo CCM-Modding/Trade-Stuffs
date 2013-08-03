@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.inventory.ContainerWallet;
+import ccm.trade_stuffs.inventory.WalletInventory;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -26,6 +27,7 @@ import ccm.trade_stuffs.utils.lib.Guis;
 @SideOnly(Side.CLIENT)
 public class GUIWallet extends GuiContainer
 {
+    private final WalletInventory wallet;
 
     /**
      * @param container
@@ -33,6 +35,7 @@ public class GUIWallet extends GuiContainer
     public GUIWallet(final ItemStack item, final EntityPlayer player)
     {
         super(new ContainerWallet(item, player));
+        wallet = new WalletInventory(item);
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import ccm.trade_stuffs.api.CoinTypes;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
 
 /**
@@ -18,7 +19,7 @@ import ccm.trade_stuffs.utils.helper.InventoryHelper;
  */
 public class WalletInventory implements IInventory
 {
-    ItemStack[] inventory = new ItemStack[3];
+    ItemStack[] inventory = new ItemStack[CoinTypes.getTypes().size() + 2];
 
     ItemStack   wallet;
 
@@ -31,7 +32,7 @@ public class WalletInventory implements IInventory
     @Override
     public int getSizeInventory()
     {
-        return 3;
+        return CoinTypes.getTypes().size() + 2;
     }
 
     @Override
