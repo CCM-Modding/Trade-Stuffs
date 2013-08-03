@@ -41,6 +41,10 @@ public class ContainerWallet extends ContainerBase
                 {
                     if (NBTHelper.hasTag(stack, WalletItem.openedWallet))
                     {
+                        if (NBTHelper.hasTag(stack, WalletItem.fullWallet))
+                        {
+                            NBTHelper.removeTag(stack, WalletItem.fullWallet);
+                        }
                         wallet.writeToNBT(stack);
                         NBTHelper.removeTag(stack, WalletItem.openedWallet);
                     }

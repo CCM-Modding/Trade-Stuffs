@@ -53,6 +53,19 @@ public final class CoinTypes
         types.add(type);
     }
 
+    public static boolean isHigest(final CoinType type)
+    {
+        final int val = type.getValue();
+        for (final CoinType coin : types)
+        {
+            if (coin.getValue() > val)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static int getReleatedValue(final CoinType type, final CoinType wantedType)
     {
         if (wantedType.equals(COPPER))
