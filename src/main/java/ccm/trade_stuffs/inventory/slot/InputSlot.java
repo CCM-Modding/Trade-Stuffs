@@ -37,8 +37,10 @@ public class InputSlot extends Slot
         {
             final int index = 2 + tmp.getItemDamage();
             final ItemStack tmp2 = inventory.getStackInSlot(index);
-            inventory.setInventorySlotContents(index, tmp);
-            inventory.setInventorySlotContents(getSlotIndex(), null);
+            if (!(tmp2.stackSize >= tmp2.getMaxStackSize()))
+            {
+                if(!((tmp.stackSize + tmp2.stackSize) >= tmp2.getMaxStackSize()))
+            }
         }
     }
 }
