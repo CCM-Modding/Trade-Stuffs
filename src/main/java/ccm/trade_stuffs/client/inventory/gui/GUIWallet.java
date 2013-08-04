@@ -74,9 +74,9 @@ public class GUIWallet extends GuiContainer
                 if (value > 0)
                 {
                     container.wallet.hasMoney(true);
-                    fontRenderer.drawString("Now go to the closest bank to ", 6, 14, 0, false);
-                    fontRenderer.drawString("get your money into your ", 26, 23, 0, false);
-                    // fontRenderer.drawString("bank acount Safely!", 8, 8, 0, false);
+                    fontRenderer.drawString("Now go to the closest bank to ", 6, 16, 0, false);
+                    fontRenderer.drawString("get your money into your ", 30, 26, 0, false);
+                    fontRenderer.drawString("bank acount Safely!", 30, 36, 0, false);
                 }
                 else
                 {

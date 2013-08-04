@@ -33,7 +33,7 @@ public class WalletInventory implements IInventory
     public WalletInventory(final ItemStack item)
     {
         wallet = item;
-        readFromNBT(item.getTagCompound());
+        readFromNBT(item, item.getTagCompound());
     }
 
     @SideOnly(Side.CLIENT)
@@ -109,10 +109,11 @@ public class WalletInventory implements IInventory
 
     public static final String INVENTORY_WALLET = "CCM.WALLET.INVENTORY";
 
-    public void readFromNBT(final NBTTagCompound nbt)
+    public void readFromNBT(final ItemStack item, final NBTTagCompound nbt)
     {
+        NBTHelper.initCompound(item);
         System.out.println(nbt);
-        if (nbt.hasKey(INVENTORY_WALLET))
+        if (NBTHelper.hasTag(item, INVENTORY_WALLET))
         {
             setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList(INVENTORY_WALLET),
                                                               getSizeInventory()));
