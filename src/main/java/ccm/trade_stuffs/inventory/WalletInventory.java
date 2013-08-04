@@ -25,6 +25,7 @@ public class WalletInventory implements IInventory
 
     public ItemStack wallet;
 
+	//TODO: fix this class
     public WalletInventory(final ItemStack item)
     {
         wallet = item;
