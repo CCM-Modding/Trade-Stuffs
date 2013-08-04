@@ -64,6 +64,16 @@ public class GUISafe extends GuiContainer
     @Override
     protected void actionPerformed(final GuiButton button)
     {
+        final int pass = safe.getPass();
+        switch (button.id)
+        {
+            case 0:
+
+                break;
+
+            default:
+                break;
+        }
         super.actionPerformed(button);
     }
 
