@@ -16,9 +16,12 @@ public class NBTHelper
 {
     public static void initCompound(final ItemStack item)
     {
-        if (item.getTagCompound() == null)
+        if (item != null)
         {
-            item.setTagCompound(new NBTTagCompound());
+            if (item.getTagCompound() == null)
+            {
+                item.setTagCompound(new NBTTagCompound());
+            }
         }
     }
 
