@@ -39,13 +39,15 @@ public class GUISafe extends GuiContainer
         super.initGui();
         buttonList.clear();
         int i = 0;
-        for (int row = 0; row < 3; row++)
+        buttonList.add(new GuiButton(i, guiLeft + 49, guiTop + 60, 20, 20, "" + i));
+        i++;
+        for (int column = 0; column < 3; column++)
         {
-            for (int column = 0; column < 3; column++)
+            for (int row = 0; row < 3; row++)
             {
                 buttonList.add(new GuiButton(i,
                                              ((22 * row) + guiLeft) + 27,
-                                             ((22 * column) + guiTop) + 38,
+                                             ((22 * column) + guiTop) + 18,
                                              20,
                                              20,
                                              "" + i));
