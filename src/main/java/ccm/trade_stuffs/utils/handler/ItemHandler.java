@@ -25,6 +25,10 @@ public final class ItemHandler
     {
         if (NBTHelper.hasTag(event.item.getEntityItem(), WalletItem.openedWallet))
         {
+            if (NBTHelper.hasTag(event.item.getEntityItem(), WalletItem.fullWallet))
+            {
+                NBTHelper.removeTag(event.item.getEntityItem(), WalletItem.fullWallet);
+            }
             NBTHelper.removeTag(event.item.getEntityItem(), WalletItem.openedWallet);
         }
     }
@@ -34,6 +38,10 @@ public final class ItemHandler
     {
         if (NBTHelper.hasTag(event.entityItem.getEntityItem(), WalletItem.openedWallet))
         {
+            if (NBTHelper.hasTag(event.entityItem.getEntityItem(), WalletItem.fullWallet))
+            {
+                NBTHelper.removeTag(event.entityItem.getEntityItem(), WalletItem.fullWallet);
+            }
             NBTHelper.removeTag(event.entityItem.getEntityItem(), WalletItem.openedWallet);
         }
     }
@@ -45,6 +53,10 @@ public final class ItemHandler
         {
             if (NBTHelper.hasTag(item.getEntityItem(), WalletItem.openedWallet))
             {
+                if (NBTHelper.hasTag(item.getEntityItem(), WalletItem.fullWallet))
+                {
+                    NBTHelper.removeTag(item.getEntityItem(), WalletItem.fullWallet);
+                }
                 NBTHelper.removeTag(item.getEntityItem(), WalletItem.openedWallet);
             }
         }
