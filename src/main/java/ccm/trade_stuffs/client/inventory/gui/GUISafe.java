@@ -54,11 +54,11 @@ public class GUISafe extends GuiContainer
                                              20,
                                              20,
                                              "" + i));
-                i += 1;
+                i++;
             }
         }
-        buttonList.add(new GuiButton(i++, guiLeft + 27, guiTop + 80, 20, 20, ""));
-        buttonList.add(new GuiButton(i++, guiLeft + 71, guiTop + 80, 20, 20, ""));
+        buttonList.add(new GuiButton(i, guiLeft + 27, guiTop + 80, 20, 20, "" + i++));
+        buttonList.add(new GuiButton(i, guiLeft + 71, guiTop + 80, 20, 20, "" + i));
     }
 
     @Override
@@ -66,14 +66,9 @@ public class GUISafe extends GuiContainer
     {
         final String pass = safe.getPass();
         final StringBuilder tmpPass = new StringBuilder();
-        switch (button.id)
+        if ((button.id < 10) && (button.id > -1))
         {
-            case 0:
-                tmpPass.append(0);
-                break;
-
-            default:
-                break;
+            tmpPass.append(button.displayString);
         }
         super.actionPerformed(button);
     }
