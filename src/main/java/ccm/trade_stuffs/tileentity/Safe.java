@@ -16,6 +16,19 @@ public class Safe extends BaseInventory
     /**
      * @return
      */
+    public void setPass(final int pass)
+    {
+        final String s = String.valueOf(pass);
+        if (s.length() == 4)
+        {
+
+        }
+
+    }
+
+    /**
+     * @return
+     */
     public int getPass()
     {
         return pass;
