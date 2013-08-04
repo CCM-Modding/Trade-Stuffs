@@ -55,7 +55,7 @@ public class GUIWallet extends GuiContainer
         {
             if (container.wallet != null)
             {
-                final StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 sb.append("You have ");
                 int value = 0;
                 for (final ItemStack item : container.wallet.getInventory())
@@ -74,6 +74,9 @@ public class GUIWallet extends GuiContainer
                 if (value > 0)
                 {
                     container.wallet.hasMoney(true);
+                    sb = new StringBuilder();
+                    sb.append("Now go to your closest bank to get your mony into your bank acount Safely!");
+                    fontRenderer.drawString(sb.toString(), 8, 8, 0, false);
                 }
                 else
                 {

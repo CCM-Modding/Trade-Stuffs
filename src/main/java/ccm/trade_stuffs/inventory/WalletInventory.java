@@ -3,13 +3,18 @@
  */
 package ccm.trade_stuffs.inventory;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import ccm.trade_stuffs.api.CoinTypes;
 import ccm.trade_stuffs.items.WalletItem;
+import ccm.trade_stuffs.utils.helper.FunctionHelper;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
@@ -31,9 +36,12 @@ public class WalletInventory implements IInventory
         readFromNBT(item.getTagCompound());
     }
 
+    @SideOnly(Side.CLIENT)
     public void hasMoney(final boolean has)
     {
-        NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
+        NBTHelper.setBoolean(FunctionHelper.getCurrentItem(Minecraft.getMinecraft().thePlayer, wallet),
+                             WalletItem.fullWallet,
+                             has);
     }
 
     @Override
