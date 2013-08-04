@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.ContainerSafe;
 import ccm.trade_stuffs.inventory.ContainerTrade;
@@ -57,5 +58,24 @@ public abstract class CommonProxy implements IGuiHandler
             default:
                 return null;
         }
+    }
+
+    /**
+     * @param worldID
+     * @param xPosition
+     * @param yPosition
+     * @param zPosition
+     * @param pass
+     */
+    public void handlePassUpdate(final int worldID,
+                                 final int xPosition,
+                                 final int yPosition,
+                                 final int zPosition,
+                                 final byte pass)
+    {
+        final Safe safe = (Safe) TradeStuffs.instance.server.worldServers[worldID].getBlockTileEntity(xPosition,
+                                                                                                      yPosition,
+                                                                                                      zPosition);
+        safe.setPass(String.valueOf(pass));
     }
 }

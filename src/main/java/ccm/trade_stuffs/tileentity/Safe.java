@@ -5,6 +5,10 @@ package ccm.trade_stuffs.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+
+import ccm.trade_stuffs.network.packet.UpdatePass;
+
 /**
  * Safe
  * <p>
@@ -26,6 +30,7 @@ public class Safe extends BaseInventory
             if (pass.length() == 4)
             {
                 this.pass = pass;
+                PacketDispatcher.sendPacketToServer(new UpdatePass(worldObj.provider.dimensionId, this, pass));
             }
         }
     }

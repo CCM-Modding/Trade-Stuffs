@@ -3,6 +3,7 @@
  */
 package ccm.trade_stuffs;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.Mod;
@@ -12,6 +13,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 
@@ -45,6 +47,8 @@ public class TradeStuffs
                 clientSide = Locations.CLIENT_PROXY)
     public static CommonProxy proxy;
 
+    public MinecraftServer    server;
+
     @EventHandler
     public void preInit(final FMLPreInitializationEvent event)
     {
@@ -71,5 +75,11 @@ public class TradeStuffs
     public void postInit(final FMLPostInitializationEvent event)
     {
 
+    }
+
+    @EventHandler
+    public void serverStarting(final FMLServerStartingEvent event)
+    {
+        server = event.getServer();
     }
 }
