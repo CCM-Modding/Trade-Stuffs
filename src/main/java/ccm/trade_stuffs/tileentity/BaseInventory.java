@@ -7,6 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
@@ -119,5 +122,19 @@ public abstract class BaseInventory extends TileEntity implements IInventory
     {
         super.writeToNBT(nbt);
         nbt.setTag("CCM.TILE.ENTITY.INVENTORY", InventoryHelper.writeInventoryToNBT(inventory));
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        final NBTTagCompound nbt = new NBTTagCompound();
+        writeToNBT(nbt);
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 2, nbt);
+    }
+
+    @Override
+    public void onDataPacket(final INetworkManager net, final Packet132TileEntityData pkt)
+    {
+        readFromNBT(pkt.customParam1);
     }
 }
