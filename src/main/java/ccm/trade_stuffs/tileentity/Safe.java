@@ -14,16 +14,16 @@ public class Safe extends BaseInventory
     private int pass;
 
     /**
-     * @return
+     * @param pass
+     *            The pass to set, it is checked to be 4 digits long
      */
     public void setPass(final int pass)
     {
         final String s = String.valueOf(pass);
         if (s.length() == 4)
         {
-
+            this.pass = pass;
         }
-
     }
 
     /**
