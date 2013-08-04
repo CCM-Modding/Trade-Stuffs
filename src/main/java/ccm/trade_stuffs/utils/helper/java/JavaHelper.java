@@ -30,28 +30,4 @@ public final class JavaHelper
             return input.substring(0, 1).toUpperCase() + input.substring(1);
         }
     }
-
-    public static String encrypt(final String Data)
-    {
-        try
-        {
-            return EncryptionHelper.encrypt(Data);
-        } catch (final Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static String decrypt(final String encryptedData)
-    {
-        try
-        {
-            return EncryptionHelper.decrypt(encryptedData);
-        } catch (final Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

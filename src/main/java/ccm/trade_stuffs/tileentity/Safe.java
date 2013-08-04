@@ -5,8 +5,6 @@ package ccm.trade_stuffs.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import ccm.trade_stuffs.utils.helper.NBTHelper;
-
 /**
  * Safe
  * <p>
@@ -44,8 +42,7 @@ public class Safe extends BaseInventory
     public void writeToNBT(final NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setTag(SAFE_PASS, NBTHelper.encryptString(pass));
-        System.out.println(NBTHelper.encryptString(pass));
+        nbt.setString(SAFE_PASS, pass);
     }
 
     @Override
@@ -54,8 +51,7 @@ public class Safe extends BaseInventory
         super.readFromNBT(nbt);
         if (nbt.hasKey(SAFE_PASS))
         {
-            pass = NBTHelper.decryptString(nbt);
-            System.out.println(pass);
+            pass = nbt.getString(SAFE_PASS);
         }
     }
 }

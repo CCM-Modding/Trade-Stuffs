@@ -5,9 +5,6 @@ package ccm.trade_stuffs.utils.helper;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagString;
-
-import ccm.trade_stuffs.utils.helper.java.JavaHelper;
 
 /**
  * NBTHelper
@@ -58,20 +55,8 @@ public class NBTHelper
 
         if (!(item.getTagCompound().hasKey(keyName)))
         {
-
+            setBoolean(item, keyName, false);
         }
         return item.getTagCompound().getBoolean(keyName);
-    }
-
-    public static final String NBT_ENCRYPTION = "CCM.ENCRYPTED.PASS";
-
-    public static NBTTagString encryptString(final String data)
-    {
-        return new NBTTagString(NBT_ENCRYPTION, JavaHelper.encrypt(data));
-    }
-
-    public static String decryptString(final NBTTagCompound data)
-    {
-        return JavaHelper.decrypt(data.getString(NBT_ENCRYPTION));
     }
 }
