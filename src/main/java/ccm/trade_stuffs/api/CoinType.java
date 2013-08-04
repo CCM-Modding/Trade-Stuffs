@@ -10,7 +10,7 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.common.Loader;
 
 import ccm.trade_stuffs.api.utils.exeptions.FailedToMakeCoinType;
-import ccm.trade_stuffs.utils.helper.JavaHelper;
+import ccm.trade_stuffs.utils.helper.java.JavaHelper;
 
 /**
  * CoinType

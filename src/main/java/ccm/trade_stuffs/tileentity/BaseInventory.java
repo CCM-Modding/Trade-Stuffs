@@ -19,7 +19,7 @@ import ccm.trade_stuffs.utils.helper.InventoryHelper;
  */
 public abstract class BaseInventory extends TileEntity implements IInventory
 {
-    protected ItemStack[] inventory;
+    protected ItemStack[] inventory = new ItemStack[1];
 
     @Override
     public int getSizeInventory()

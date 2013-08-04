@@ -5,6 +5,8 @@ package ccm.trade_stuffs.client.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,15 +27,18 @@ import ccm.trade_stuffs.utils.lib.Guis;
 @SideOnly(Side.CLIENT)
 public class GUISafe extends GuiContainer
 {
-    Safe safe;
+    EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+    private final Safe   safe;
+    GuiButton            enter;
+    GuiButton            rest;
 
     /**
      * @param container
      */
-    public GUISafe(final InventoryPlayer player, final Safe tile)
+    public GUISafe(final InventoryPlayer player, final Safe safe)
     {
-        super(new ContainerSafe(player, tile));
-        safe = tile;
+        super(new ContainerSafe(player, safe));
+        this.safe = safe;
     }
 
     @Override
@@ -57,20 +62,92 @@ public class GUISafe extends GuiContainer
                 i++;
             }
         }
-        buttonList.add(new GuiButton(i, guiLeft + 27, guiTop + 80, 20, 20, "" + i++));
-        buttonList.add(new GuiButton(i, guiLeft + 71, guiTop + 80, 20, 20, "" + i));
+        enter = new GuiButton(i++, guiLeft + 27, guiTop + 80, 20, 20, "E");
+        buttonList.add(enter);
+        rest = new GuiButton(i, guiLeft + 71, guiTop + 80, 20, 20, "S/R");
+        rest.enabled = false;
+        buttonList.add(rest);
     }
+
+    StringBuilder tmpPass = new StringBuilder();
+    boolean       canOpen = false;
 
     @Override
     protected void actionPerformed(final GuiButton button)
     {
-        final String pass = safe.getPass();
-        final StringBuilder tmpPass = new StringBuilder();
-        if ((button.id < 10) && (button.id > -1))
+        if (button.id == rest.id)
         {
-            tmpPass.append(button.displayString);
+            reset(button);
+        }
+        else
+        {
+            pass(button);
+        }
+        if (button.id == enter.id)
+        {
+            openGUI(button);
         }
         super.actionPerformed(button);
+    }
+
+    /**
+     * @param button
+     */
+    private void reset(final GuiButton button)
+    {
+        safe.setPass(" ");
+        player.sendChatMessage("Your Password has been Reseted");
+    }
+
+    /**
+     * @param button
+     */
+    private void openGUI(final GuiButton button)
+    {
+        if (canOpen)
+        {
+
+        }
+    }
+
+    private void pass(final GuiButton button)
+    {
+        final String pass = safe.getPass();
+        if (pass.equalsIgnoreCase(" "))
+        {
+            canOpen = true;
+        }
+        if (tmpPass.length() == 4)
+        {
+            if (pass.equalsIgnoreCase(" "))
+            {
+                safe.setPass(tmpPass.toString());
+                tmpPass = new StringBuilder();
+                player.sendChatMessage("Your Password has been Set");
+                player.sendChatMessage("Please Input it again");
+            }
+            else
+                if (pass.equalsIgnoreCase(tmpPass.toString()))
+                {
+                    tmpPass = new StringBuilder();
+                    canOpen = true;
+                    enter.enabled = canOpen;
+                    rest.enabled = canOpen;
+                }
+                else
+                {
+                    player.sendChatMessage("Invalid Password");
+                    canOpen = false;
+                    tmpPass = new StringBuilder();
+                }
+        }
+        else
+        {
+            if (button.id != enter.id)
+            {
+                tmpPass.append(button.displayString);
+            }
+        }
     }
 
     @Override

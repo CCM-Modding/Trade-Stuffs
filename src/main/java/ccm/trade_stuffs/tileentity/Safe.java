@@ -3,6 +3,10 @@
  */
 package ccm.trade_stuffs.tileentity;
 
+import net.minecraft.nbt.NBTTagCompound;
+
+import ccm.trade_stuffs.utils.helper.NBTHelper;
+
 /**
  * Safe
  * <p>
@@ -11,7 +15,7 @@ package ccm.trade_stuffs.tileentity;
  */
 public class Safe extends BaseInventory
 {
-    private String pass;
+    private String pass = " ";
 
     /**
      * @param pass
@@ -34,4 +38,24 @@ public class Safe extends BaseInventory
         return pass;
     }
 
+    public static String SAFE_PASS = "CCM.TILE.ENTITY.SAFE.PASS";
+
+    @Override
+    public void writeToNBT(final NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        nbt.setTag(SAFE_PASS, NBTHelper.encryptString(pass));
+        System.out.println(NBTHelper.encryptString(pass));
+    }
+
+    @Override
+    public void readFromNBT(final NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        if (nbt.hasKey(SAFE_PASS))
+        {
+            pass = NBTHelper.decryptString(nbt);
+            System.out.println(pass);
+        }
+    }
 }
