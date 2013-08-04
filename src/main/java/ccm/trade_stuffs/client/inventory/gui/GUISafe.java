@@ -25,12 +25,15 @@ import ccm.trade_stuffs.utils.lib.Guis;
 @SideOnly(Side.CLIENT)
 public class GUISafe extends GuiContainer
 {
+    Safe safe;
+
     /**
      * @param container
      */
     public GUISafe(final InventoryPlayer player, final Safe tile)
     {
         super(new ContainerSafe(player, tile));
+        safe = tile;
     }
 
     @Override
@@ -56,6 +59,12 @@ public class GUISafe extends GuiContainer
         }
         buttonList.add(new GuiButton(i++, guiLeft + 27, guiTop + 80, 20, 20, ""));
         buttonList.add(new GuiButton(i++, guiLeft + 71, guiTop + 80, 20, 20, ""));
+    }
+
+    @Override
+    protected void actionPerformed(final GuiButton button)
+    {
+        super.actionPerformed(button);
     }
 
     @Override

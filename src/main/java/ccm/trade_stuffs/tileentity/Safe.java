@@ -11,5 +11,14 @@ package ccm.trade_stuffs.tileentity;
  */
 public class Safe extends BaseInventory
 {
+    private int pass;
+
+    /**
+     * @return
+     */
+    public int getPass()
+    {
+        return pass;
+    }
 
 }
