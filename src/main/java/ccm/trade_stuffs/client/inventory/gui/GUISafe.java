@@ -39,7 +39,7 @@ public class GUISafe extends GuiContainer
         super.initGui();
         buttonList.clear();
         int i = 0;
-        buttonList.add(new GuiButton(i, guiLeft + 49, guiTop + 60, 20, 20, "" + i));
+        buttonList.add(new GuiButton(i, guiLeft + 49, guiTop + 80, 20, 20, "" + i));
         i++;
         for (int column = 0; column < 3; column++)
         {
@@ -47,13 +47,15 @@ public class GUISafe extends GuiContainer
             {
                 buttonList.add(new GuiButton(i,
                                              ((22 * row) + guiLeft) + 27,
-                                             ((22 * column) + guiTop) + 18,
+                                             ((22 * column) + guiTop) + 14,
                                              20,
                                              20,
                                              "" + i));
                 i += 1;
             }
         }
+        buttonList.add(new GuiButton(i++, guiLeft + 27, guiTop + 80, 20, 20, ""));
+        buttonList.add(new GuiButton(i++, guiLeft + 71, guiTop + 80, 20, 20, ""));
     }
 
     @Override
