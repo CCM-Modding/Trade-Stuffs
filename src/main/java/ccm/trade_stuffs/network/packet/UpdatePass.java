@@ -44,24 +44,26 @@ public class UpdatePass extends Packet
     }
 
     @Override
-    public void readPacketData(final DataInput datainput) throws IOException
+    public void readPacketData(final DataInput data) throws IOException
     {
-        // TODO Auto-generated method stub
-
+        xPosition = data.readInt();
+        yPosition = data.readShort();
+        zPosition = data.readInt();
+        pass = data.readByte();
     }
 
     @Override
-    public void writePacketData(final DataOutput dataoutput) throws IOException
+    public void writePacketData(final DataOutput data) throws IOException
     {
-        // TODO Auto-generated method stub
-
+        data.writeInt(xPosition);
+        data.writeShort(yPosition);
+        data.writeInt(zPosition);
+        data.writeByte(pass);
     }
 
     @Override
     public void processPacket(final NetHandler nethandler)
-    {
-
-    }
+    {}
 
     @Override
     public int getPacketSize()
