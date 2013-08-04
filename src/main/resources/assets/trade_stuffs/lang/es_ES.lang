@@ -8,4 +8,4 @@ item.trade_stuffs:coin_gold.name=Moneda de Oro
 item.trade_stuffs:coin_platinum.name = Moneda de Platino
 item.trade_stuffs:wallet.name=Bolsa de Monedas
 item.trade_stuffs:wallet_empty.name=Bolsa de Monedas
-item.trade_stuffs:wallet_full=Bolsa de Monedas
+item.trade_stuffs:wallet_full.name=Bolsa de Monedas

@@ -8,4 +8,4 @@ item.trade_stuffs:coin_gold.name=Gold Coin
 item.trade_stuffs:coin_platinum.name=Platinum Coin
 item.trade_stuffs:wallet.name=Coin Sack
 item.trade_stuffs:wallet_empty.name=Coin Sack
-item.trade_stuffs:wallet_full=Coin Sack
+item.trade_stuffs:wallet_full.name=Coin Sack
