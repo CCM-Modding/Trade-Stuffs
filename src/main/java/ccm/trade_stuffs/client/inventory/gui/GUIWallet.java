@@ -76,7 +76,7 @@ public class GUIWallet extends GuiContainer
                     container.wallet.hasMoney(true);
                     fontRenderer.drawString("Now go to the closest bank to ", 6, 16, 0, false);
                     fontRenderer.drawString("get your money into your ", 30, 26, 0, false);
-                    fontRenderer.drawString("bank acount Safely!", 30, 36, 0, false);
+                    fontRenderer.drawString("bank acount, Safely!", 30, 36, 0, false);
                 }
                 else
                 {
