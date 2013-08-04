@@ -68,7 +68,7 @@ public class UpdatePass extends Packet
     @Override
     public int getPacketSize()
     {
-        return 0;
+        return 20;
     }
 
 }
