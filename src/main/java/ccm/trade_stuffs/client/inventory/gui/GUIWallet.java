@@ -14,9 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.api.CoinTypes;
 import ccm.trade_stuffs.inventory.ContainerWallet;
-import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.items.WalletItem;
-import ccm.trade_stuffs.utils.helper.FunctionHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -78,18 +76,9 @@ public class GUIWallet extends GuiContainer
                 fontRenderer.drawString(sb.toString(), 6, 6, 0, false);
                 if (value > 0)
                 {
-                    container.wallet.hasMoney(FunctionHelper.getCurrentItem(player,
-                                                                            new ItemStack(ModItems.wallet)),
-                                              true);
                     fontRenderer.drawString("Now go to the closest bank to ", 6, 16, 0, false);
                     fontRenderer.drawString("get your money into your ", 30, 26, 0, false);
                     fontRenderer.drawString("bank acount, Safely!", 30, 36, 0, false);
-                }
-                else
-                {
-                    container.wallet.hasMoney(FunctionHelper.getCurrentItem(player,
-                                                                            new ItemStack(ModItems.wallet)),
-                                              false);
                 }
             }
         }

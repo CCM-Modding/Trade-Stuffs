@@ -31,9 +31,9 @@ public class WalletInventory implements IInventory
         readFromNBT(item, item.getTagCompound());
     }
 
-    public void hasMoney(final ItemStack item, final boolean has)
+    public void hasMoney(final boolean has)
     {
-        NBTHelper.setBoolean(item, WalletItem.fullWallet, has);
+        NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
     }
 
     @Override
