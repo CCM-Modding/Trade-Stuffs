@@ -26,7 +26,7 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  */
 public class WalletInventory implements IInventory
 {
-    ItemStack[] inventory = new ItemStack[CoinTypes.getTypes().size() + 2];
+    ItemStack[] inventory = new ItemStack[CoinTypes.getTypes().size() + 1];
 
     ItemStack   wallet;
 
@@ -47,7 +47,7 @@ public class WalletInventory implements IInventory
     @Override
     public int getSizeInventory()
     {
-        return CoinTypes.getTypes().size() + 2;
+        return CoinTypes.getTypes().size() + 1;
     }
 
     @Override

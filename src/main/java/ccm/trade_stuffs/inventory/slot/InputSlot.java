@@ -35,7 +35,7 @@ public class InputSlot extends Slot
         final ItemStack input = getStack();
         if (input != null)
         {
-            final int indexed = input.getItemDamage() + 2;
+            final int indexed = inventory.getSizeInventory();
             final int inputSize = input.stackSize;
             final ItemStack current = inventory.getStackInSlot(indexed);
             if (current != null)
