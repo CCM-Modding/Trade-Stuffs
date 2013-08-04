@@ -11,13 +11,13 @@ package ccm.trade_stuffs.tileentity;
  */
 public class Safe extends BaseInventory
 {
-    private int pass;
+    private String pass;
 
     /**
      * @param pass
      *            The pass to set, it is checked to be 4 digits long
      */
-    public void setPass(final int pass)
+    public void setPass(final String pass)
     {
         final String s = String.valueOf(pass);
         if (s.length() == 4)
@@ -29,7 +29,7 @@ public class Safe extends BaseInventory
     /**
      * @return
      */
-    public int getPass()
+    public String getPass()
     {
         return pass;
     }

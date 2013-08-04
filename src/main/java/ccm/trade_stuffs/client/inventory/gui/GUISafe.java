@@ -64,11 +64,12 @@ public class GUISafe extends GuiContainer
     @Override
     protected void actionPerformed(final GuiButton button)
     {
-        final int pass = safe.getPass();
+        final String pass = safe.getPass();
+        final StringBuilder tmpPass = new StringBuilder();
         switch (button.id)
         {
             case 0:
-
+                tmpPass.append(0);
                 break;
 
             default:
