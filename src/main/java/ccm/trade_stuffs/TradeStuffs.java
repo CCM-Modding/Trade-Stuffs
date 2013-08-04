@@ -20,7 +20,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.configuration.Config;
 import ccm.trade_stuffs.items.ModItems;
-import ccm.trade_stuffs.network.PacketHandler;
 import ccm.trade_stuffs.proxy.CommonProxy;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.lib.Archive;
@@ -35,9 +34,7 @@ import ccm.trade_stuffs.utils.lib.Locations;
      name = Archive.MOD_NAME,
      version = Archive.MOD_VERSION)
 @NetworkMod(clientSideRequired = true,
-            serverSideRequired = false,
-            channels = "CCM.TRADE.STUFFS",
-            packetHandler = PacketHandler.class)
+            serverSideRequired = false)
 public class TradeStuffs
 {
     @Instance(Archive.MOD_ID)
