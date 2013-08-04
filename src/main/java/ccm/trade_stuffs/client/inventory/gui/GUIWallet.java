@@ -3,11 +3,8 @@
  */
 package ccm.trade_stuffs.client.inventory.gui;
 
-import java.util.ArrayList;
-
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -36,40 +33,6 @@ public class GUIWallet extends GuiContainer
     public GUIWallet(final ItemStack item, final EntityPlayer player)
     {
         super(new ContainerWallet(item, player));
-    }
-
-    @Override
-    public void initGui()
-    {
-        super.initGui();
-
-        buttonList.clear();
-
-        buttonList.add(new GuiButton(0, guiLeft + 125, guiTop + 27, 20, 20, "+"));
-        buttonList.add(new GuiButton(1, guiLeft + 98, guiTop + 27, 20, 20, "-"));
-    }
-
-    @Override
-    protected void actionPerformed(final GuiButton button)
-    {
-        final ContainerWallet container = (ContainerWallet) inventorySlots;
-        if (container != null)
-        {
-            if (container.wallet != null)
-            {
-                switch (button.id)
-                {
-                    case 0:
-
-                        break;
-                    case 1:
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
     }
 
     @Override
@@ -117,17 +80,6 @@ public class GUIWallet extends GuiContainer
                     container.wallet.hasMoney(false);
                 }
             }
-        }
-        final ArrayList<String> text = new ArrayList<String>();
-        if (isPointInRegion(125, 27, 20, 20, x, y))
-        {
-            text.add("MOAR!");
-            drawHoveringText(text, 110, 64, fontRenderer);
-        }
-        if (isPointInRegion(98, 27, 20, 20, x, y))
-        {
-            text.add("Ooups less");
-            drawHoveringText(text, 68, 64, fontRenderer);
         }
     }
 
