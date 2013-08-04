@@ -17,15 +17,11 @@ public class Safe extends BaseInventory
 
     /**
      * @param pass
-     *            The pass to set, it is checked to be 4 digits long
+     *            The pass to set
      */
     public void setPass(final String pass)
     {
-        final String s = String.valueOf(pass);
-        if (s.length() == 4)
-        {
-            this.pass = pass;
-        }
+        this.pass = pass;
     }
 
     /**
@@ -43,15 +39,14 @@ public class Safe extends BaseInventory
     {
         super.writeToNBT(nbt);
         nbt.setString(SAFE_PASS, pass);
+        System.out.println(nbt);
     }
 
     @Override
     public void readFromNBT(final NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        if (nbt.hasKey(SAFE_PASS))
-        {
-            pass = nbt.getString(SAFE_PASS);
-        }
+        pass = nbt.getString(SAFE_PASS);
+        System.out.println(nbt);
     }
 }
