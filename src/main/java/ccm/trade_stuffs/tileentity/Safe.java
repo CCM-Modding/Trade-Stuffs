@@ -21,7 +21,13 @@ public class Safe extends BaseInventory
      */
     public void setPass(final String pass)
     {
-        this.pass = pass;
+        if (!pass.isEmpty())
+        {
+            if (pass.length() == 4)
+            {
+                this.pass = pass;
+            }
+        }
     }
 
     /**

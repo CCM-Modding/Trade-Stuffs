@@ -22,9 +22,5 @@ public class PacketHandler implements IPacketHandler
     public void onPacketData(final INetworkManager manager,
                              final Packet250CustomPayload packet,
                              final Player player)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
+    {}
 }
