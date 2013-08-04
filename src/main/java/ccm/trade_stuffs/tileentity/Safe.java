@@ -46,7 +46,10 @@ public class Safe extends BaseInventory
     public void readFromNBT(final NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        pass = nbt.getString(SAFE_PASS);
+        if (nbt.hasKey(SAFE_PASS))
+        {
+            pass = nbt.getString(SAFE_PASS);
+        }
         System.out.println(nbt);
     }
 }
