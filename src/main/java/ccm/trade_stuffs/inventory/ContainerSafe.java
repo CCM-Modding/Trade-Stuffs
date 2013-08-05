@@ -14,22 +14,19 @@ import ccm.trade_stuffs.tileentity.TileEntitySafe;
  * 
  * @author Captain_Shadows
  */
-public class ContainerSafe extends ContainerBase
-{
-    private final TileEntitySafe safe;
+public class ContainerSafe extends ContainerBase {
+	
+	private final TileEntitySafe safe;
 
-    public ContainerSafe(final InventoryPlayer player, final TileEntitySafe safe)
-    {
-        super(player);
-        this.safe = safe;
-        addPlayerInventory(15, 139);
+	public ContainerSafe(final InventoryPlayer player, final TileEntitySafe safe) {
+		super(player);
+		this.safe = safe;
+		addPlayerInventory(15, 139);
 
-        for (int row = 0; row < 6; row++)
-        {
-            for (int column = 0; column < 9; column++)
-            {
-                addSlotToContainer(new Slot(safe, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
-            }
-        }
-    }
+		for(int row = 0; row < 6; row++) {
+			for(int column = 0; column < 9; column++) {
+				addSlotToContainer(new Slot(safe, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
+			}
+		}
+	}
 }
