@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.inventory;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
@@ -29,11 +31,17 @@ public class ContainerBank extends ContainerBase {
 				addSlotToContainer(new Slot(bank, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
 			}
 		}
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			bank.openChest();
+		}
 	}
 	
 	@Override
 	public void onContainerClosed(EntityPlayer player) {
 		super.onContainerClosed(player);
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			bank.closeChest();
+		}
 		bank.setInUse(false);
 	}
 }
