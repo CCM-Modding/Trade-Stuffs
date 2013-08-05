@@ -63,7 +63,7 @@ public final class CoinType
     }
 
     /**
-     * @return The name of the coin
+     * @return The ID of the mod that registered this coin
      */
     public String getModID()
     {
