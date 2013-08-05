@@ -123,7 +123,6 @@ public class WalletItem extends BaseItem
                                final List list,
                                final boolean color)
     {
-        // TODO Fix this
         final WalletInventory wallet = new WalletInventory(item);
         final ItemStack[] inv = InventoryHelper.readInventoryFromNBT(item.getTagCompound()
                                                                          .getTagList(WalletInventory.INVENTORY_WALLET),
@@ -135,7 +134,7 @@ public class WalletItem extends BaseItem
         {
             if (stack != null)
             {
-                value += CoinTypes.getTypes().get(item.getItemDamage()).getValueStack(item);
+                value += CoinTypes.getTypes().get(stack.getItemDamage()).getValueStack(stack);
             }
         }
         sb.append(value + " coin");
