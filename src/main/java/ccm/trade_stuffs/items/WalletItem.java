@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.InventoryWallet;
+import ccm.trade_stuffs.utils.helper.FunctionHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -122,17 +123,23 @@ public class WalletItem extends BaseItem
                                final boolean color)
     {
         final InventoryWallet wallet = new InventoryWallet(item);
-
         final StringBuilder sb = new StringBuilder();
-        sb.append("You have a total of ");
         final int value = wallet.getCoinBalance();
-        sb.append(value + " coin");
-        if (value != 1)
+        if (value != FunctionHelper.getMaxPossibleValue())
         {
-            sb.append("s");
+            sb.append("You have a total of " + value + " coin");
+            if (value != 1)
+            {
+                sb.append("s");
+            }
+            sb.append(" in this ");
+            sb.append(list.get(0));
+
         }
-        sb.append(" in this ");
-        sb.append(list.get(0));
+        else
+        {
+            sb.append("You have a Sack Full o' Coins");
+        }
         list.add(sb.toString());
     }
 }
