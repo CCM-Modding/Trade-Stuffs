@@ -16,6 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.configuration.Config;
@@ -23,6 +24,7 @@ import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.proxy.CommonProxy;
 import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
+import ccm.trade_stuffs.utils.handler.PlayerStalker;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
 import ccm.trade_stuffs.utils.registry.CoinAdditionRegistry;
@@ -70,9 +72,15 @@ public class TradeStuffs
 
         proxy.initRenderingStuffs();
 
+        final PlayerStalker playerStalker = new PlayerStalker();
+
         MinecraftForge.EVENT_BUS.register(new ItemHandler());
 
         MinecraftForge.EVENT_BUS.register(new EntityHandler());
+
+        MinecraftForge.EVENT_BUS.register(playerStalker);
+
+        GameRegistry.registerPlayerTracker(playerStalker);
 
         CoinAdditionRegistry.addMobDrops();
 

@@ -124,11 +124,9 @@ public final class EntityDropHandler
     {
         if (shouldDrop(entity.getClass()))
         {
-            double chance = rand.nextDouble();
+            final double chance = rand.nextDouble();
 
             final int amount = clamp(rand.nextInt(maxValue), minValue, maxValue);
-
-            chance = (amount / 2) * 0.5;
 
             if (chance < dropRate)
             {
