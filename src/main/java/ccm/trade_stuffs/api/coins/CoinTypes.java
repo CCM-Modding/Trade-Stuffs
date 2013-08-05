@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+
 import ccm.trade_stuffs.items.ItemCoin;
 
 /**
@@ -122,36 +123,42 @@ public final class CoinTypes
      *            The ItemStack to get the {@link CoinType} from
      * @return The corresponding {@link CoinType}
      */
-    public static CoinType getCoinType(ItemStack stack)
+    public static CoinType getCoinType(final ItemStack stack)
     {
-       /* Class<?> coinClazz = null;
-        try
-        {
-            coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
-        } catch (final ClassNotFoundException e)
-        {
-            System.err.println("You need Trade Stuffs for you to see the coins!");
-            e.printStackTrace();
-        }
-        if (coinClazz.isInstance(stack.getItem()))
+        /*
+         * Class<?> coinClazz = null;
+         * try
+         * {
+         * coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
+         * } catch (final ClassNotFoundException e)
+         * {
+         * System.err.println("You need Trade Stuffs for you to see the coins!");
+         * e.printStackTrace();
+         * }
+         * if (coinClazz.isInstance(stack.getItem()))
+         * {
+         * return getCoinType(stack.getItemDamage());
+         * }
+         */
+        if (stack.getItem() instanceof ItemCoin)
         {
             return getCoinType(stack.getItemDamage());
-        }*/
-    	if(stack.getItem() instanceof ItemCoin) {
-    		return getCoinType(stack.getItemDamage());
-    	}
+        }
         return null;
     }
-    
-    public static int getCoinTypeID(CoinType coinType) {
-    	int id = 0;
-    	for(CoinType type : getTypes()) {
-    		if(coinType.getName().equalsIgnoreCase(type.getName())) {
-    			return id;
-    		}
-    		id++;
-    	}
-    	return -1;
+
+    public static int getCoinTypeID(final CoinType coinType)
+    {
+        int id = 0;
+        for (final CoinType type : getTypes())
+        {
+            if (coinType.getName().equalsIgnoreCase(type.getName()))
+            {
+                return id;
+            }
+            id++;
+        }
+        return -1;
     }
 
     /**

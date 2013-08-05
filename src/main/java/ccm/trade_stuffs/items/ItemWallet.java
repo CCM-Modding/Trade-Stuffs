@@ -8,6 +8,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
@@ -16,6 +17,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.InventoryWallet;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
+import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.utils.helper.FunctionHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
@@ -48,18 +51,50 @@ public class ItemWallet extends ItemBase
     @Override
     public ItemStack onItemRightClick(final ItemStack stack, final World world, final EntityPlayer player)
     {
-        if (!world.isRemote)
+        if (!player.isSneaking())
         {
-            NBTHelper.setBoolean(stack, openedWallet, true);
-            player.openGui(TradeStuffs.instance,
-                           Guis.GUI_WALLET,
-                           player.worldObj,
-                           (int) player.posX,
-                           (int) player.posY,
-                           (int) player.posZ);
+            if (!world.isRemote)
+            {
+                NBTHelper.setBoolean(stack, openedWallet, true);
+                player.openGui(TradeStuffs.instance,
+                               Guis.GUI_WALLET,
+                               player.worldObj,
+                               (int) player.posX,
+                               (int) player.posY,
+                               (int) player.posZ);
+            }
         }
 
         return stack;
+    }
+
+    @Override
+    public boolean onItemUse(final ItemStack item,
+                             final EntityPlayer player,
+                             final World world,
+                             final int x,
+                             final int y,
+                             final int z,
+                             final int wut,
+                             final float clickX,
+                             final float clickY,
+                             final float clickZ)
+    {
+        final TileEntity tile = world.getBlockTileEntity((int) clickX, (int) clickY, (int) clickZ);
+        if (tile != null)
+        {
+            final InventoryWallet wallet = new InventoryWallet(item);
+            if (tile instanceof TileEntityBank)
+            {
+
+            }
+            else
+                if (tile instanceof TileEntitySafe)
+                {
+
+                }
+        }
+        return false;
     }
 
     @Override

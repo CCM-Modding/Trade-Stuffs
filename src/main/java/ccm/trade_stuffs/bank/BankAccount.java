@@ -14,40 +14,47 @@ import ccm.trade_stuffs.inventory.InventoryBankItems;
  * 
  * @author Captain_Shadows
  */
-public class BankAccount {
-	
-	private String player;
+public class BankAccount
+{
 
-	private InventoryBankCoins coins;
-	private InventoryBankItems items;
+    private String                   player;
 
-	public BankAccount(String player) {
-		this.player = player;
-		coins = new InventoryBankCoins();
-		items = new InventoryBankItems();
-	}
+    private final InventoryBankCoins coins;
+    private final InventoryBankItems items;
 
-	public void readFromNBT(NBTTagCompound nbt) {
-		player = nbt.getString("Owner");
-		coins.loadInventoryFromNBT(nbt.getTagList("Coins"));
-		items.loadInventoryFromNBT(nbt.getTagList("Items"));
-	}
+    public BankAccount(final String player)
+    {
+        this.player = player;
+        coins = new InventoryBankCoins();
+        items = new InventoryBankItems();
+    }
 
-	public void writeToNBT(NBTTagCompound nbt) {
-		nbt.setString("Owner", player);
-		nbt.setTag("Coins", coins.saveInventoryToNBT());
-		nbt.setTag("Items", items.saveInventoryToNBT());
-	}
+    public void readFromNBT(final NBTTagCompound nbt)
+    {
+        player = nbt.getString("Owner");
+        coins.loadInventoryFromNBT(nbt.getTagList("Coins"));
+        items.loadInventoryFromNBT(nbt.getTagList("Items"));
+    }
 
-	public String getOwner() {
-		return player;
-	}
+    public void writeToNBT(final NBTTagCompound nbt)
+    {
+        nbt.setString("Owner", player);
+        nbt.setTag("Coins", coins.saveInventoryToNBT());
+        nbt.setTag("Items", items.saveInventoryToNBT());
+    }
 
-	public InventoryBankCoins getCoins() {
-		return coins;
-	}
+    public String getOwner()
+    {
+        return player;
+    }
 
-	public InventoryBankItems getItems() {
-		return items;
-	}
+    public InventoryBankCoins getCoins()
+    {
+        return coins;
+    }
+
+    public InventoryBankItems getItems()
+    {
+        return items;
+    }
 }

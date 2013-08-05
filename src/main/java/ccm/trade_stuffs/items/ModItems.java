@@ -16,17 +16,19 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public class ModItems {
-	
-	public static Item coin;
+public class ModItems
+{
 
-	public static Item wallet;
+    public static Item coin;
 
-	public static void init() {
-		coin = new ItemCoin(Properties.coinsID);
-		wallet = new ItemWallet(Properties.walletID);
+    public static Item wallet;
 
-		GameRegistry.registerItem(coin, "CCM.COIN", Archive.MOD_ID);
-		GameRegistry.registerItem(wallet, "CCM.WALLET", Archive.MOD_ID);
-	}
+    public static void init()
+    {
+        coin = new ItemCoin(Properties.coinsID);
+        wallet = new ItemWallet(Properties.walletID);
+
+        GameRegistry.registerItem(coin, "CCM.COIN", Archive.MOD_ID);
+        GameRegistry.registerItem(wallet, "CCM.WALLET", Archive.MOD_ID);
+    }
 }
