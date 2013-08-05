@@ -76,14 +76,7 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		if(inventory[slot] != null) {
-			ItemStack stack = inventory[slot];
-			if(selectedTab == 0) {
-				CoinType coinType = CoinTypes.getCoinType(stack);
-				account.removeCoins(coinType, amount);
-			} else if(selectedTab == 1) {
-				
-			}
-			stack = null;
+			ItemStack stack;
 			if(inventory[slot].stackSize <= amount) {
 				stack = inventory[slot];
 				inventory[slot] = null;
@@ -114,40 +107,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		if(stack != null) {
-			if(selectedTab == 0) {
-				if(account == null) {
-					if(!Bank.accounts.containsKey(playerUsing)) {
-						Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
-					}
-					account = Bank.accounts.get(playerUsing);
-				}
-				if(CoinTypes.getCoinType(stack) != null) {
-					CoinType coinType = CoinTypes.getCoinType(stack);
-					if(account.coins.containsKey(coinType)) {
-						int balance = account.coins.get(coinType);
-						int canAdd = (Properties.BANK_STACKS_PER_COIN * 64) - stack.stackSize;
-						int added = 0;
-						if(stack.stackSize < canAdd) {
-							added = stack.stackSize;
-							stack.stackSize = 0;
-						} else {
-							added = canAdd;
-							stack.stackSize -= canAdd;
-						}
-						account.addCoins(coinType, added);
-						updateInventory();
-					} else {
-						account.addCoins(coinType, stack.stackSize);
-						updateInventory();
-					}
-				} else {
-					return;
-				}
-			} else if(selectedTab == 1) {
-				
-			}
-		}
 		inventory[slot] = stack;
 	}
 	
@@ -178,7 +137,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 			Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
 		}
 		account = Bank.accounts.get(playerUsing);
-		updateInventory();
 	}
 
 	@Override
@@ -186,9 +144,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 		inUse = false;
 		playerUsing = "";
 		account = null;
-		for(int i = 0; i < 72; i++) {
-			inventory[i] = null;
-		}
 	}
 	
 	public boolean isInUse() {
@@ -209,41 +164,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	public void setSelectedTab(byte tab) {
 		selectedTab = tab;
-		updateInventory();
-	}
-	
-	public void updateInventory() {
-		for(int i = 0; i < 72; i++) {
-			inventory[i] = null;
-		}		
-		if(account == null) {
-			if(!Bank.accounts.containsKey(playerUsing)) {
-				Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
-			}
-			account = Bank.accounts.get(playerUsing);
-		}
-		if(selectedTab == 0) {
-			if(account.items != null && !account.coins.isEmpty()) {
-				int slot = 0;
-				for(CoinType coinType : account.coins.keySet()) {
-					if(coinType != null) {
-						System.out.println(coinType.getName() + " | " + account.coins.get(coinType));
-						inventory[slot] = new ItemStack(ModItems.coin, account.coins.get(coinType), CoinTypes.getCoinTypeID(coinType));
-						slot++;
-					}
-				}
-			}
-		} else if(selectedTab == 1) {
-			if(account.items != null && !account.items.isEmpty()) {
-				int slot = 0;
-				for(ItemStack stack : account.items) {
-					if(stack != null) {
-						inventory[slot] = stack.copy();
-						slot++;
-					}
-				}
-			}
-		}
 	}
 
 	@Override
