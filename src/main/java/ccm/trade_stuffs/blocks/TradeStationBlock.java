@@ -6,7 +6,6 @@ package ccm.trade_stuffs.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -38,7 +37,7 @@ public class TradeStationBlock extends BlockContainer
     public TradeStationBlock(final int id)
     {
         super(id, Material.rock);
-        setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(TradeStuffs.tradeStuffs);
         setUnlocalizedName(Archive.MOD_ID_BLOCK + "tradeStation");
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);

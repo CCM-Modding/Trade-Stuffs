@@ -4,7 +4,6 @@
 package ccm.trade_stuffs.items;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemReed;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -19,11 +18,9 @@ import ccm.trade_stuffs.utils.lib.Properties;
  */
 public class ModItems
 {
-    public static Item     coin;
+    public static Item coin;
 
-    public static Item     wallet;
-
-    public static ItemReed tradeStation;
+    public static Item wallet;
 
     public static void init()
     {

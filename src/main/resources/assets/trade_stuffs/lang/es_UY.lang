@@ -1,3 +1,5 @@
+itemGroup.Trade_Stuffs=Trade Stuffs
+
 tile.trade_stuffs:tradeStation.name=Estación de Comercio
 tile.trade_stuffs:safe.name=Caja de Seguridad
 tile.trade_stuffs:bank.name=Banco
@@ -9,3 +11,5 @@ item.trade_stuffs:coin_platinum.name = Moneda de Platino
 item.trade_stuffs:wallet.name=Bolsa de Monedas
 item.trade_stuffs:wallet_empty.name=Bolsa de Monedas
 item.trade_stuffs:wallet_full.name=Bolsa de Monedas
+
+inventory.bank=Banco

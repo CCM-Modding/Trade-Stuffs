@@ -1,3 +1,5 @@
+itemGroup.Trade_Stuffs=Trade Stuffs
+
 tile.trade_stuffs:tradeStation.name=Trade Station
 tile.trade_stuffs:safe.name=Safe
 tile.trade_stuffs:bank.name=Bank

@@ -6,7 +6,6 @@ package ccm.trade_stuffs.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -42,7 +41,7 @@ public class SafeBlock extends BlockContainer
     public SafeBlock(final int id)
     {
         super(id, Material.iron);
-        setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(TradeStuffs.tradeStuffs);
         setUnlocalizedName(Archive.MOD_ID_BLOCK + "safe");
         setHardness(40);
         setResistance(1000);

@@ -3,8 +3,9 @@
  */
 package ccm.trade_stuffs.items;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import ccm.trade_stuffs.TradeStuffs;
 
 /**
  * BaseItem
@@ -21,6 +22,6 @@ public class BaseItem extends Item
     public BaseItem(final int id)
     {
         super(id - 256);
-        setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(TradeStuffs.tradeStuffs);
     }
 }
