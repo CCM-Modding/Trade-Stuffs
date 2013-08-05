@@ -53,6 +53,26 @@ public class EntityDrops
     }
 
     /**
+     * @param modID
+     *            ID of the mod adding this drop
+     * @param item
+     *            The Item to drop
+     * @param dropRate
+     *            the Rate at which to drop it
+     * @param entitys
+     *            the entity's that are allowed to drop it
+     */
+    public static EntityDropHandler registerDrop(final String modID,
+                                                 final ItemStack item,
+                                                 final double dropRate,
+                                                 final int minValue,
+                                                 final int maxValue,
+                                                 final Class<? extends EntityLivingBase> entity)
+    {
+        return registerDrop(modID, item, (float) dropRate, minValue, maxValue, entity);
+    }
+
+    /**
      * @param entity
      *            The entity that is dropping the Item
      * @return true if and ONLY if there is a DropHandler registered to that entity

@@ -12,20 +12,24 @@ package ccm.trade_stuffs.utils.lib;
 public class Properties
 {
 
-    public static int tradeStationID;
+    public static int    tradeStationID;
 
-    public static int tradeStationItemID;
+    public static int    tradeStationItemID;
 
-    public static int coinsID;
+    public static int    coinsID;
 
-    public static int walletID;
+    public static int    walletID;
 
-    public static int bankID;
+    public static int    bankID;
 
-    public static int safeID;
-    
-    public static int WALLET_STACKS_PER_COIN = 8;
-   
-    public static int BANK_STACKS_PER_COIN = ((Integer.MAX_VALUE + 1) / 64) - 64;
-    public static int BANK_ITEMS_PER_ITEM = 256;
+    public static int    safeID;
+
+    public static int    WALLET_STACKS_PER_COIN;
+
+    public static int    BANK_STACKS_PER_COIN;
+    public static int    BANK_ITEMS_PER_ITEM;
+
+    public static double DRAGON_DROP_CHANCE;
+    public static int    DRAGON_MAX_DROP;
+    public static int    DRAGON_MIN_DROP;
 }

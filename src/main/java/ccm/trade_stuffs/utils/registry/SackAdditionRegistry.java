@@ -11,6 +11,7 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.item.ItemStack;
 
 import ccm.trade_stuffs.api.drops.EntityDrops;
+import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
  * SackAdditionRegistry
@@ -22,7 +23,7 @@ public final class SackAdditionRegistry
 {
     public static void addMobDrops()
     {
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 1, 2, 2, EntityDragon.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 1, 1, 1, EntityWither.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), Properties.DRAGON_DROP_CHANCE, Properties.DRAGON_MIN_DROP, Properties.DRAGON_MAX_DROP, EntityDragon.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 0.5F, 1, 1, EntityWither.class);
     }
 }

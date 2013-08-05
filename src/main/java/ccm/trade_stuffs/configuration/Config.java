@@ -33,6 +33,24 @@ public final class Config
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
 
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
+        String cat = "RandomConfigs";
+        config.addCustomCategoryComment(cat, "Random Configurations");
+        Properties.WALLET_STACKS_PER_COIN = config.get(cat, "Maximum number of stacks per type of coin inside of the wallet", 8).getInt();
+        // TODO FIX COMMENT
+        Properties.BANK_STACKS_PER_COIN = config.get(cat, "Maximum number of stacks per type of coin inside of the Bank", ((Integer.MAX_VALUE + 1) / 64) - 64).getInt();
+        // TODO FIX COMMENT
+        Properties.BANK_ITEMS_PER_ITEM = config.get(cat, "Maximum number of di", 256).getInt();
+        
+        cat = "CoinDrops";
+        config.addCustomCategoryComment(cat, "All of the Coin Drops are set in this category");
+
+        
+        cat = "BagDrops";
+        config.addCustomCategoryComment(cat, "All of the Bag Drops are set in this category");
+        // TODO FIX COMMENT  
+        Properties.DRAGON_DROP_CHANCE = config.get(cat, "Wallet", 4001).getDouble(1);
+        Properties.DRAGON_MAX_DROP = config.get(cat, "Wallet", 2).getInt();
+        Properties.DRAGON_MIN_DROP = config.get(cat, "Wallet", 2).getInt();
 
         if (config.hasChanged())
         {
