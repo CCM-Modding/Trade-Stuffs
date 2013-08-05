@@ -5,18 +5,19 @@ package ccm.trade_stuffs.tileentity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.util.HashMap;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import ccm.trade_stuffs.api.coins.CoinType;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
+import ccm.trade_stuffs.items.ModItems;
 
 /**
  * Bank
@@ -74,6 +75,11 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		if(inventory[slot] != null) {
+			if(selectedTab == 0) {
+				
+			} else if(selectedTab == 1) {
+				
+			}
 			ItemStack stack;
 			if(inventory[slot].stackSize <= amount) {
 				stack = inventory[slot];
@@ -161,8 +167,36 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	}
 	
 	public void setSelectedTab(byte tab) {
+		//TODO: save items
+		for(int i = 0; i < 72; i++) {
+			inventory[i] = null;
+		}
+		
 		selectedTab = tab;
-		//TODO: update slots
+		if(account == null) {
+			if(!Bank.accounts.containsKey(playerUsing)) {
+				Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
+				
+			}
+			account = Bank.accounts.get(playerUsing);
+		}
+		if(selectedTab == 0) {
+			if(account.items != null && !account.coins.isEmpty()) {
+				int slot = 0;
+				for(CoinType coinType : account.coins.keySet()) {
+					inventory[slot] = new ItemStack(ModItems.coin, account.coins.get(coinType), CoinTypes.getCoinTypeID(coinType));
+					slot++;
+				}
+			}
+		} else if(selectedTab == 1) {
+			if(account.items != null && !account.items.isEmpty()) {
+				int slot = 0;
+				for(ItemStack stack : account.items) {
+					inventory[slot] = stack.copy();
+					slot++;
+				}
+			}
+		}
 	}
 
 	@Override

@@ -138,6 +138,17 @@ public final class CoinTypes
         }
         return null;
     }
+    
+    public static int getCoinTypeID(CoinType coinType) {
+    	int id = 0;
+    	for(CoinType type : getTypes()) {
+    		if(coinType.getName().equalsIgnoreCase(type.getName())) {
+    			return id;
+    		}
+    		id++;
+    	}
+    	return -1;
+    }
 
     /**
      * A UID is a Unique Identifier

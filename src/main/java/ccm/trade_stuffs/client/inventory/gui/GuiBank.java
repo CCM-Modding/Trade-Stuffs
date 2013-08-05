@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -34,19 +33,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiBank extends GuiContainer {
 
 	private TileEntityBank bank;
-	
-	public byte selectedTab = 0;
-	
-	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
-	private ItemStack displayItems  = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GuiBank(InventoryPlayer player, TileEntityBank tile) {
-		super(new ContainerBank(player, tile));
+	public byte selectedTab = 0;
+
+	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
+	private ItemStack displayItems = new ItemStack(Block.stone.blockID, 1, 0);
+
+	public GuiBank(InventoryPlayer inventory, TileEntityBank tile) {
+		super(new ContainerBank(inventory, tile));
 		bank = tile;
 		xSize = 190;
 		ySize = 221;
 	}
-	
+
 	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int button) {
 		super.mouseClicked(mouseX, mouseY, button);
@@ -60,7 +59,7 @@ public class GuiBank extends GuiContainer {
 			}
 		}
 	}
-	
+
 	public void sendTabUpdate() {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
@@ -86,7 +85,7 @@ public class GuiBank extends GuiContainer {
 		GL11.glColor4f(1, 1, 1, 1);
 		mc.func_110434_K().func_110577_a(Guis.TEXTURE_GUI_BANK);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-		
+
 		if(selectedTab == 0) {
 			drawTexturedModalRect(guiLeft - 24, guiTop + 17, 229, 0, 27, 21);
 		} else {
@@ -97,13 +96,15 @@ public class GuiBank extends GuiContainer {
 		} else {
 			drawTexturedModalRect(guiLeft - 24, guiTop + 17 + 21, 229, 21, 27, 21);
 		}
+
+		drawTexturedModalRect(guiLeft + 174, guiTop + 18, 190, 0, 8, 11);
 	}
-	
+
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -18, 20);
 		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -18, 41);
-		
+
 		fontRenderer.drawString(bank.isInvNameLocalized() ? bank.getInvName() : I18n.func_135053_a(bank.getInvName()), 8, 6, 4210752);
 		fontRenderer.drawString(mc.thePlayer.username, 115, 6, 4210752);
 	}
