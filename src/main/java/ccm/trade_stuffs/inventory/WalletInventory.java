@@ -3,18 +3,14 @@
  */
 package ccm.trade_stuffs.inventory;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.HashMap;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet250CustomPayload;
-import ccm.trade_stuffs.api.CoinType;
-import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.api.coins.CoinType;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
