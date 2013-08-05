@@ -6,6 +6,9 @@ package ccm.trade_stuffs.api.coins;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
+import ccm.trade_stuffs.items.CoinItem;
+
 /**
  * CoinTypes
  * <p>
@@ -100,6 +103,17 @@ public final class CoinTypes
             copy.add(type);
         }
         return copy;
+    }
+    
+    public static CoinType getCoinType(ItemStack stack) {
+    	if(stack.getItem() instanceof CoinItem) {
+    		return getTypes().get(stack.getItemDamage());
+    	}
+    	return null;
+    }
+    
+    public static CoinType getCoinType(int itemDamage) {
+    	return getTypes().get(itemDamage);
     }
 
     /**
