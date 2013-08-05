@@ -84,7 +84,6 @@ public class EntityDrops
                 if (drop.shouldDrop(entity.getClass()))
                 {
                     drop.dropItem(entity);
-                    break;
                 }
             }
         }

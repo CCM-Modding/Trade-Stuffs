@@ -33,7 +33,7 @@ public class PlayerStalker implements IPlayerTracker
         }
         if (!tag.getCompoundTag(Archive.MOD_ID).getBoolean(PLAYER_NBT))
         {
-            tag.setBoolean(PLAYER_NBT, true);
+            tag.getCompoundTag(Archive.MOD_ID).setBoolean(PLAYER_NBT, true);
             player.inventory.addItemStackToInventory(new ItemStack(ModItems.wallet));
         }
     }
