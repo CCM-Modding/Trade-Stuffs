@@ -16,6 +16,7 @@ import com.google.common.io.ByteStreams;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
 
 public class PacketHandler implements IPacketHandler {
 
@@ -23,31 +24,35 @@ public class PacketHandler implements IPacketHandler {
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
 		ByteArrayDataInput dat = ByteStreams.newDataInput(packet.data);
 		int packetID = dat.readInt();
-		World world = Minecraft.getMinecraft().theWorld;
-
-		switch(packetID) {
-		case 0:
-			handleTileEntityBank(world, dat);
-			break;
-		case 1:
-			handleTileEntitySafe(world, dat);
-			break;
-		// CLIENT TO SERVER
-		case 10:
-			handleBankTabUpdate(dat);
-			break;
-		case 11:
-			handleSafeTabUpdate(dat);
-			break;
-		case 12:
-			handleSafePassReset(dat);
-			break;
-		case 13:
-			handleSafePassNew(dat);
-			break;
-		case 14: 
-			handleSafePassGood(dat);
-			break;
+		
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+			World world = Minecraft.getMinecraft().theWorld;
+			switch(packetID) {
+			case 0:
+				handleTileEntityBank(world, dat);
+				break;
+			case 1:
+				handleTileEntitySafe(world, dat);
+				break;
+			}
+		} else if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			switch(packetID) {
+			case 10:
+				handleBankTabUpdate(dat);
+				break;
+			case 11:
+				handleSafeTabUpdate(dat);
+				break;
+			case 12:
+				handleSafePassReset(dat);
+				break;
+			case 13:
+				handleSafePassNew(dat);
+				break;
+			case 14: 
+				handleSafePassGood(dat);
+				break;
+			}
 		}
 	}
 
