@@ -260,13 +260,18 @@ public final class Config
         cat = "BagDrops";
         config.addCustomCategoryComment(cat, "All of the Bag Drops are set in this category. (Boss mobs only. Unless someone else changes it.) If you want a boss to drop a garenteed drop you need to use the same numbers in min/max and one in the chance.");
         // List of all the config options for Bag drops. 
-        Properties.WALLET_DRAGON_DROP_CHANCE = config.get(cat, "EnderDragon_Bag_Drop_Chance", 1).getDouble(1);
-        Properties.WALLET_DRAGON_MIN_DROP = config.get(cat, "EnderDragon_Bag_Minimum_Drop", 2).getInt();
-        Properties.WALLET_DRAGON_MAX_DROP = config.get(cat, "EnderDragon_Bag_Maximum_Drop", 2).getInt();
         
-        Properties.WALLET_WITHER_DROP_CHANCE = config.get(cat, "Wither_Bag_Drop_Chance", 0.50).getDouble(0.50);
-        Properties.WALLET_WITHER_MIN_DROP = config.get(cat, "Wither_Bag_Minimum_Drop", 1).getInt();
-        Properties.WALLET_WITHER_MAX_DROP = config.get(cat, "Wither_Bag_Maximum_Drop", 1).getInt();
+        cat = "BagDrops.EnderDragon";
+        config.addCustomCategoryComment(cat, "EnderDragon");
+        Properties.WALLET_DRAGON_DROP_CHANCE = config.get(cat, "Bag_Drop_Chance", 1).getDouble(1);
+        Properties.WALLET_DRAGON_MIN_DROP = config.get(cat, "Bag_Minimum_Drop", 2).getInt();
+        Properties.WALLET_DRAGON_MAX_DROP = config.get(cat, "Bag_Maximum_Drop", 2).getInt();
+        
+        cat = "BagDrops.Wither";
+        config.addCustomCategoryComment(cat, "Wither");
+        Properties.WALLET_WITHER_DROP_CHANCE = config.get(cat, "Bag_Drop_Chance", 0.50).getDouble(0.50);
+        Properties.WALLET_WITHER_MIN_DROP = config.get(cat, "Bag_Minimum_Drop", 1).getInt();
+        Properties.WALLET_WITHER_MAX_DROP = config.get(cat, "Bag_Maximum_Drop", 1).getInt();
 
         if (config.hasChanged())
         {
