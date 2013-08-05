@@ -5,83 +5,98 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import ccm.trade_stuffs.api.coins.CoinTypes;
+
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Properties;
 
-public class InventoryBankItems extends InventoryBasic {
+public class InventoryBankItems extends InventoryBasic
+{
 
-	private TileEntityBank associatedBank;
-	
-	public InventoryBankItems() {
-		super("inventory.bank", false, 72);
-	}
-	
-	@Override
-	public int getInventoryStackLimit() {
-		return Properties.BANK_ITEMS_PER_ITEM;
-	}
-	
-	@Override
-	public String getInvName() {
-		return associatedBank.bankName.length() > 1 ? associatedBank.bankName : "inventory.bank";
-	}
+    private TileEntityBank associatedBank;
 
-	@Override
-	public boolean isInvNameLocalized() {
-		return associatedBank.bankName.length() > 1;
-	}
+    public InventoryBankItems()
+    {
+        super("inventory.bank", false, 72);
+    }
 
-	public void loadInventoryFromNBT(NBTTagList list) {
-		for(int i = 0; i < getSizeInventory(); ++i) {
-			setInventorySlotContents(i, (ItemStack) null);
-		}
-		for(int i = 0; i < list.tagCount(); ++i) {
-			NBTTagCompound nbttagcompound = (NBTTagCompound) list.tagAt(i);
-			int j = nbttagcompound.getByte("Slot") & 255;
-			if(j >= 0 && j < getSizeInventory()) {
-				setInventorySlotContents(j, ItemStack.loadItemStackFromNBT(nbttagcompound));
-			}
-		}
-	}
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return Properties.BANK_ITEMS_PER_ITEM;
+    }
 
-	public NBTTagList saveInventoryToNBT() {
-		NBTTagList list = new NBTTagList();
-		for(int i = 0; i < getSizeInventory(); ++i) {
-			ItemStack stack = getStackInSlot(i);
-			if(stack != null) {
-				NBTTagCompound nbttagcompound = new NBTTagCompound();
-				nbttagcompound.setByte("Slot", (byte) i);
-				stack.writeToNBT(nbttagcompound);
-				list.appendTag(nbttagcompound);
-			}
-		}
-		return list;
-	}
+    @Override
+    public String getInvName()
+    {
+        return associatedBank.bankName.length() > 1 ? associatedBank.bankName : "inventory.bank";
+    }
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
-		return associatedBank != null && !associatedBank.isUseableByPlayer(par1EntityPlayer) ? false : super.isUseableByPlayer(par1EntityPlayer);
-	}
+    @Override
+    public boolean isInvNameLocalized()
+    {
+        return associatedBank.bankName.length() > 1;
+    }
 
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return CoinTypes.getCoinType(stack) != null;
-	}
+    public void loadInventoryFromNBT(final NBTTagList list)
+    {
+        NBTTagCompound nbt;
+        for (int i = 0; i < list.tagCount(); i++)
+        {
+            nbt = (NBTTagCompound) list.tagAt(i);
+            setInventorySlotContents(nbt.getInteger("CCM.SLOT"), ItemStack.loadItemStackFromNBT(nbt));
+        }
+    }
 
-	public void openChest() {
-		if(associatedBank != null) {
-			associatedBank.openChest();
-		}
-		super.openChest();
-	}
+    public NBTTagList saveInventoryToNBT()
+    {
+        final NBTTagList list = new NBTTagList();
+        NBTTagCompound nbt;
+        for (int i = 0; i < getSizeInventory(); i++)
+        {
+            final ItemStack stack = getStackInSlot(i);
+            if (stack != null)
+            {
+                nbt = new NBTTagCompound();
+                nbt.setInteger("CCM.SLOT", i);
+                stack.writeToNBT(nbt);
+                list.appendTag(nbt);
+            }
+        }
+        return list;
+    }
 
-	public void closeChest() {
-		if(associatedBank != null) {
-			associatedBank.closeChest();
-		}
+    @Override
+    public boolean isUseableByPlayer(final EntityPlayer par1EntityPlayer)
+    {
+        return (associatedBank != null) && !associatedBank.isUseableByPlayer(par1EntityPlayer) ? false
+                                                                                              : super.isUseableByPlayer(par1EntityPlayer);
+    }
 
-		super.closeChest();
-		associatedBank = null;
-	}
+    @Override
+    public boolean isItemValidForSlot(final int slot, final ItemStack stack)
+    {
+        return false;
+    }
+
+    @Override
+    public void openChest()
+    {
+        if (associatedBank != null)
+        {
+            associatedBank.openChest();
+        }
+        super.openChest();
+    }
+
+    @Override
+    public void closeChest()
+    {
+        if (associatedBank != null)
+        {
+            associatedBank.closeChest();
+        }
+
+        super.closeChest();
+        associatedBank = null;
+    }
 }
