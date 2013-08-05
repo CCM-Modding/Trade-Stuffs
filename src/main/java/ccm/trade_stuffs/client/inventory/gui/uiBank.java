@@ -31,7 +31,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class GuiBank extends GuiContainer {
+public class uiBank extends GuiContainer {
 
 	private TileEntityBank bank;
 	
@@ -40,7 +40,7 @@ public class GuiBank extends GuiContainer {
 	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
 	private ItemStack displayItems  = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GuiBank(InventoryPlayer player, TileEntityBank tile) {
+	public uiBank(InventoryPlayer player, TileEntityBank tile) {
 		super(new ContainerBank(player, tile));
 		bank = tile;
 		xSize = 190;
