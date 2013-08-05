@@ -3,9 +3,11 @@
  */
 package ccm.trade_stuffs.blocks;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import ccm.trade_stuffs.utils.lib.Properties;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * ModBlocks
@@ -27,5 +29,10 @@ public class ModBlocks {
 		GameRegistry.registerBlock(tradeStation, "CCM.TRADE.BLOCK");
 		GameRegistry.registerBlock(bank, "CCM.BANK.BLOCK");
 		GameRegistry.registerBlock(safe, "CCM.SAFE.BLOCK");
+		
+		//TODO: change recipe
+		GameRegistry.addRecipe(new ItemStack(safe), new Object[]{
+			"OIO", "ICI", "OIO", 'O', Block.obsidian, 'I', Item.ingotIron, 'C', Block.chest
+		});
 	}
 }

@@ -10,8 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -20,6 +18,7 @@ import org.lwjgl.opengl.GL11;
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.InventoryBank;
 import ccm.trade_stuffs.inventory.InventoryBankCoins;
+import ccm.trade_stuffs.inventory.InventoryBankItems;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -120,7 +119,7 @@ public class GuiBank extends GuiContainer {
 		
 		if(upperInventory instanceof InventoryBankCoins) {
 			fontRenderer.drawString("Coins: " + Integer.toString(bank.getCoinBalance()), 80, ySize - 93, 4210752);
-		} else if(upperInventory instanceof InventoryBankCoins) {
+		} else if(upperInventory instanceof InventoryBankItems) {
 			fontRenderer.drawString("Items: " + Integer.toString(bank.getItemCount()), 80, ySize - 93, 4210752);
 		}
 	}
