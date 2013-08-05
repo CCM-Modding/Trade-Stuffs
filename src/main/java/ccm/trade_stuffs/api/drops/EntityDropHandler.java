@@ -25,10 +25,6 @@ public class EntityDropHandler
      */
     private final ItemStack                         item;
     /**
-     * The amount to drop
-     */
-    private final int                               amount;
-    /**
      * The drop rate of it
      */
     private final float                             dropRate;
@@ -49,13 +45,11 @@ public class EntityDropHandler
      */
     public EntityDropHandler(final String modID,
                              final ItemStack item,
-                             final int amount,
                              final float dropRate,
                              final Class<? extends EntityLivingBase> entity)
     {
         this.modID = modID;
         this.item = item;
-        this.amount = amount;
         this.dropRate = dropRate;
         this.entity = entity;
     }
@@ -74,14 +68,6 @@ public class EntityDropHandler
     public ItemStack getDrop()
     {
         return item;
-    }
-
-    /**
-     * @return The amount
-     */
-    public float getAmount()
-    {
-        return amount;
     }
 
     /**
@@ -122,7 +108,7 @@ public class EntityDropHandler
 
             if (rand < dropRate)
             {
-                entity.entityDropItem(new ItemStack(item.itemID, amount, item.getItemDamage()), 0.0F);
+                entity.entityDropItem(item, 0.0F);
             }
         }
     }

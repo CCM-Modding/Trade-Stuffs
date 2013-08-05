@@ -22,7 +22,7 @@ public final class SackAdditionRegistry
 {
     public static void addMobDrops()
     {
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 2, 1F, EntityDragon.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 1, 0.5F, EntityWither.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 1F, EntityDragon.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), 0.5F, EntityWither.class);
     }
 }

@@ -42,11 +42,10 @@ public class EntityDrops
      */
     public static EntityDropHandler registerDrop(final String modID,
                                                  final ItemStack item,
-                                                 final int amount,
                                                  final float dropRate,
                                                  final Class<? extends EntityLivingBase> entity)
     {
-        final EntityDropHandler tmp = new EntityDropHandler(modID, item, amount, dropRate, entity);
+        final EntityDropHandler tmp = new EntityDropHandler(modID, item, dropRate, entity);
         registerDrop(tmp);
         return tmp;
     }
