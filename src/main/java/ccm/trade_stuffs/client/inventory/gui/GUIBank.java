@@ -73,8 +73,8 @@ public class GUIBank extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -16, 20);
-		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -16, 41);
+		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -18, 20);
+		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -18, 41);
 		
 		fontRenderer.drawString(bank.isInvNameLocalized() ? bank.getInvName() : I18n.func_135053_a(bank.getInvName()), 8, 6, 4210752);
 	}

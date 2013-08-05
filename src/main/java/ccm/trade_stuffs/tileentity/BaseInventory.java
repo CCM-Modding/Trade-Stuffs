@@ -107,24 +107,6 @@ public abstract class BaseInventory extends TileEntity implements IInventory
     }
 
     @Override
-    public void readFromNBT(final NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-        if (nbt.hasKey("CCM.TILE.ENTITY.INVENTORY"))
-        {
-            setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList("container.inventory"),
-                                                              getSizeInventory()));
-        }
-    }
-
-    @Override
-    public void writeToNBT(final NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-        nbt.setTag("CCM.TILE.ENTITY.INVENTORY", InventoryHelper.writeInventoryToNBT(inventory));
-    }
-
-    @Override
     public Packet getDescriptionPacket()
     {
         final NBTTagCompound nbt = new NBTTagCompound();

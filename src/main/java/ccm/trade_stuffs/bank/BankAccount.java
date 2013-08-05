@@ -73,7 +73,7 @@ public class BankAccount {
 		return coinBalance;
 	}
 	
-	public void readFromNBT(NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {		
 		player = nbt.getString("Player");
 		
 		coins = new HashMap<CoinType, Integer>();

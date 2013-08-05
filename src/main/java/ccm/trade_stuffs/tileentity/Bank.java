@@ -20,16 +20,6 @@ public class Bank extends BaseInventory {
 	public HashMap<String, BankAccount> accounts = new HashMap<String, BankAccount>();
 	
 	@Override
-	public String getInvName() {
-		return "inventory.bank";
-	}
-	
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
-	
-	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		if(nbt.hasKey("Accounts")) {
@@ -55,5 +45,15 @@ public class Bank extends BaseInventory {
 			}
 		}
 		nbt.setTag("Accounts", list);
+	}
+	
+	@Override
+	public String getInvName() {
+		return "inventory.bank";
+	}
+	
+	@Override
+	public boolean isInvNameLocalized() {
+		return false;
 	}
 }
