@@ -31,6 +31,14 @@ public final class EntityDropHandler
      */
     private final float                             dropRate;
     /**
+     * The Maximum to drop
+     */
+    private final int                               maxValue;
+    /**
+     * The Minimum to drop
+     */
+    private final int                               minValue;
+    /**
      * The entity that should drop it
      */
     private final Class<? extends EntityLivingBase> entity;
@@ -42,17 +50,25 @@ public final class EntityDropHandler
      *            The Item to drop
      * @param dropRate
      *            the Rate at which to drop it
+     * @param minValue
+     *            The Minimum to drop
+     * @param maxValue
+     *            The Maximum to drop
      * @param entitys
      *            the entity's that are allowed to drop it
      */
     public EntityDropHandler(final String modID,
                              final ItemStack item,
                              final float dropRate,
+                             final int minValue,
+                             final int maxValue,
                              final Class<? extends EntityLivingBase> entity)
     {
         this.modID = modID;
         this.item = item;
         this.dropRate = dropRate;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
         this.entity = entity;
     }
 
@@ -112,8 +128,25 @@ public final class EntityDropHandler
 
             if (chance < dropRate)
             {
-                entity.entityDropItem(item, 0.0F);
+                entity.entityDropItem(new ItemStack(item.itemID, clamp(rand.nextInt(maxValue),
+                                                                       minValue,
+                                                                       maxValue), item.getItemDamage()),
+                                      0.0F);
             }
         }
+    }
+
+    int clamp(int val, final int min, final int max)
+    {
+        if (val > max)
+        {
+            val = max;
+        }
+        else
+            if (val < min)
+            {
+                val = min;
+            }
+        return val;
     }
 }

@@ -43,9 +43,11 @@ public class EntityDrops
     public static EntityDropHandler registerDrop(final String modID,
                                                  final ItemStack item,
                                                  final float dropRate,
+                                                 final int minValue,
+                                                 final int maxValue,
                                                  final Class<? extends EntityLivingBase> entity)
     {
-        final EntityDropHandler tmp = new EntityDropHandler(modID, item, dropRate, entity);
+        final EntityDropHandler tmp = new EntityDropHandler(modID, item, dropRate, minValue, maxValue, entity);
         registerDrop(tmp);
         return tmp;
     }
