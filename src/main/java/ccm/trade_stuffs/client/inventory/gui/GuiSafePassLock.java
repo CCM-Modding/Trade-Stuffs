@@ -38,6 +38,7 @@ public class GuiSafePassLock extends GuiContainer {
 	private TileEntitySafe safe;
 	private GuiButton enter;
 	private GuiButton reset;
+	private GuiButton open;
 	private StringBuilder tmpPass = new StringBuilder();
 	private boolean canOpen = false;
 	private String message = "";
@@ -65,9 +66,13 @@ public class GuiSafePassLock extends GuiContainer {
 		enter = new GuiButton(i++, guiLeft + 27, guiTop + 80, 20, 20, "E");
 		enter.enabled = false;
 		buttonList.add(enter);
-		reset = new GuiButton(i, guiLeft + 71, guiTop + 80, 20, 20, "S/R");
+		reset = new GuiButton(i++, guiLeft + 71, guiTop + 80, 20, 20, "S/R");
 		reset.enabled = false;
 		buttonList.add(reset);
+		open = new GuiButton(i++, guiLeft + 41, guiTop + 114, 40, 20, "Open");
+		open.drawButton = false;
+		open.enabled = false;
+		buttonList.add(open);
 	}
 
 	@Override
@@ -76,6 +81,8 @@ public class GuiSafePassLock extends GuiContainer {
 			reset();
 		} else if(button.id == enter.id) {
 			enter();
+		} else if(button.id == open.id) {
+			openGui();
 		} else {
 			enterNumber(button.displayString);
 		}
@@ -83,7 +90,9 @@ public class GuiSafePassLock extends GuiContainer {
 	}
 
 	private void enterNumber(String number) {
-		tmpPass.append(number);
+		if(tmpPass.length() < 4) {
+			tmpPass.append(number);
+		}
 		if(tmpPass.length() == 4) {
 			enter.enabled = true;
 		}
@@ -93,75 +102,24 @@ public class GuiSafePassLock extends GuiContainer {
 		int password = Integer.parseInt(tmpPass.toString());
 		if(safe.hasPass()) {
 			if(safe.getPass() == password) {
-				openGui();
+				open.drawButton = true;
+				open.enabled = true;
+				reset.enabled = true;
 			}
 		} else {
 			sendNewPassword(password);
 		}	
 		enter.enabled = false;
 		tmpPass = new StringBuilder();
-		//TODO:has access && password is set --> enable rest
+		
 	}
 	
 	private void reset() {
+		open.drawButton = false;
+		open.enabled = false;
 		sendResetPassword();
 		reset.enabled = false;
 	}
-	
-	/*private void reset(GuiButton button) {
-		safe.setPass(0);
-		player.sendChatMessage("Your Password has been Reseted");
-	}
-
-	private void pass(GuiButton button) {
-		final int pass = safe.getPass();
-		if(tmpPass.length() == 4) {
-			if(pass == 0) {
-				final int tmpPassword = Integer.valueOf(tmpPass.toString());
-				System.out.println(tmpPassword);
-				sendPassUpdate(tmpPassword);
-				// safe.setPass(tmpPassword);
-				tmpPass = new StringBuilder();
-				player.sendChatMessage("Your Password has been Set");
-				player.sendChatMessage("Please Input it again");
-			} else if(pass == Integer.valueOf(tmpPass.toString())) {
-				tmpPass = new StringBuilder();
-				canOpen = true;
-				enter.enabled = canOpen;
-				rest.enabled = canOpen;
-			} else {
-				player.sendChatMessage("Invalid Password");
-				canOpen = false;
-				tmpPass = new StringBuilder();
-			}
-		} else {
-			if(button.id != enter.id) {
-				tmpPass.append(button.displayString);
-			} else {
-				// openGUI(button);
-			}
-		}
-	}*/
-
-	/*public void sendPassUpdate(int pass) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			dos.writeInt(12);
-			dos.writeInt(safe.xCoord);
-			dos.writeInt(safe.yCoord);
-			dos.writeInt(safe.zCoord);
-
-			dos.writeInt(pass);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = "TradeStuffs";
-		packet.data = bos.toByteArray();
-		packet.length = bos.size();
-		PacketDispatcher.sendPacketToServer(packet);
-	}*/
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float opacity, int x, int y) {
