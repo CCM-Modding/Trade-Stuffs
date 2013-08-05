@@ -163,7 +163,7 @@ public class InventoryWallet implements IInventory {
 	}
 
 	public int getStacksPerCoin() {
-		return Properties.STACKS_PER_COIN;
+		return Properties.WALLET_STACKS_PER_COIN;
 	}
 
 	public void readFromNBT(ItemStack stack) {

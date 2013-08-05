@@ -71,4 +71,8 @@ public final class InventoryHelper
         }
         return null;
     }
+    
+    public static boolean areItemStacksEqualWithoutSize(ItemStack stack1, ItemStack stack2) {
+		return stack1.itemID != stack2.itemID ? false : (stack1.getItemDamage() != stack2.getItemDamage() ? false : (stack1.stackTagCompound == null && stack2.stackTagCompound != null ? false : stack1.stackTagCompound == null || stack1.stackTagCompound.equals(stack2.stackTagCompound)));
+	}
 }

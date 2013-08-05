@@ -24,5 +24,8 @@ public class Properties
 
     public static int safeID;
     
-    public static int STACKS_PER_COIN = 8;
+    public static int WALLET_STACKS_PER_COIN = 8;
+   
+    public static int BANK_STACKS_PER_COIN = ((Integer.MAX_VALUE + 1) / 64) - 64;
+    public static int BANK_ITEMS_PER_ITEM = 256;
 }
