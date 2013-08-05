@@ -24,7 +24,7 @@ public class ContainerBank extends ContainerBase {
 	public ContainerBank(InventoryPlayer player, TileEntityBank tile) {
 		super(player);
 		bank = tile;
-		addPlayerInventory(15, 139);
+		addPlayerInventory(8, 140);
 		
 		for(int row = 0; row < 6; row++) {
 			for(int column = 0; column < 9; column++) {
