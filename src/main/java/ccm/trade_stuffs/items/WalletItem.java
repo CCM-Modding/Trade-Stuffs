@@ -3,17 +3,22 @@
  */
 package ccm.trade_stuffs.items;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.inventory.InventoryWallet;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * WalletItem
@@ -110,26 +115,17 @@ public class WalletItem extends BaseItem
         return icons[meta];
     }
 
-    /*@Override
+    @Override
     public void addInformation(final ItemStack item,
                                final EntityPlayer palyer,
                                final List list,
                                final boolean color)
     {
-        final WalletInventory wallet = new WalletInventory(item);
-        final ItemStack[] inv = InventoryHelper.readInventoryFromNBT(item.getTagCompound()
-                                                                         .getTagList(WalletInventory.INVENTORY_WALLET),
-                                                                     wallet.getSizeInventory());
+        final InventoryWallet wallet = new InventoryWallet(item);
+
         final StringBuilder sb = new StringBuilder();
         sb.append("You have a total of ");
-        int value = 0;
-        for (final ItemStack stack : inv)
-        {
-            if (stack != null)
-            {
-                value += CoinTypes.getTypes().get(stack.getItemDamage()).getValueStack(stack);
-            }
-        }
+        final int value = wallet.getCoinBalance();
         sb.append(value + " coin");
         if (value != 1)
         {
@@ -138,6 +134,5 @@ public class WalletItem extends BaseItem
         sb.append(" in this ");
         sb.append(list.get(0));
         list.add(sb.toString());
-    }*/
-
+    }
 }

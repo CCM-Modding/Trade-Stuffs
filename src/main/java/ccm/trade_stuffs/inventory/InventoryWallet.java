@@ -147,8 +147,7 @@ public class InventoryWallet implements IInventory {
 	}
 
 	@Override
-	public void onInventoryChanged() {
-	}
+	public void onInventoryChanged() {}
 
 	public void countCoinBalance() {
 		coinBalance = 0;
