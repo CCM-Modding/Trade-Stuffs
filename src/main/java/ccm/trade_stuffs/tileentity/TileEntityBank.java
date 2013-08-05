@@ -32,7 +32,7 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	private String playerUsing = "";
 	private boolean inUse = false;
-	private int selectedTab = 0;
+	private byte selectedTab = 0;
 	
 	public BankAccount account;
 	
@@ -160,7 +160,7 @@ public class TileEntityBank extends TileEntity implements IInventory {
 		playerUsing = player;
 	}
 	
-	public void setSelectedTab(int tab) {
+	public void setSelectedTab(byte tab) {
 		selectedTab = tab;
 		//TODO: update slots
 	}

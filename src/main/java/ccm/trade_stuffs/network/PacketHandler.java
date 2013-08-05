@@ -54,6 +54,6 @@ public class PacketHandler implements IPacketHandler {
 			tile = new TileEntityBank();
 			world.setBlockTileEntity(x, y, z, tile);
 		}
-		tile.setSelectedTab(dat.readInt());
+		tile.setSelectedTab(dat.readByte());
 	}
 }
