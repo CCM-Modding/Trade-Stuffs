@@ -37,8 +37,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GuiBank extends GuiContainer {
 
 	private TileEntityBank bank;
-	private IInventory upperInventory;
-	private IInventory lowerInventory;
+	private InventoryBank upperInventory;
+	private InventoryPlayer lowerInventory;
 
 	public byte selectedTab = 0;
 
@@ -54,16 +54,6 @@ public class GuiBank extends GuiContainer {
 		ySize = 238;
 		allowUserInput = false;
 		selectedTab = tab;
-	}
-	
-	@Override
-	protected void drawSlotInventory(Slot slot) {
-		super.drawSlotInventory(slot);
-		if(slot.getStack() == null) {
-			System.out.println(slot.slotNumber + ": null");
-		} else {
-			System.out.println(slot.slotNumber + ": " + slot.getStack().itemID + ":" + slot.getStack().getItemDamage() + " " + slot.getStack().stackSize);
-		}
 	}
 
 	@Override

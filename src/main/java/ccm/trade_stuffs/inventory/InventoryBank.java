@@ -45,10 +45,10 @@ public class InventoryBank extends InventoryBase {
 		if(associatedBank != null && flag) {
 			if(this instanceof InventoryBankCoins) {
 				associatedBank.countCoins();
-				formatCoins();
+				//formatCoins();
 			} else if(this instanceof InventoryBankItems) {
 				associatedBank.countItems();
-				formatItems();
+				//formatItems();
 			}
 		}
 	}
