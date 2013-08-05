@@ -58,16 +58,17 @@ public class ContainerWallet extends ContainerBase
     @Override
     public ItemStack transferStackInSlot(final EntityPlayer player, final int index)
     {
+        System.out.println(index);
         ItemStack stack = null;
         final Slot slot = (Slot) inventorySlots.get(index);
-        System.out.println(index);
         if ((slot != null) && slot.getHasStack())
         {
             final ItemStack slotStack = slot.getStack();
             stack = slotStack.copy();
+
             if (index < wallet.getSizeInventory())
             {
-                if (!mergeItemStack(slotStack, wallet.getSizeInventory(), inventorySlots.size(), false))
+                if (!mergeItemStack(slotStack, 1, inventorySlots.size(), true))
                 {
                     return null;
                 }
@@ -75,7 +76,7 @@ public class ContainerWallet extends ContainerBase
             else
                 if (slotStack.getItem() instanceof CoinItem)
                 {
-                    if (!mergeItemStack(slotStack, 0, 0, false))
+                    if (!mergeItemStack(slotStack, 0, wallet.getSizeInventory(), false))
                     {
                         return null;
                     }
