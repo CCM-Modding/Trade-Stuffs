@@ -17,12 +17,15 @@ import net.minecraft.item.ItemStack;
  */
 public class EntityDrops
 {
-    private static final List<EntityDrop> drops = new ArrayList<EntityDrop>();
+    /**
+     * All of the registered Drop Handlers
+     */
+    private static final List<EntityDropHandler> drops = new ArrayList<EntityDropHandler>();
 
     /**
      * Registers a EntityDrop
      */
-    public static void registerDrop(final EntityDrop drop)
+    public static void registerDrop(final EntityDropHandler drop)
     {
         drops.add(drop);
     }
@@ -37,19 +40,60 @@ public class EntityDrops
      * @param entitys
      *            the entity's that are allowed to drop it
      */
-    public static EntityDrop registerDrop(final String modID,
-                                          final ItemStack item,
-                                          final int amount,
-                                          final float dropRate,
-                                          final Class<? extends EntityLivingBase> entity)
+    public static EntityDropHandler registerDrop(final String modID,
+                                                 final ItemStack item,
+                                                 final int amount,
+                                                 final float dropRate,
+                                                 final Class<? extends EntityLivingBase> entity)
     {
-        final EntityDrop tmp = new EntityDrop(modID, item, amount, dropRate, entity);
+        final EntityDropHandler tmp = new EntityDropHandler(modID, item, amount, dropRate, entity);
         registerDrop(tmp);
         return tmp;
     }
 
-    public static List<EntityDrop> getDrops()
+    /**
+     * @param entity
+     *            The entity that is dropping the Item
+     * @return true if and ONLY if there is a DropHandler registered to that entity
+     */
+    public static boolean isEntityRegistered(final EntityLivingBase entity)
     {
-        return new ArrayList<EntityDrop>(drops);
+        boolean registered = false;
+        for (final EntityDropHandler drop : drops)
+        {
+            if (drop.shouldDrop(entity.getClass()))
+            {
+                registered = true;
+                break;
+            }
+        }
+        return registered;
+    }
+
+    /**
+     * @param entity
+     *            The entity that is dropping the Item
+     */
+    public static void dropItem(final EntityLivingBase entity)
+    {
+        if (EntityDrops.isEntityRegistered(entity))
+        {
+            for (final EntityDropHandler drop : drops)
+            {
+                if (drop.shouldDrop(entity.getClass()))
+                {
+                    drop.dropItem(entity);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * @return a copy of the drops
+     */
+    public static List<EntityDropHandler> getDrops()
+    {
+        return new ArrayList<EntityDropHandler>(drops);
     }
 }

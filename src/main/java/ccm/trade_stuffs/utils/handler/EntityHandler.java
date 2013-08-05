@@ -8,6 +8,8 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
+import ccm.trade_stuffs.api.drops.EntityDrops;
+
 /**
  * EntityHandler
  * <p>
@@ -22,7 +24,7 @@ public class EntityHandler
     {
         if (event.source.getDamageType().equalsIgnoreCase("player"))
         {
-
+            EntityDrops.dropItem(event.entityLiving);
         }
         if (event.source.getSourceOfDamage() instanceof EntityArrow)
         {
@@ -30,7 +32,7 @@ public class EntityHandler
             {
                 if (((EntityArrow) event.source.getSourceOfDamage()).shootingEntity instanceof EntityPlayer)
                 {
-
+                    EntityDrops.dropItem(event.entityLiving);
                 }
             }
         }

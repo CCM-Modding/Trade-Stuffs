@@ -3,10 +3,12 @@
  */
 package ccm.trade_stuffs.api.coins;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+
 import ccm.trade_stuffs.items.CoinItem;
 
 /**
@@ -19,12 +21,12 @@ import ccm.trade_stuffs.items.CoinItem;
  * 
  * @author Captain_Shadows
  */
-public final class CoinTypes
+public final class CoinTypes implements Serializable
 {
     /**
      * long, serialVersionUID
      */
-    private static final long           serialVersionUID = -7687489046333823903L;
+    private static final long           serialVersionUID = 8699539912432140138L;
 
     /**
      * All of the registered coin types
@@ -99,16 +101,19 @@ public final class CoinTypes
     {
         return new ArrayList<CoinType>(types);
     }
-    
-    public static CoinType getCoinType(ItemStack stack) {
-    	if(stack.getItem() instanceof CoinItem) {
-    		return getTypes().get(stack.getItemDamage());
-    	}
-    	return null;
+
+    public static CoinType getCoinType(final ItemStack stack)
+    {
+        if (stack.getItem() instanceof CoinItem)
+        {
+            return getTypes().get(stack.getItemDamage());
+        }
+        return null;
     }
-    
-    public static CoinType getCoinType(int itemDamage) {
-    	return getTypes().get(itemDamage);
+
+    public static CoinType getCoinType(final int itemDamage)
+    {
+        return getTypes().get(itemDamage);
     }
 
     /**
