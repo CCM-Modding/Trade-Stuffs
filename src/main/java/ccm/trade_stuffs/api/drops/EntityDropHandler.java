@@ -47,10 +47,10 @@ public class EntityDropHandler
      *            the entity's that are allowed to drop it
      */
     public EntityDropHandler(final String modID,
-                      final ItemStack item,
-                      final int amount,
-                      final float dropRate,
-                      final Class<? extends EntityLivingBase> entity)
+                             final ItemStack item,
+                             final int amount,
+                             final float dropRate,
+                             final Class<? extends EntityLivingBase> entity)
     {
         this.modID = modID;
         this.item = item;
@@ -99,11 +99,19 @@ public class EntityDropHandler
         return entity;
     }
 
+    /**
+     * @param entity
+     * @return
+     */
     public boolean shouldDrop(final Class<? extends EntityLivingBase> entity)
     {
         return entity.equals(this.entity);
     }
 
+    /**
+     * @param entity
+     *            Drops the Item
+     */
     public void dropItem(final EntityLivingBase entity)
     {
         if (shouldDrop(entity.getClass()))

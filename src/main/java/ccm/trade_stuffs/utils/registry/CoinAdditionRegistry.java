@@ -35,6 +35,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.ItemStack;
 
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.api.drops.EntityDrops;
 
 /**
@@ -45,6 +46,14 @@ import ccm.trade_stuffs.api.drops.EntityDrops;
  */
 public final class CoinAdditionRegistry
 {
+
+    public static void addCoins()
+    {
+        CoinTypes.registerCoinType(MOD_ID, "copper", 1);
+        CoinTypes.registerCoinType(MOD_ID, "silver", 25);
+        CoinTypes.registerCoinType(MOD_ID, "gold", 50);
+        CoinTypes.registerCoinType(MOD_ID, "platinum", 100);
+    }
 
     public static void addMobDrops()
     {

@@ -6,7 +6,6 @@ package ccm.trade_stuffs.api.coins;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.ItemCloth;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -24,12 +23,21 @@ public final class CoinTypes
     /**
      * long, serialVersionUID
      */
-    private static final long           serialVersionUID = 8699539912432140138L;
+    private static final long           serialVersionUID = -2525214302579118813L;
 
     /**
-     * All of the registered coin types
+     * All of the registered {@link CoinType}s
      */
     private static final List<CoinType> types            = new ArrayList<CoinType>();
+
+    /**
+     * @param type
+     *            Add a new type of coin
+     */
+    public static void registerCoinType(final CoinType type)
+    {
+        types.add(type);
+    }
 
     /**
      * @param modID
@@ -51,16 +59,7 @@ public final class CoinTypes
 
     /**
      * @param type
-     *            Add a new type of coin
-     */
-    public static void registerCoinType(final CoinType type)
-    {
-        types.add(type);
-    }
-
-    /**
-     * @param type
-     *            The coin type to check
+     *            The {@link CoinType} to check
      * @return true if and ONLY if it is the Highest value registered
      */
     public static boolean isHigest(final CoinType type)
@@ -107,6 +106,21 @@ public final class CoinTypes
         return new ArrayList<CoinType>(types);
     }
 
+    /**
+     * @param itemDamage
+     *            The meta data of the item that you want to get the CoinType of
+     * @return The {@link CoinType}
+     */
+    public static CoinType getCoinType(final int itemDamage)
+    {
+        return getTypes().get(itemDamage);
+    }
+
+    /**
+     * @param stack
+     *            The ItemStack to get the {@link CoinType} from
+     * @return The corresponding {@link CoinType}
+     */
     public static CoinType getCoinType(final ItemStack stack)
     {
         Class<?> coinClazz = null;
@@ -118,16 +132,11 @@ public final class CoinTypes
             System.err.println("You need Trade Stuffs for you to see the coins!");
             e.printStackTrace();
         }
-        if (stack.getItem() instanceof ItemCloth)
+        if (coinClazz.isInstance(stack.getItem()))
         {
             return getCoinType(stack.getItemDamage());
         }
         return null;
-    }
-
-    public static CoinType getCoinType(final int itemDamage)
-    {
-        return getTypes().get(itemDamage);
     }
 
     /**
@@ -139,10 +148,4 @@ public final class CoinTypes
     {
         return serialVersionUID;
     }
-
-    private static final String  modID    = "trade_stuffs";
-    public static final CoinType COPPER   = registerCoinType(modID, "copper", 1);
-    public static final CoinType SILVER   = registerCoinType(modID, "silver", 25);
-    public static final CoinType GOLD     = registerCoinType(modID, "gold", 50);
-    public static final CoinType PLATINUM = registerCoinType(modID, "platinum", 100);
 }
