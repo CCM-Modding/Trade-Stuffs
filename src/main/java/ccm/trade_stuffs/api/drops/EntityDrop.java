@@ -3,6 +3,7 @@
  */
 package ccm.trade_stuffs.api.drops;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class EntityDrop
     /**
      * The drop rate of it
      */
-    private final int                    dropRate;
+    private final float                  dropRate;
     /**
      * A list of entity's that should drop it
      */
@@ -47,7 +48,7 @@ public class EntityDrop
      */
     public EntityDrop(final String modID,
                       final ItemStack item,
-                      final int dropRate,
+                      final float dropRate,
                       final List<EntityLivingBase> entitys)
     {
         this.modID = modID;
@@ -68,7 +69,7 @@ public class EntityDrop
      */
     public EntityDrop(final String modID,
                       final ItemStack item,
-                      final int dropRate,
+                      final float dropRate,
                       final EntityLivingBase[] entitys)
     {
         this(modID, item, dropRate, Arrays.asList(entitys));
@@ -86,10 +87,11 @@ public class EntityDrop
      */
     public EntityDrop(final String modID,
                       final ItemStack item,
-                      final int dropRate,
+                      final float dropRate,
                       final EntityLivingBase entity)
     {
         this(modID, item, dropRate, Arrays.asList(entity));
+
     }
 
     /**
@@ -111,8 +113,16 @@ public class EntityDrop
     /**
      * @return The drop rate
      */
-    public int getDropRate()
+    public float getDropRate()
     {
         return dropRate;
+    }
+
+    /**
+     * @return A list of all EntityLivingBase that are allowed to drop this item
+     */
+    public List<EntityLivingBase> entitys()
+    {
+        return new ArrayList<EntityLivingBase>(entitys);
     }
 }
