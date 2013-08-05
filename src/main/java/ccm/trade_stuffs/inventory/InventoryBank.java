@@ -48,7 +48,7 @@ public class InventoryBank extends InventoryBase {
 				//formatCoins();
 			} else if(this instanceof InventoryBankItems) {
 				associatedBank.countItems();
-				//formatItems();
+				formatItems();
 			}
 		}
 	}
@@ -85,9 +85,7 @@ public class InventoryBank extends InventoryBase {
 	
 	@Override
 	public void onInventoryChanged() {
-		for(int i = 0; i < 72; i++) {
-			System.out.println(FMLCommonHandler.instance().getEffectiveSide() + " | " + i + ": " + getStackInSlot(i));
-		}
+		
 	}
 	
 	public void formatItems() {
