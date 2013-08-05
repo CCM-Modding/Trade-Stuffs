@@ -28,7 +28,7 @@ public class ContainerBank extends ContainerBase {
 		bank = tile;
 		addPlayerInventory(8, 174);
 
-		for(int row = 0; row < 7; row++) {
+		for(int row = 0; row < 8; row++) {
 			for(int column = 0; column < 9; column++) {
 				addSlotToContainer(new Slot(inventory, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
 			}

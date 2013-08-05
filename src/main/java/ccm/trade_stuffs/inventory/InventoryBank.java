@@ -19,7 +19,7 @@ public class InventoryBank extends InventoryBase
 
     public InventoryBank()
     {
-        super("inventory.bank", 72);
+        super("inventory.bank", 81);
     }
 
     public InventoryBank setBank(final TileEntityBank bank)
