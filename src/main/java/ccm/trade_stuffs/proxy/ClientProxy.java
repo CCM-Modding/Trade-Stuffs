@@ -45,6 +45,7 @@ public class ClientProxy extends CommonProxy {
 			return new GuiTrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
 		case Guis.GUI_BANK:
 			TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+			tile.openChest();
 			return new GuiBank(player.inventory, tile.account.coins, tile);
 		case Guis.GUI_WALLET:
 			return new GuiWallet(player.getCurrentEquippedItem(), player);

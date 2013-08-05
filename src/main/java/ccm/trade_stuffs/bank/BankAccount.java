@@ -17,9 +17,13 @@ public class BankAccount {
 	
 	public void readFromNBT(NBTTagCompound nbt) {		
 		player = nbt.getString("Player");	
+		coins.loadInventoryFromNBT(nbt.getTagList("Coins"));
+		items.loadInventoryFromNBT(nbt.getTagList("Items"));
 	}
 	
 	public void writeToNBT(NBTTagCompound nbt) {
 		nbt.setString("Player", player);
+		nbt.setTag("Coins", coins.saveInventoryToNBT());
+		nbt.setTag("Items", items.saveInventoryToNBT());
 	}
 }
