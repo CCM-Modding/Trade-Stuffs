@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import ccm.trade_stuffs.inventory.slot.SlotInput;
+import ccm.trade_stuffs.items.CoinItem;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
@@ -63,19 +64,29 @@ public class ContainerWallet extends ContainerBase
         {
             final ItemStack slotStack = slot.getStack();
             stack = slotStack.copy();
-            if (index < 1)
+            if (index < wallet.getSizeInventory())
             {
-                if (!mergeItemStack(slotStack, 0, 45, true))
+                if (!mergeItemStack(slotStack, wallet.getSizeInventory(), inventorySlots.size(), false))
                 {
                     return null;
                 }
             }
             else
-                if (!mergeItemStack(slotStack, 0, 0, false))
+                if (slotStack.getItem() instanceof CoinItem)
                 {
-                    return null;
+                    if (!mergeItemStack(slotStack, 0, 0, false))
+                    {
+                        return null;
+                    }
                 }
-
+            if (slotStack.stackSize == 0)
+            {
+                slot.putStack((ItemStack) null);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
         }
         return stack;
     }
