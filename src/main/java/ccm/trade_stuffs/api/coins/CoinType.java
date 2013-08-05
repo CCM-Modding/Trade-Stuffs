@@ -7,9 +7,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-import cpw.mods.fml.common.Loader;
-
-import ccm.trade_stuffs.api.utils.exeptions.FailedToMakeCoinType;
 import ccm.trade_stuffs.utils.helper.java.JavaHelper;
 
 /**
@@ -35,16 +32,16 @@ public final class CoinType
     /**
      * Name of the mod registering this coin
      */
-    private String            modID;
+    private final String      modID;
 
     /**
      * Name of the coin
      */
-    private String            name;
+    private final String      name;
     /**
      * Value of the coin
      */
-    private int               value;
+    private final int         value;
     /**
      * Icon of the coin
      */
@@ -60,33 +57,9 @@ public final class CoinType
      */
     public CoinType(final String modID, final String name, final int value)
     {
-        boolean valid = false;
-        if (modID != null)
-        {
-            if (Loader.isModLoaded(modID))
-            {
-                if (name != null)
-                {
-                    if (value >= 1)
-                    {
-                        this.modID = modID;
-                        this.name = name;
-                        this.value = value;
-                        valid = true;
-                    }
-                }
-            }
-        }
-        if (!valid)
-        {
-            try
-            {
-                throw new FailedToMakeCoinType(modID, name, value);
-            } catch (final FailedToMakeCoinType e)
-            {
-                e.printStackTrace();
-            }
-        }
+        this.modID = modID;
+        this.name = name;
+        this.value = value;
     }
 
     /**

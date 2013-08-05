@@ -6,8 +6,6 @@ package ccm.trade_stuffs.api.coins;
 import java.util.ArrayList;
 import java.util.List;
 
-import ccm.trade_stuffs.api.utils.exeptions.FailedToMakeCoinType;
-
 /**
  * CoinTypes
  * <p>
@@ -23,12 +21,12 @@ public final class CoinTypes
     /**
      * long, serialVersionUID
      */
-    private static final long     serialVersionUID = -7687489046333823903L;
+    private static final long           serialVersionUID = -7687489046333823903L;
 
     /**
      * All of the registered coin types
      */
-    private static List<CoinType> types            = new ArrayList<CoinType>();
+    private static final List<CoinType> types            = new ArrayList<CoinType>();
 
     /**
      * @param modID
