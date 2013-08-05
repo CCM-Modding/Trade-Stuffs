@@ -3,12 +3,14 @@
  */
 package ccm.trade_stuffs.inventory;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
-import ccm.trade_stuffs.api.coins.CoinTypes;
+import ccm.trade_stuffs.api.CoinType;
+import ccm.trade_stuffs.api.CoinTypes;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
@@ -19,137 +21,178 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  * 
  * @author Captain_Shadows
  */
-public class WalletInventory implements IInventory
-{
-    ItemStack[]      inventory = new ItemStack[CoinTypes.getTypes().size() + 1];
+public class WalletInventory implements IInventory {
+	
+	public static final int STACKS_PER_COIN = 8;
+	
+	public HashMap<CoinType, Integer> coins = new HashMap<CoinType, Integer>();
+	private ItemStack slotStack;
+	
+	private ItemStack wallet;
+	
+	private int coinBalance = 0;
 
-    public ItemStack wallet;
+	public WalletInventory(ItemStack wallet) {
+		this.wallet = wallet;
+		readFromNBT(wallet);
+	}	
 
-    // TODO: fix this class
-    public WalletInventory(final ItemStack item)
-    {
-        wallet = item;
-        readFromNBT(item, item.getTagCompound());
-    }
+	@Override
+	public int getSizeInventory() {
+		return 1;
+	}
 
-    public void hasMoney(final boolean has)
-    {
-        NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
-    }
+	@Override
+	public ItemStack decrStackSize(int slot, int amount) {
+		return InventoryHelper.decreaseStackSize(this, slot, amount);
+	}
 
-    @Override
-    public int getSizeInventory()
-    {
-        return CoinTypes.getTypes().size() + 1;
-    }
+	@Override
+	public ItemStack getStackInSlot(int slot) {
+		if(slot == 0) {
+			return slotStack;
+		}
+		return null;
+	}
 
-    @Override
-    public ItemStack decrStackSize(final int slot, final int amount)
-    {
-        return InventoryHelper.decreaseStackSize(this, slot, amount);
-    }
+	@Override
+	public ItemStack getStackInSlotOnClosing(int slot) {
+		if(slot == 0) {
+			ItemStack temp = slotStack;
+			slotStack = null;
+			return temp;
+		}
+		return null;
+	}
 
-    @Override
-    public ItemStack getStackInSlot(final int slot)
-    {
-        return inventory[slot];
-    }
+	@Override
+	public void setInventorySlotContents(int slot, ItemStack stack) {
+		if(slot == 0) {
+			for(CoinType coinType : coins.keySet()) {
+				int coinAmount = coins.get(coinType);
+				if(coinAmount < getStacksPerCoin() * 64) {
+					int canAdd = (getStacksPerCoin() * 64) - coinAmount;
+					int added = 0;
+					if(stack.stackSize < canAdd) {
+						added = stack.stackSize;
+						stack.stackSize = 0;
+					} else {
+						added = canAdd;
+						stack.stackSize -= canAdd;
+					}
+					coins.put(coinType, coinAmount + added);
+				}
+			}
+			if(stack != null) {
+				if(stack.stackSize != 0) {
+					slotStack = stack;
+				} else {
+					slotStack = null;
+				}
+			}
+			countCoinBalance();
+		}
+	}
 
-    @Override
-    public ItemStack getStackInSlotOnClosing(final int slot)
-    {
-        if (inventory[slot] != null)
-        {
-            final ItemStack tmp = inventory[slot];
-            inventory[slot] = null;
-            return tmp;
-        }
-        return null;
-    }
+	@Override
+	public String getInvName() {
+		return wallet.hasDisplayName() ? wallet.getDisplayName() : "inventory.wallet";
+	}
 
-    @Override
-    public void setInventorySlotContents(final int slot, final ItemStack item)
-    {
-        inventory[slot] = item;
-    }
+	@Override
+	public boolean isInvNameLocalized() {
+		return wallet.hasDisplayName();
+	}
 
-    @Override
-    public String getInvName()
-    {
-        return wallet.hasDisplayName() ? wallet.getDisplayName() : "inventory.wallet";
-    }
+	@Override
+	public int getInventoryStackLimit() {
+		return 64;
+	}
 
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return wallet.hasDisplayName();
-    }
+	@Override
+	public void onInventoryChanged() {
+	}
+	
+	public void countCoinBalance() {
+		coinBalance = 0;
+		for(CoinType coinType : coins.keySet()) {
+			coinBalance += (coinType.getValue() * coins.get(coinType));
+		}
+		setHasMoney(coinBalance > 0);
+	}
+	
+	public int getCoinBalance() {
+		return coinBalance;
+	}
+	
+	public int getStacksPerCoin() {
+		return STACKS_PER_COIN;
+	}
+	
+	public void readFromNBT(ItemStack stack) {
+		NBTHelper.initCompound(stack);
+		NBTTagCompound nbt = stack.getTagCompound();
+		coins = new HashMap<CoinType, Integer>();
+		for(CoinType coinType : CoinTypes.getTypes()) {
+			if(nbt.hasKey("COIN-" + coinType.getName())) {
+				coins.put(coinType, nbt.getInteger("COIN-" + coinType.getName()));
+			}
+		}
+		countCoinBalance();
+	}
+	
+	public void writeToNBT(ItemStack stack) {
+		NBTHelper.initCompound(stack);
+		NBTTagCompound nbt = stack.getTagCompound();
+		for(CoinType coinType : coins.keySet()) {
+			nbt.setInteger("COIN-" + coinType.getName(), coins.get(coinType));
+		}
+	}
 
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
-    }
+	public void setHasMoney(boolean has) {
+		NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
+	}
 
-    public ItemStack[] getInventory()
-    {
-        return inventory;
-    }
+	/*public static final String INVENTORY_WALLET = "CCM.WALLET.INVENTORY";
+	
+	public void hasMoney(final boolean has) {
+		NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
+	}
+	
+	public void readFromNBT(final ItemStack item, final NBTTagCompound nbt) {
+		NBTHelper.initCompound(item);
+		System.out.println(nbt);
+		if(NBTHelper.hasTag(item, INVENTORY_WALLET)) {
+			setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList(INVENTORY_WALLET), getSizeInventory()));
+		}
+	}
 
-    @Override
-    public void onInventoryChanged()
-    {}
+	public void writeToNBT(final ItemStack item) {
+		NBTTagCompound tag = item.getTagCompound();
+		if(tag == null) {
+			tag = new NBTTagCompound();
+		}
+		System.out.println(tag);
+		tag.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
+		item.setTagCompound(tag);
+		System.out.println(tag);
+	}*/
 
-    public static final String INVENTORY_WALLET = "CCM.WALLET.INVENTORY";
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+		return true;
+	}
 
-    public void readFromNBT(final ItemStack item, final NBTTagCompound nbt)
-    {
-        NBTHelper.initCompound(item);
-        System.out.println(nbt);
-        if (NBTHelper.hasTag(item, INVENTORY_WALLET))
-        {
-            setInventory(InventoryHelper.readInventoryFromNBT(nbt.getTagList(INVENTORY_WALLET),
-                                                              getSizeInventory()));
-        }
-    }
+	@Override
+	public void openChest() {
+	}
 
-    /**
-     * @param readInventoryFromNBT
-     */
-    private void setInventory(final ItemStack[] inventory)
-    {
-        this.inventory = inventory;
-    }
+	@Override
+	public void closeChest() {
+	}
 
-    public void writeToNBT(final ItemStack item)
-    {
-        NBTTagCompound tag = item.getTagCompound();
-        if (tag == null)
-        {
-            tag = new NBTTagCompound();
-        }
-        tag.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
-        item.setTagCompound(tag);
-        System.out.println(tag);
-    }
-
-    @Override
-    public boolean isUseableByPlayer(final EntityPlayer entityplayer)
-    {
-        return true;
-    }
-
-    @Override
-    public void openChest()
-    {}
-
-    @Override
-    public void closeChest()
-    {}
-
-    @Override
-    public boolean isItemValidForSlot(final int slot, final ItemStack item)
-    {
-        return false;
-    }
+	@Override
+	public boolean isItemValidForSlot(int slot, ItemStack item) {
+		return false;
+	}
 }

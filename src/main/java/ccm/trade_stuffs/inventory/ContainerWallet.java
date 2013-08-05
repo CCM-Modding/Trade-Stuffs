@@ -5,7 +5,6 @@ package ccm.trade_stuffs.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
 import ccm.trade_stuffs.inventory.slot.InputSlot;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
@@ -16,47 +15,37 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  * 
  * @author Captain_Shadows
  */
-public class ContainerWallet extends ContainerBase
-{
-    public final WalletInventory wallet;
+public class ContainerWallet extends ContainerBase {
 
-    public ContainerWallet(final ItemStack item, final EntityPlayer player)
-    {
-        super(player.inventory);
-        wallet = new WalletInventory(item);
-        addPlayerInventory(8, 51);
-        addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
-    }
+	public final WalletInventory wallet;
 
-    @Override
-    public void onContainerClosed(final EntityPlayer player)
-    {
-        if (!(player.worldObj.isRemote))
-        {
-            for (final ItemStack stack : player.inventory.mainInventory)
-            {
-                if (stack != null)
-                {
-                    if (NBTHelper.hasTag(stack, WalletItem.openedWallet))
-                    {
-                        if (NBTHelper.hasTag(stack, WalletItem.fullWallet))
-                        {
-                            NBTHelper.removeTag(stack, WalletItem.fullWallet);
-                        }
-                        wallet.writeToNBT(stack);
-                        NBTHelper.removeTag(stack, WalletItem.openedWallet);
-                    }
-                }
-            }
-        }
+	public ContainerWallet(ItemStack item, EntityPlayer player) {
+		super(player.inventory);
+		wallet = new WalletInventory(item);
+		addPlayerInventory(8, 51);
+		addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
+	}
 
-        super.onContainerClosed(player);
-    }
+	@Override
+	public void onContainerClosed(EntityPlayer player) {
+		if(!player.worldObj.isRemote) {
+			for(final ItemStack stack : player.inventory.mainInventory) {
+				if(stack != null) {
+					if(NBTHelper.hasTag(stack, WalletItem.openedWallet)) {
+						if(NBTHelper.hasTag(stack, WalletItem.fullWallet)) {
+							NBTHelper.removeTag(stack, WalletItem.fullWallet);
+						}
+						wallet.writeToNBT(stack);
+						NBTHelper.removeTag(stack, WalletItem.openedWallet);
+					}
+				}
+			}
+		}
+		super.onContainerClosed(player);
+	}
 
-    @Override
-    public ItemStack transferStackInSlot(final EntityPlayer player, final int slot)
-    {
-        // Hacky crash fix :P
-        return null;
-    }
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+		return null;
+	}
 }

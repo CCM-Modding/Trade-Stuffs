@@ -3,20 +3,18 @@
  */
 package ccm.trade_stuffs.client.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
-import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Guis;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * GUIWallet
@@ -60,14 +58,7 @@ public class GUIWallet extends GuiContainer
             {
                 final StringBuilder sb = new StringBuilder();
                 sb.append("You have ");
-                int value = 0;
-                for (final ItemStack item : container.wallet.getInventory())
-                {
-                    if (item != null)
-                    {
-                        value += CoinTypes.getTypes().get(item.getItemDamage()).getValueStack(item);
-                    }
-                }
+                int value = container.wallet.getCoinBalance();
                 sb.append(value + " coin");
                 if (value != 1)
                 {
