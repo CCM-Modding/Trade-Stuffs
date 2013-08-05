@@ -15,56 +15,14 @@ import ccm.trade_stuffs.items.ModItems;
  * 
  * @author Captain_Shadows
  */
-public class InputSlot extends Slot
-{
-    public InputSlot(final IInventory inventory, final int index, final int x, final int y)
-    {
-        super(inventory, index, x, y);
-    }
+public class InputSlot extends Slot {
+	
+	public InputSlot(final IInventory inventory, final int index, final int x, final int y) {
+		super(inventory, index, x, y);
+	}
 
-    @Override
-    public boolean isItemValid(final ItemStack item)
-    {
-        return item.itemID == ModItems.coin.itemID;
-    }
-
-    @Override
-    public void onSlotChanged()
-    {
-        super.onSlotChanged();
-        final ItemStack input = getStack();
-        if (input != null)
-        {
-            final int indexed = input.getItemDamage() + 1;
-            final int inputSize = input.stackSize;
-            final ItemStack current = inventory.getStackInSlot(indexed);
-            if (current != null)
-            {
-                final int currentSize = current.stackSize;
-                if ((inputSize + currentSize) > current.getMaxStackSize())
-                {
-                    if (currentSize != current.getMaxStackSize())
-                    {
-                        int tmp = inputSize + currentSize;
-                        tmp -= current.getMaxStackSize();
-                        input.stackSize = tmp;
-                        inventory.setInventorySlotContents(getSlotIndex(), input);
-                        current.stackSize = current.getMaxStackSize();
-                        inventory.setInventorySlotContents(indexed, current);
-                    }
-                }
-                else
-                {
-                    inventory.setInventorySlotContents(getSlotIndex(), null);
-                    current.stackSize += inputSize;
-                    inventory.setInventorySlotContents(indexed, current);
-                }
-            }
-            else
-            {
-                inventory.setInventorySlotContents(getSlotIndex(), null);
-                inventory.setInventorySlotContents(indexed, input);
-            }
-        }
-    }
+	@Override
+	public boolean isItemValid(final ItemStack item) {
+		return item.itemID == ModItems.coin.itemID;
+	}
 }

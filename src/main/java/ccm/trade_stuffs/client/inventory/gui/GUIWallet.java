@@ -53,7 +53,10 @@ public class GUIWallet extends GuiContainer {
 			if(container.wallet != null) {
 				final StringBuilder sb = new StringBuilder();
 				sb.append("You have ");
-				int value = container.wallet.getStackInSlot(1).stackSize;
+				int value = 0;
+				if(container.wallet.getStackInSlot(1) != null) {
+					value = container.wallet.getStackInSlot(1).stackSize;
+				}
 				sb.append(value + " coin");
 				if(value != 1) {
 					sb.append("s");

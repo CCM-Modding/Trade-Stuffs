@@ -5,6 +5,9 @@ package ccm.trade_stuffs.inventory;
 
 import java.util.HashMap;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -24,19 +27,19 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * @author Captain_Shadows
  */
 public class WalletInventory implements IInventory {
-	
+
 	public HashMap<CoinType, Integer> coins = new HashMap<CoinType, Integer>();
 	private ItemStack slotStack;
 	private ItemStack slotFakeCoins;
-	
+
 	private ItemStack wallet;
-	
+
 	private int coinBalance = 0;
 
 	public WalletInventory(ItemStack wallet) {
 		this.wallet = wallet;
 		readFromNBT(wallet);
-	}	
+	}
 
 	@Override
 	public int getSizeInventory() {
@@ -45,7 +48,27 @@ public class WalletInventory implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
-		return InventoryHelper.decreaseStackSize(this, slot, amount);
+		if(slot == 0) {
+			if(slotStack != null) {
+				ItemStack stack;
+				if(slotStack.stackSize <= amount) {
+					stack = slotStack;
+					slotStack = null;
+					onInventoryChanged();
+					return stack;
+				} else {
+					stack = slotStack.splitStack(amount);
+					if(slotStack.stackSize == 0) {
+						slotStack = null;
+					}
+					onInventoryChanged();
+					return stack;
+				}
+			} else {
+				return null;
+			}
+		}
+		return null;
 	}
 
 	@Override
@@ -75,13 +98,16 @@ public class WalletInventory implements IInventory {
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		if(slot == 0) {
+			System.out.println("SLOT 0");
 			if(stack != null) {
+				System.out.println("[" + FMLCommonHandler.instance().getEffectiveSide() + "] " + slot + " | " + stack.itemID + " : " + stack.getItemDamage() + " " + stack.stackSize);
 				CoinType coinType = CoinTypes.getTypes().get(stack.getItemDamage());
 				int coinAmount = 0;
 				if(coins.containsKey(coinType)) {
 					coinAmount = coins.get(coinType);
 				}
 				if(coinAmount < getStacksPerCoin() * 64) {
+					System.out.println("room");
 					int canAdd = (getStacksPerCoin() * 64) - coinAmount;
 					int added = 0;
 					if(stack.stackSize < canAdd) {
@@ -92,12 +118,20 @@ public class WalletInventory implements IInventory {
 						stack.stackSize -= canAdd;
 					}
 					coins.put(coinType, coinAmount + added);
-				}			
+				} else {
+					System.out.println("no room");
+					slotStack = stack;
+				}
 				if(stack.stackSize != 0) {
 					slotStack = stack;
+					System.out.println("something is left");
 				} else {
 					slotStack = null;
+					System.out.println("nothing is left");
 				}
+			} else {
+				System.out.println("null2");
+				slotStack = null;
 			}
 			countCoinBalance();
 			slotFakeCoins = new ItemStack(ModItems.coin, getCoinBalance(), 0);
@@ -122,7 +156,7 @@ public class WalletInventory implements IInventory {
 	@Override
 	public void onInventoryChanged() {
 	}
-	
+
 	public void countCoinBalance() {
 		coinBalance = 0;
 		for(CoinType coinType : coins.keySet()) {
@@ -130,15 +164,15 @@ public class WalletInventory implements IInventory {
 		}
 		setHasMoney(coinBalance > 0);
 	}
-	
+
 	public int getCoinBalance() {
 		return coinBalance;
 	}
-	
+
 	public int getStacksPerCoin() {
 		return Properties.STACKS_PER_COIN;
 	}
-	
+
 	public void readFromNBT(ItemStack stack) {
 		NBTHelper.initCompound(stack);
 		NBTTagCompound nbt = stack.getTagCompound();
@@ -150,7 +184,7 @@ public class WalletInventory implements IInventory {
 		}
 		countCoinBalance();
 	}
-	
+
 	public void writeToNBT(ItemStack stack) {
 		NBTHelper.initCompound(stack);
 		NBTTagCompound nbt = stack.getTagCompound();
