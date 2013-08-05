@@ -5,7 +5,6 @@ package ccm.trade_stuffs.utils.registry;
 
 import static ccm.trade_stuffs.items.ModItems.coin;
 import static ccm.trade_stuffs.utils.lib.Archive.MOD_ID;
-
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityBlaze;
@@ -34,7 +33,6 @@ import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.ItemStack;
-
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.api.drops.EntityDrops;
 

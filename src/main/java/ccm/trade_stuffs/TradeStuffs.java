@@ -8,6 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.configuration.Config;
 import ccm.trade_stuffs.items.ModItems;
+import ccm.trade_stuffs.network.PacketHandler;
 import ccm.trade_stuffs.proxy.CommonProxy;
 import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
@@ -38,7 +39,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
      name = Archive.MOD_NAME,
      version = Archive.MOD_VERSION)
 @NetworkMod(clientSideRequired = true,
-            serverSideRequired = false)
+            serverSideRequired = false, packetHandler = PacketHandler.class, channels = {"TradeStuffs"})
 public class TradeStuffs
 {
     @Instance(Archive.MOD_ID)

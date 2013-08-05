@@ -7,7 +7,9 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -27,86 +29,81 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author Captain_Shadows
  */
-public class BankBlock extends BlockContainer
-{
-    @SideOnly(Side.CLIENT)
-    private Icon top;
-    @SideOnly(Side.CLIENT)
-    private Icon bottom;
+public class BankBlock extends BlockContainer {
+	
+	@SideOnly(Side.CLIENT)
+	private Icon top;
+	@SideOnly(Side.CLIENT)
+	private Icon bottom;
 
-    /**
-     * @param id
-     */
-    public BankBlock(final int id)
-    {
-        super(id, Material.iron);
-        setCreativeTab(CreativeTabs.tabDecorations);
-        setUnlocalizedName(Archive.MOD_ID_BLOCK + "bank");
-        setResistance(6000000.0F);
-        setStepSound(soundStoneFootstep);
-        setBlockUnbreakable();
-    }
+	/**
+	 * @param id
+	 */
+	public BankBlock(final int id) {
+		super(id, Material.iron);
+		setCreativeTab(CreativeTabs.tabDecorations);
+		setUnlocalizedName(Archive.MOD_ID_BLOCK + "bank");
+		setResistance(6000000.0F);
+		setStepSound(soundStoneFootstep);
+		setBlockUnbreakable();
+	}
 
-    @Override
-    public void registerIcons(final IconRegister register)
-    {
-        blockIcon = register.registerIcon(Archive.MOD_ID + ":bank_side");
-        top = register.registerIcon(Archive.MOD_ID + ":bank_top");
-        bottom = register.registerIcon(Archive.MOD_ID + ":bank_bottom");
-    }
+	@Override
+	public void registerIcons(final IconRegister register) {
+		blockIcon = register.registerIcon(Archive.MOD_ID + ":bank_side");
+		top = register.registerIcon(Archive.MOD_ID + ":bank_top");
+		bottom = register.registerIcon(Archive.MOD_ID + ":bank_bottom");
+	}
 
-    @Override
-    public Icon getIcon(final int side, final int meta)
-    {
-        if (side == ForgeDirection.UP.ordinal())
-        {
-            return top;
-        }
-        else
-            if (side == ForgeDirection.DOWN.ordinal())
-            {
-                return bottom;
-            }
-            else
-            {
-                return blockIcon;
-            }
-    }
+	@Override
+	public Icon getIcon(final int side, final int meta) {
+		if(side == ForgeDirection.UP.ordinal()) {
+			return top;
+		} else if(side == ForgeDirection.DOWN.ordinal()) {
+			return bottom;
+		} else {
+			return blockIcon;
+		}
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World world)
-    {
-        return new TileEntityBank();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World world) {
+		return new TileEntityBank();
+	}
 
-    @Override
-    public boolean onBlockActivated(final World world,
-                                    final int x,
-                                    final int y,
-                                    final int z,
-                                    final EntityPlayer player,
-                                    final int stuff,
-                                    final float clickX,
-                                    final float clickY,
-                                    final float clickZ)
-    {
-        if (world.isRemote)
-        {
-            return true;
-        }
-        if (player.isSneaking())
-        {
-            return false;
-        }
-        final TileEntity tile = world.getBlockTileEntity(x, y, z);
-        if (tile != null)
-        {
-        	if(!Bank.accounts.containsKey(player.username)) {
-        		Bank.accounts.put(player.username, new BankAccount(player.username));
-        	}
-            player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);
-            return true;
-        }
-        return false;
-    }
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+		if(!world.isRemote && stack.hasDisplayName()) {
+			TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+			if(tile == null) {
+				tile = new TileEntityBank();
+				world.setBlockTileEntity(x, y, z, tile);
+			}
+			tile.bankName = stack.getDisplayName();
+		}
+	}
+
+	@Override
+	public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int stuff, final float clickX, final float clickY, final float clickZ) {
+		if(world.isRemote) {
+			return true;
+		}
+		if(player.isSneaking()) {
+			return false;
+		}
+		TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = new TileEntityBank();
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		if(!Bank.accounts.containsKey(player.username)) {
+			Bank.accounts.put(player.username, new BankAccount(player.username));
+		}
+		if(!tile.isInUse()) {
+			tile.setPlayerUsing(player.username);
+			tile.setInUse(true);
+			player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);
+		}
+		return true;
+	}
 }

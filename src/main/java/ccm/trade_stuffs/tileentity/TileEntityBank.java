@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.tileentity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.HashMap;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +12,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import ccm.trade_stuffs.bank.BankAccount;
 
@@ -21,6 +25,33 @@ import ccm.trade_stuffs.bank.BankAccount;
  */
 public class TileEntityBank extends TileEntity implements IInventory {
 
+	public String bankName = "";
+	
+	private String playerUsing = "";
+	private boolean inUse = false;
+	
+	@Override
+	public Packet getDescriptionPacket() {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		DataOutputStream dos = new DataOutputStream(bos);
+		try {
+			dos.writeInt(0);
+			dos.writeInt(xCoord);
+			dos.writeInt(yCoord);
+			dos.writeInt(zCoord);
+
+			dos.writeUTF(bankName);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "TradeStuffs";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		packet.isChunkDataPacket = true;
+		return packet;
+	}
+	
 	@Override
 	public int getSizeInventory() {
 		return 0;
@@ -52,25 +83,44 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	@Override
 	public String getInvName() {
-		return "inventory.bank";
+		return bankName.length() > 1 ? bankName : "inventory.bank";
 	}
 	
 	@Override
 	public boolean isInvNameLocalized() {
-		return false;
+		return bankName.length() > 1;
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return false;
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return !inUse;
 	}
 
 	@Override
 	public void openChest() {
+		inUse = true;
 	}
 
 	@Override
 	public void closeChest() {
+		inUse = false;
+		playerUsing = "";
+	}
+	
+	public boolean isInUse() {
+		return inUse;
+	}
+	
+	public void setInUse(boolean use) {
+		inUse = use;
+	}
+	
+	public String getPlayerUsing() {
+		return playerUsing;
+	}
+	
+	public void setPlayerUsing(String player) {
+		playerUsing = player;
 	}
 
 	@Override

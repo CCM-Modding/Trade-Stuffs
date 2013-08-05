@@ -1,12 +1,14 @@
 package ccm.trade_stuffs.network;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
+
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -20,7 +22,21 @@ public class PacketHandler implements IPacketHandler {
 
 		switch(packetID) {
 		case 0:
+			handleTileEntityBank(world, dat);
 			break;
 		}
+	}
+
+	private void handleTileEntityBank(World world, ByteArrayDataInput dat) {
+		int x = dat.readInt();
+		int y = dat.readInt();
+		int z = dat.readInt();
+		
+		TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = new TileEntityBank();
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		tile.bankName = dat.readUTF();
 	}
 }
