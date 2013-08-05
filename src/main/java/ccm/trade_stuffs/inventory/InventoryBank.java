@@ -5,13 +5,14 @@ package ccm.trade_stuffs.inventory;
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet104WindowItems;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
+import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
  * InventoryBank
@@ -48,7 +49,7 @@ public class InventoryBank extends InventoryBase {
 				//formatCoins();
 			} else if(this instanceof InventoryBankItems) {
 				associatedBank.countItems();
-				formatItems();
+				//formatItems();
 			}
 		}
 	}
@@ -75,17 +76,11 @@ public class InventoryBank extends InventoryBase {
 		int index = 0;
 		for(int i = 0; i < CoinTypes.getTypes().size(); i++) {
 			if(newStacks[i] != null) {
-				setInventorySlotContentsNoFormat(index, new ItemStack(ModItems.coin.itemID, newStacks[i].stackSize, newStacks[i].getItemDamage()));
-				index++;
+				setInventorySlotContentsNoFormat(index++, newStacks[i]);
 			}
 		}
 		//oldStacks.clear();
 		//newStacks = null;
-	}
-	
-	@Override
-	public void onInventoryChanged() {
-		
 	}
 	
 	public void formatItems() {
