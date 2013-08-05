@@ -123,6 +123,7 @@ public class WalletItem extends BaseItem
                                final List list,
                                final boolean color)
     {
+        // TODO Fix this
         final WalletInventory wallet = new WalletInventory(item);
         final ItemStack[] inv = InventoryHelper.readInventoryFromNBT(item.getTagCompound()
                                                                          .getTagList(WalletInventory.INVENTORY_WALLET),
@@ -143,7 +144,8 @@ public class WalletItem extends BaseItem
             sb.append("s");
         }
         sb.append(" in this ");
-        sb.append(getLocalizedName(item));
+        sb.append(list.get(0));
+        list.add(sb.toString());
     }
 
 }
