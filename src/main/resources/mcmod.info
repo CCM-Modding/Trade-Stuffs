@@ -1,12 +1,12 @@
 [
 {
-	"modid": "trade_stuffs"
-	"name": "Trade Stuffs"
-	"description": ""
-	"credits": ""
-	"version": "${version}"
-	"url": ""
-	"updateUrl": ""
-	"authors": ["captain_shadows", "claycorp", "morton00000"]
+    "modid": "trade_stuffs",
+    "name": "Trade Stuffs",
+    "description": "",
+    "credits": "",
+    "version": "${version}",
+    "url": "",
+    "updateUrl": "",
+    "authors": ["captain_shadows", "claycorp", "morton00000"]
 }
 ]

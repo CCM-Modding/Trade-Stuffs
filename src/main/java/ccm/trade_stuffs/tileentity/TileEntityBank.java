@@ -5,8 +5,12 @@ package ccm.trade_stuffs.tileentity;
 
 import java.util.HashMap;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import ccm.trade_stuffs.bank.BankAccount;
 
 /**
@@ -15,36 +19,35 @@ import ccm.trade_stuffs.bank.BankAccount;
  * 
  * @author Captain_Shadows
  */
-public class TileEntityBank extends BaseInventory {
+public class TileEntityBank extends TileEntity implements IInventory {
 
-	public HashMap<String, BankAccount> accounts = new HashMap<String, BankAccount>();
-	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		if(nbt.hasKey("Accounts")) {
-			NBTTagList list = nbt.getTagList("Accounts");
-			for(int i = 0 ; i < list.tagCount(); i++) {
-				NBTTagCompound tag = (NBTTagCompound) list.tagAt(i);
-				BankAccount account = new BankAccount(tag.getString("Player"));
-				account.readFromNBT(tag);
-				accounts.put(account.player, account);
-			}
-		}
+	public int getSizeInventory() {
+		return 0;
 	}
-	
+
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		NBTTagList list = new NBTTagList();
-		for(BankAccount account : accounts.values()) {
-			if(account != null) {
-				NBTTagCompound tag = new NBTTagCompound();
-				account.writeToNBT(tag);
-				list.appendTag(tag);
-			}
-		}
-		nbt.setTag("Accounts", list);
+	public ItemStack getStackInSlot(int i) {
+		return null;
+	}
+
+	@Override
+	public ItemStack decrStackSize(int i, int j) {
+		return null;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int i) {
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int i, ItemStack itemstack) {
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 0;
 	}
 	
 	@Override
@@ -54,6 +57,24 @@ public class TileEntityBank extends BaseInventory {
 	
 	@Override
 	public boolean isInvNameLocalized() {
+		return false;
+	}
+
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+		return false;
+	}
+
+	@Override
+	public void openChest() {
+	}
+
+	@Override
+	public void closeChest() {
+	}
+
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
 	}
 }

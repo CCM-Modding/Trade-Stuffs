@@ -12,14 +12,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.bank.Bank;
+import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * BankBlock
@@ -101,6 +101,9 @@ public class BankBlock extends BlockContainer
         final TileEntity tile = world.getBlockTileEntity(x, y, z);
         if (tile != null)
         {
+        	if(!Bank.accounts.containsKey(player.username)) {
+        		Bank.accounts.put(player.username, new BankAccount(player.username));
+        	}
             player.openGui(TradeStuffs.instance, Guis.GUI_BANK, world, x, y, z);
             return true;
         }
