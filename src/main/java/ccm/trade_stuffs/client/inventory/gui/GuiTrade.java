@@ -19,14 +19,14 @@ import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class uiTrade extends GuiContainer
+public class GuiTrade extends GuiContainer
 {
     private final TileEntityTradeStation trade;
 
     /**
      * @param container
      */
-    public uiTrade(final InventoryPlayer player, final TileEntityTradeStation tile)
+    public GuiTrade(final InventoryPlayer player, final TileEntityTradeStation tile)
     {
         super(new ContainerTrade(player, tile));
         trade = tile;
