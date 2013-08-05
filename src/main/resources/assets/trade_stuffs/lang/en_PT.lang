@@ -13,3 +13,4 @@ item.trade_stuffs:wallet_empty.name=Coin Sack
 item.trade_stuffs:wallet_full.name=Coin Sack
 
 inventory.bank=Bank
+inventory.safe=Safe

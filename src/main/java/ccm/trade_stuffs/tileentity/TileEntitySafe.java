@@ -7,6 +7,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.ArrayList;
 
+import ccm.trade_stuffs.inventory.InventoryBankCoins;
+import ccm.trade_stuffs.inventory.InventoryBankItems;
+import ccm.trade_stuffs.inventory.InventoryBaseTile;
+
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -17,12 +22,19 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  * 
  * @author Captain_Shadows
  */
-public class TileEntitySafe extends BaseInventory {
-	
+public class TileEntitySafe extends InventoryBaseTile {
+
+	public String safeName = "";
 	private int pass = 0;
 	private boolean hasPass = false;
 	public boolean guiPassLock = true;
+	
+	private int itemCount;
 
+	public TileEntitySafe() {
+		super("inventory.safe", 72);
+	}
+	
 	public int getPass() {
 		return pass;
 	}
@@ -44,6 +56,26 @@ public class TileEntitySafe extends BaseInventory {
 	public void setHasPass(boolean has) {
 		hasPass = has;
 	}
+	
+	@Override
+	public ItemStack decrStackSize(int index, int amount) {
+		ItemStack ret = super.decrStackSize(index, amount);
+		countItems();
+		return ret;
+	}
+	
+	@Override
+	public void setInventorySlotContents(int index, ItemStack item) {
+		boolean flag = item != null;
+		super.setInventorySlotContents(index, item);
+		if(flag) {
+			countItems();
+		}
+	}
+	
+	public void setInventorySlotContentsNoFormat(int index, ItemStack item) {
+		super.setInventorySlotContents(index, item);
+	}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -58,6 +90,7 @@ public class TileEntitySafe extends BaseInventory {
 			dos.writeInt(pass);
 			dos.writeBoolean(hasPass);
 			dos.writeBoolean(guiPassLock);
+			dos.writeUTF(safeName);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -70,16 +103,50 @@ public class TileEntitySafe extends BaseInventory {
 	}
 	
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		pass = nbt.getInteger("Password");
 		hasPass = nbt.getBoolean("HasPass");
+		safeName = nbt.getString("SafeName");
+		countItems();
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbt) {
+	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("Password", pass);
 		nbt.setBoolean("HasPass", hasPass);
+		nbt.setString("SafeName", safeName);
+	}
+	
+	@Override
+	public String getInvName() {
+		return safeName.length() > 1 ? safeName : "inventory.safe";
+	}
+	
+	@Override
+	public boolean isInvNameLocalized() {
+		return safeName.length() > 1;
+	}
+
+	public int getItemCount() {
+		return itemCount;
+	}
+	
+	public void countItems() {
+		itemCount = 0;
+		ItemStack stack = null;
+		for(int i = 0; i < 72; i++) {
+			stack = getStackInSlot(i);
+			if(stack != null) {
+				itemCount += stack.stackSize;
+			}
+		}
+	}
+	
+	@Override
+	public void openChest() {
+		super.openChest();
+		countItems();
 	}
 }

@@ -6,7 +6,9 @@ package ccm.trade_stuffs.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -16,6 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -71,6 +74,18 @@ public class BlockSafe extends BlockContainer {
 	}
 
 	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+		if(!world.isRemote && stack.hasDisplayName()) {
+			TileEntitySafe tile = (TileEntitySafe) world.getBlockTileEntity(x, y, z);
+			if(tile == null) {
+				tile = new TileEntitySafe();
+				world.setBlockTileEntity(x, y, z, tile);
+			}
+			tile.safeName = stack.getDisplayName();
+		}
+	}
+	
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int stuff, float clickX, float clickY, float clickZ) {
 		if(world.isRemote) {
 			return true;
@@ -83,6 +98,7 @@ public class BlockSafe extends BlockContainer {
 			tile = new TileEntitySafe();
 			world.setBlockTileEntity(x, y, z, tile);
 		}
+		tile.openChest();
 		player.openGui(TradeStuffs.instance, Guis.GUI_SAFE, world, x, y, z);
 		return true;
 	}

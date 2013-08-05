@@ -72,6 +72,7 @@ public class PacketHandler implements IPacketHandler {
 		tile.setPass(dat.readInt());
 		tile.setHasPass(dat.readBoolean());
 		tile.guiPassLock = dat.readBoolean();
+		tile.safeName = dat.readUTF();
 	}
 	
 	private void handleServerPacket(int packetID, ByteArrayDataInput dat) {
