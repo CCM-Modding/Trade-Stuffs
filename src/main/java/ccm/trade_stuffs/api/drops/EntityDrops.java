@@ -47,4 +47,9 @@ public class EntityDrops
         registerDrop(tmp);
         return tmp;
     }
+
+    public static List<EntityDrop> getDrops()
+    {
+        return new ArrayList<EntityDrop>(drops);
+    }
 }
