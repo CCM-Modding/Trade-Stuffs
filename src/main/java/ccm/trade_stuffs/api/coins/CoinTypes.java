@@ -97,12 +97,7 @@ public final class CoinTypes
      */
     public static List<CoinType> getTypes()
     {
-        final List<CoinType> copy = new ArrayList<CoinType>();
-        for (final CoinType type : types)
-        {
-            copy.add(type);
-        }
-        return copy;
+        return new ArrayList<CoinType>(types);
     }
     
     public static CoinType getCoinType(ItemStack stack) {

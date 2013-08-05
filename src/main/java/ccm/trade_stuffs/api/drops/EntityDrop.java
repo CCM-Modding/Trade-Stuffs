@@ -4,7 +4,6 @@
 package ccm.trade_stuffs.api.drops;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -55,43 +54,6 @@ public class EntityDrop
         this.item = item;
         this.dropRate = dropRate;
         this.entitys = entitys;
-    }
-
-    /**
-     * @param modID
-     *            ID of the mod adding this drop
-     * @param item
-     *            The Item to drop
-     * @param dropRate
-     *            the Rate at which to drop it
-     * @param entitys
-     *            the entity's that are allowed to drop it
-     */
-    public EntityDrop(final String modID,
-                      final ItemStack item,
-                      final float dropRate,
-                      final EntityLivingBase[] entitys)
-    {
-        this(modID, item, dropRate, Arrays.asList(entitys));
-    }
-
-    /**
-     * @param modID
-     *            ID of the mod adding this drop
-     * @param item
-     *            The Item to drop
-     * @param dropRate
-     *            the Rate at which to drop it
-     * @param entity
-     *            the entity's that are allowed to drop it
-     */
-    public EntityDrop(final String modID,
-                      final ItemStack item,
-                      final float dropRate,
-                      final EntityLivingBase entity)
-    {
-        this(modID, item, dropRate, Arrays.asList(entity));
-
     }
 
     /**
