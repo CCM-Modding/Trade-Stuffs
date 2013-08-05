@@ -98,16 +98,13 @@ public class WalletInventory implements IInventory {
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		if(slot == 0) {
-			System.out.println("SLOT 0");
 			if(stack != null) {
-				System.out.println("[" + FMLCommonHandler.instance().getEffectiveSide() + "] " + slot + " | " + stack.itemID + " : " + stack.getItemDamage() + " " + stack.stackSize);
 				CoinType coinType = CoinTypes.getTypes().get(stack.getItemDamage());
 				int coinAmount = 0;
 				if(coins.containsKey(coinType)) {
 					coinAmount = coins.get(coinType);
 				}
 				if(coinAmount < getStacksPerCoin() * 64) {
-					System.out.println("room");
 					int canAdd = (getStacksPerCoin() * 64) - coinAmount;
 					int added = 0;
 					if(stack.stackSize < canAdd) {
@@ -119,18 +116,14 @@ public class WalletInventory implements IInventory {
 					}
 					coins.put(coinType, coinAmount + added);
 				} else {
-					System.out.println("no room");
 					slotStack = stack;
 				}
 				if(stack.stackSize != 0) {
 					slotStack = stack;
-					System.out.println("something is left");
 				} else {
 					slotStack = null;
-					System.out.println("nothing is left");
 				}
 			} else {
-				System.out.println("null2");
 				slotStack = null;
 			}
 			countCoinBalance();
