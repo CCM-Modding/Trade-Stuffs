@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -33,22 +34,27 @@ import ccm.trade_stuffs.utils.lib.Guis;
 @SideOnly(Side.CLIENT)
 public class GuiBank extends GuiContainer {
 
-	private final TileEntityBank bank;
+	private TileEntityBank bank;
+	private IInventory upperInventory;
+	private IInventory lowerInventory;
 
 	public byte selectedTab = 0;
 
 	private final ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
 	private final ItemStack displayItems = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GuiBank(final InventoryPlayer inventory, final TileEntityBank tile) {
-		super(new ContainerBank(inventory, tile));
+	public GuiBank(InventoryPlayer lowerInventory, IInventory upperInventory, TileEntityBank tile) {
+		super(new ContainerBank(lowerInventory, upperInventory, tile));
+		this.lowerInventory = lowerInventory;
+		this.upperInventory = upperInventory;
 		bank = tile;
 		xSize = 176;
 		ySize = 222;
+		allowUserInput = false;
 	}
 
 	@Override
-	protected void mouseClicked(final int mouseX, final int mouseY, final int button) {
+	protected void mouseClicked(int mouseX, int mouseY, int button) {
 		super.mouseClicked(mouseX, mouseY, button);
 		if((mouseX > (guiLeft - 27)) && (mouseX <= guiLeft)) {
 			if((mouseY > (guiTop + 17)) && (mouseY <= (guiTop + 38))) {
@@ -104,8 +110,8 @@ public class GuiBank extends GuiContainer {
 		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -18, 20);
 		itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -18, 41);
 
-		fontRenderer.drawString(bank.isInvNameLocalized() ? bank.getInvName() : I18n.func_135053_a(bank.getInvName()), 8, 6, 4210752);
-		final String name = mc.thePlayer.username;
-		fontRenderer.drawString(name, 90, 6, 4210752);
+		fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName() : I18n.func_135053_a(lowerInventory.getInvName()), 8, ySize - 93, 4210752);
+		fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName() : I18n.func_135053_a(upperInventory.getInvName()), 8, 6, 4210752);
+		fontRenderer.drawString(mc.thePlayer.username, 90, 6, 4210752);
 	}
 }

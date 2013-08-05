@@ -1,18 +1,15 @@
 package ccm.trade_stuffs.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import ccm.trade_stuffs.api.coins.CoinType;
-import ccm.trade_stuffs.api.coins.CoinTypes;
-import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.trade_stuffs.inventory.InventoryBankCoins;
+import ccm.trade_stuffs.inventory.InventoryBankItems;
 
 public class BankAccount {
 
 	public String player;
+	
+	public InventoryBankCoins coins;
+	public InventoryBankItems items;
 
 	public BankAccount(String player) {
 		this.player = player;

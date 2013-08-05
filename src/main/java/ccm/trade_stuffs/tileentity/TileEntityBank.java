@@ -26,9 +26,7 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public class TileEntityBank extends TileEntity implements IInventory {
-
-	public ItemStack[] inventory = new ItemStack[72];
+public class TileEntityBank extends TileEntity {
 	
 	public String bankName = "";
 	
@@ -60,77 +58,10 @@ public class TileEntityBank extends TileEntity implements IInventory {
 		return packet;
 	}
 	
-	@Override
-	public int getSizeInventory() {
-		return 72;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		if(inventory[i] != null) {
-			return inventory[i];
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		if(inventory[slot] != null) {
-			ItemStack stack;
-			if(inventory[slot].stackSize <= amount) {
-				stack = inventory[slot];
-				inventory[slot] = null;
-				onInventoryChanged();
-				return stack;
-			} else {
-				stack = inventory[slot].splitStack(amount);
-				if(inventory[slot].stackSize == 0) {
-					inventory[slot] = null;
-				}
-				onInventoryChanged();
-				return stack;
-			}
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		if(inventory[i] != null) {
-			ItemStack stack = inventory[i];
-			inventory[i] = null;
-			return stack;
-		}
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory[slot] = stack;
-	}
-	
-	@Override
-	public int getInventoryStackLimit() {
-		return 256;
-	}
-	
-	@Override
-	public String getInvName() {
-		return bankName.length() > 1 ? bankName : "inventory.bank";
-	}
-	
-	@Override
-	public boolean isInvNameLocalized() {
-		return bankName.length() > 1;
-	}
-
-	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return !inUse;
 	}
 
-	@Override
 	public void openChest() {
 		inUse = true;
 		if(!Bank.accounts.containsKey(playerUsing)) {
@@ -139,7 +70,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 		account = Bank.accounts.get(playerUsing);
 	}
 
-	@Override
 	public void closeChest() {
 		inUse = false;
 		playerUsing = "";
@@ -164,11 +94,6 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	public void setSelectedTab(byte tab) {
 		selectedTab = tab;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return false;
 	}
 	
 	@Override
