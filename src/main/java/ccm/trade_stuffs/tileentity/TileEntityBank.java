@@ -32,6 +32,7 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	private String playerUsing = "";
 	private boolean inUse = false;
+	private int selectedTab = 0;
 	
 	public BankAccount account;
 	
@@ -106,7 +107,7 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inventory[slot] = stack;
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit() {
 		return 256;
@@ -157,6 +158,11 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	public void setPlayerUsing(String player) {
 		playerUsing = player;
+	}
+	
+	public void setSelectedTab(int tab) {
+		selectedTab = tab;
+		//TODO: update slots
 	}
 
 	@Override

@@ -26,7 +26,7 @@ import ccm.trade_stuffs.utils.lib.Guis;
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class GUISafe extends GuiContainer
+public class GuiSafe extends GuiContainer
 {
     EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
     private final TileEntitySafe   safe;
@@ -36,7 +36,7 @@ public class GUISafe extends GuiContainer
     /**
      * @param container
      */
-    public GUISafe(final InventoryPlayer player, final TileEntitySafe safe)
+    public GuiSafe(final InventoryPlayer player, final TileEntitySafe safe)
     {
         super(new ContainerSafe(player, safe));
         this.safe = safe;

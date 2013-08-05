@@ -24,9 +24,13 @@ public class PacketHandler implements IPacketHandler {
 		case 0:
 			handleTileEntityBank(world, dat);
 			break;
+		//CLIENT TO SERVER
+		case 10:
+			handleBankTabUpdate(world, dat);
+			break;
 		}
 	}
-
+	
 	private void handleTileEntityBank(World world, ByteArrayDataInput dat) {
 		int x = dat.readInt();
 		int y = dat.readInt();
@@ -38,5 +42,18 @@ public class PacketHandler implements IPacketHandler {
 			world.setBlockTileEntity(x, y, z, tile);
 		}
 		tile.bankName = dat.readUTF();
+	}
+	
+	private void handleBankTabUpdate(World world, ByteArrayDataInput dat) {
+		int x = dat.readInt();
+		int y = dat.readInt();
+		int z = dat.readInt();
+		
+		TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = new TileEntityBank();
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		tile.setSelectedTab(dat.readInt());
 	}
 }

@@ -23,14 +23,14 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class GUIWallet extends GuiContainer {
+public class GuiWallet extends GuiContainer {
 	
 	EntityPlayer player;
 
 	/**
 	 * @param container
 	 */
-	public GUIWallet(final ItemStack item, final EntityPlayer player) {
+	public GuiWallet(final ItemStack item, final EntityPlayer player) {
 		super(new ContainerWallet(item, player));
 		this.player = player;
 	}

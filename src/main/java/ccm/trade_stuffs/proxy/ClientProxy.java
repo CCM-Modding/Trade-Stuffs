@@ -6,10 +6,10 @@ package ccm.trade_stuffs.proxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import ccm.trade_stuffs.client.inventory.gui.GUIBank;
-import ccm.trade_stuffs.client.inventory.gui.GUISafe;
-import ccm.trade_stuffs.client.inventory.gui.GUITrade;
-import ccm.trade_stuffs.client.inventory.gui.GUIWallet;
+import ccm.trade_stuffs.client.inventory.gui.GuiBank;
+import ccm.trade_stuffs.client.inventory.gui.GuiSafe;
+import ccm.trade_stuffs.client.inventory.gui.GuiTrade;
+import ccm.trade_stuffs.client.inventory.gui.GuiWallet;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
@@ -51,13 +51,13 @@ public class ClientProxy extends CommonProxy
         switch (ID)
         {
             case Guis.GUI_TRADE:
-                return new GUITrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
+                return new GuiTrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_BANK:
-                return new GUIBank(player.inventory, (TileEntityBank) world.getBlockTileEntity(x, y, z));
+                return new GuiBank(player.inventory, (TileEntityBank) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_WALLET:
-                return new GUIWallet(player.getCurrentEquippedItem(), player);
+                return new GuiWallet(player.getCurrentEquippedItem(), player);
             case Guis.GUI_SAFE:
-                return new GUISafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
+                return new GuiSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
             default:
                 return null;
         }

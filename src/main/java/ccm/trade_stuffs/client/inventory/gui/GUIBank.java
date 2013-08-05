@@ -3,11 +3,15 @@
  */
 package ccm.trade_stuffs.client.inventory.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet250CustomPayload;
 
 import org.lwjgl.opengl.GL11;
 
@@ -15,6 +19,7 @@ import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Guis;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,16 +30,16 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Captain_Shadows
  */
 @SideOnly(Side.CLIENT)
-public class GUIBank extends GuiContainer {
+public class GuiBank extends GuiContainer {
 
 	private TileEntityBank bank;
 	
-	public int selectedTab = 0;
+	public byte selectedTab = 0;
 	
 	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
 	private ItemStack displayItems  = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GUIBank(InventoryPlayer player, TileEntityBank tile) {
+	public GuiBank(InventoryPlayer player, TileEntityBank tile) {
 		super(new ContainerBank(player, tile));
 		bank = tile;
 		xSize = 190;
@@ -47,10 +52,32 @@ public class GUIBank extends GuiContainer {
 		if(mouseX > guiLeft - 27 && mouseX <= guiLeft) {
 			if(mouseY > guiTop + 17 && mouseY <= guiTop + 38) {
 				selectedTab = 0;
+				sendTabUpdate();
 			} else if(mouseY > guiTop + 38 && mouseY <= guiTop + 59) {
 				selectedTab = 1;
+				sendTabUpdate();
 			}
 		}
+	}
+	
+	public void sendTabUpdate() {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		DataOutputStream dos = new DataOutputStream(bos);
+		try {
+			dos.writeInt(10);
+			dos.writeInt(bank.xCoord);
+			dos.writeInt(bank.yCoord);
+			dos.writeInt(bank.zCoord);
+
+			dos.writeByte(selectedTab);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "TradeStuffs";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		PacketDispatcher.sendPacketToServer(packet);
 	}
 
 	@Override
