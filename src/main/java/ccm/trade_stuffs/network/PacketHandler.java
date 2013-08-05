@@ -17,6 +17,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PacketHandler implements IPacketHandler {
 
@@ -26,33 +27,42 @@ public class PacketHandler implements IPacketHandler {
 		int packetID = dat.readInt();
 		
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-			World world = Minecraft.getMinecraft().theWorld;
-			switch(packetID) {
-			case 0:
-				handleTileEntityBank(world, dat);
-				break;
-			case 1:
-				handleTileEntitySafe(world, dat);
-				break;
-			}
+			handleClientPacket(packetID, dat);
 		} else if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-			switch(packetID) {
-			case 10:
-				handleBankTabUpdate(dat);
-				break;
-			case 11:
-				handleSafeTabUpdate(dat);
-				break;
-			case 12:
-				handleSafePassReset(dat);
-				break;
-			case 13:
-				handleSafePassNew(dat);
-				break;
-			case 14: 
-				handleSafePassGood(dat);
-				break;
-			}
+			handleServerPacket(packetID, dat);
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private void handleClientPacket(int packetID, ByteArrayDataInput dat) {
+		World world = Minecraft.getMinecraft().theWorld;
+		switch(packetID) {
+		case 0:
+			handleTileEntityBank(world, dat);
+			break;
+		case 1:
+			handleTileEntitySafe(world, dat);
+			break;
+		}
+	}
+	
+	private void handleServerPacket(int packetID, ByteArrayDataInput dat) {
+		switch(packetID) {
+		case 10:
+			handleBankTabUpdate(dat);
+			break;
+		case 11:
+			handleSafeTabUpdate(dat);
+			break;
+		case 12:
+			handleSafePassReset(dat);
+			break;
+		case 13:
+			handleSafePassNew(dat);
+			break;
+		case 14: 
+			handleSafePassGood(dat);
+			break;
 		}
 	}
 
