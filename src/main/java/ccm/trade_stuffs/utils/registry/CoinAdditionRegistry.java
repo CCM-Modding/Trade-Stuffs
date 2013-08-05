@@ -57,32 +57,32 @@ public final class CoinAdditionRegistry
 
     public static void addMobDrops()
     {
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityCreeper.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySkeleton.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySpider.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityGiantZombie.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityZombie.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySlime.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityGhast.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityPigZombie.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityEnderman.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityCaveSpider.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySilverfish.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityBlaze.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityMagmaCube.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityDragon.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityWither.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityBat.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityWitch.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityPig.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySheep.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityCow.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityChicken.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntitySquid.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityWolf.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityMooshroom.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityOcelot.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityHorse.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin), 0.05F, EntityVillager.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.40F, 15,  30,   EntityCreeper.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.30F, 5,   15,   EntitySkeleton.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.25F, 1,   10,   EntitySpider.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,1), 0.70F, 1,   5,    EntityGiantZombie.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.25F, 1,   10,   EntityZombie.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   10,   EntitySlime.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.30F, 15,  25,   EntityGhast.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.25F, 10,  15,   EntityPigZombie.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.60F, 35,  45,   EntityEnderman.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.15F, 5,   25,   EntityCaveSpider.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   10,   EntitySilverfish.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.65F, 35,  45,   EntityBlaze.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,2), 0.90F, 1,   2,    EntityMagmaCube.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 1.00F, 900, 1100, EntityDragon.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,2), 0.75F, 3,   9,    EntityWither.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.10F, 1,   10,   EntityBat.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.25F, 15,  25,   EntityWitch.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityPig.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntitySheep.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityCow.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityChicken.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntitySquid.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 5,   10,   EntityWolf.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityMooshroom.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityOcelot.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 1,   5,    EntityHorse.class);
+        EntityDrops.registerDrop(MOD_ID, new ItemStack(coin,0,0), 0.05F, 10,  20,   EntityVillager.class);
     }
 }
