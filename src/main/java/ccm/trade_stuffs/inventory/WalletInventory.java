@@ -25,7 +25,7 @@ public class WalletInventory implements IInventory
 
     public ItemStack wallet;
 
-	//TODO: fix this class
+    // TODO: fix this class
     public WalletInventory(final ItemStack item)
     {
         wallet = item;
@@ -128,7 +128,6 @@ public class WalletInventory implements IInventory
         {
             tag = new NBTTagCompound();
         }
-        System.out.println(tag);
         tag.setTag(INVENTORY_WALLET, InventoryHelper.writeInventoryToNBT(inventory));
         item.setTagCompound(tag);
         System.out.println(tag);

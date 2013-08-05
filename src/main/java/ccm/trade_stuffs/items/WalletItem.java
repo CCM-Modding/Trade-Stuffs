@@ -3,6 +3,8 @@
  */
 package ccm.trade_stuffs.items;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,6 +15,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.inventory.WalletInventory;
+import ccm.trade_stuffs.utils.helper.InventoryHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -111,4 +116,34 @@ public class WalletItem extends BaseItem
     {
         return icons[meta];
     }
+
+    @Override
+    public void addInformation(final ItemStack item,
+                               final EntityPlayer palyer,
+                               final List list,
+                               final boolean color)
+    {
+        final WalletInventory wallet = new WalletInventory(item);
+        final ItemStack[] inv = InventoryHelper.readInventoryFromNBT(item.getTagCompound()
+                                                                         .getTagList(WalletInventory.INVENTORY_WALLET),
+                                                                     wallet.getSizeInventory());
+        final StringBuilder sb = new StringBuilder();
+        sb.append("You have a total of ");
+        int value = 0;
+        for (final ItemStack stack : inv)
+        {
+            if (stack != null)
+            {
+                value += CoinTypes.getTypes().get(item.getItemDamage()).getValueStack(item);
+            }
+        }
+        sb.append(value + " coin");
+        if (value != 1)
+        {
+            sb.append("s");
+        }
+        sb.append(" in this ");
+        sb.append(getLocalizedName(item));
+    }
+
 }
