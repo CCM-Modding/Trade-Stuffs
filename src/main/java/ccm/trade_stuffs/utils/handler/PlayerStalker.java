@@ -26,6 +26,7 @@ public class PlayerStalker implements IPlayerTracker
     public void onPlayerLogin(final EntityPlayer player)
     {
         final NBTTagCompound tag = player.getEntityData();
+        System.out.println(tag);
         if (!tag.hasKey(Archive.MOD_ID))
         {
             tag.setCompoundTag(Archive.MOD_ID, new NBTTagCompound());
