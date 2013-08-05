@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
 
 /**
@@ -25,10 +26,14 @@ import ccm.trade_stuffs.bank.BankAccount;
  */
 public class TileEntityBank extends TileEntity implements IInventory {
 
+	public ItemStack[] inventory = new ItemStack[72];
+	
 	public String bankName = "";
 	
 	private String playerUsing = "";
 	private boolean inUse = false;
+	
+	public BankAccount account;
 	
 	@Override
 	public Packet getDescriptionPacket() {
@@ -54,31 +59,57 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	
 	@Override
 	public int getSizeInventory() {
-		return 0;
+		return 72;
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int i) {
+		if(inventory[i] != null) {
+			return inventory[i];
+		}
 		return null;
 	}
 
 	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		return null;
+	public ItemStack decrStackSize(int slot, int amount) {
+		if(inventory[slot] != null) {
+			ItemStack stack;
+			if(inventory[slot].stackSize <= amount) {
+				stack = inventory[slot];
+				inventory[slot] = null;
+				onInventoryChanged();
+				return stack;
+			} else {
+				stack = inventory[slot].splitStack(amount);
+				if(inventory[slot].stackSize == 0) {
+					inventory[slot] = null;
+				}
+				onInventoryChanged();
+				return stack;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int i) {
+		if(inventory[i] != null) {
+			ItemStack stack = inventory[i];
+			inventory[i] = null;
+			return stack;
+		}
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
+	public void setInventorySlotContents(int slot, ItemStack stack) {
+		inventory[slot] = stack;
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 0;
+		return 256;
 	}
 	
 	@Override
@@ -99,12 +130,17 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	@Override
 	public void openChest() {
 		inUse = true;
+		if(!Bank.accounts.containsKey(playerUsing)) {
+			Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
+		}
+		account = Bank.accounts.get(playerUsing);
 	}
 
 	@Override
 	public void closeChest() {
 		inUse = false;
 		playerUsing = "";
+		account = null;
 	}
 	
 	public boolean isInUse() {
@@ -126,5 +162,17 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return false;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		bankName = nbt.getString("BankName");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setString("BankName", bankName);
 	}
 }
