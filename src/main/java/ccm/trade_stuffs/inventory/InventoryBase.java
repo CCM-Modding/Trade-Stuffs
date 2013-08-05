@@ -34,9 +34,9 @@ public abstract class InventoryBase implements IInventory
      * Returns the stack in slot i
      */
     @Override
-    public ItemStack getStackInSlot(final int par1)
+    public ItemStack getStackInSlot(final int index)
     {
-        return inventoryContents[par1];
+        return inventoryContents[index];
     }
 
     /**

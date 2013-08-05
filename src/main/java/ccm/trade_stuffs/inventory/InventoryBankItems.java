@@ -4,6 +4,7 @@ import ccm.trade_stuffs.utils.lib.Properties;
 
 public class InventoryBankItems extends InventoryBank
 {
+
     @Override
     public int getInventoryStackLimit()
     {

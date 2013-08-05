@@ -22,6 +22,12 @@ public class InventoryBank extends InventoryBase
         super("inventory.bank", 72);
     }
 
+    public InventoryBank setBank(final TileEntityBank bank)
+    {
+        associatedBank = bank;
+        return this;
+    }
+
     @Override
     public String getInvName()
     {
