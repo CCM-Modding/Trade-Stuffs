@@ -3,9 +3,6 @@
  */
 package ccm.trade_stuffs.api.drops;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
@@ -20,20 +17,24 @@ public class EntityDrop
     /**
      * Name of the mod registering this coin
      */
-    private final String                        modID;
+    private final String                            modID;
 
     /**
      * Item to drop
      */
-    private final ItemStack                     item;
+    private final ItemStack                         item;
+    /**
+     * The amount to drop
+     */
+    private final int                               amount;
     /**
      * The drop rate of it
      */
-    private final float                         dropRate;
+    private final float                             dropRate;
     /**
-     * A list of entity's that should drop it
+     * The entity that should drop it
      */
-    private final List<Class<EntityLivingBase>> entitys;
+    private final Class<? extends EntityLivingBase> entity;
 
     /**
      * @param modID
@@ -47,13 +48,15 @@ public class EntityDrop
      */
     public EntityDrop(final String modID,
                       final ItemStack item,
+                      final int amount,
                       final float dropRate,
-                      final List<Class<EntityLivingBase>> entitys)
+                      final Class<? extends EntityLivingBase> entity)
     {
         this.modID = modID;
         this.item = item;
+        this.amount = amount;
         this.dropRate = dropRate;
-        this.entitys = entitys;
+        this.entity = entity;
     }
 
     /**
@@ -73,6 +76,14 @@ public class EntityDrop
     }
 
     /**
+     * @return The amount
+     */
+    public float getAmount()
+    {
+        return amount;
+    }
+
+    /**
      * @return The drop rate
      */
     public float getDropRate()
@@ -81,10 +92,10 @@ public class EntityDrop
     }
 
     /**
-     * @return A list of all EntityLivingBase that are allowed to drop this item
+     * @return The entity that should drop it
      */
-    public List<Class<EntityLivingBase>> entitys()
+    public Class<? extends EntityLivingBase> entity()
     {
-        return new ArrayList<Class<EntityLivingBase>>(entitys);
+        return entity;
     }
 }
