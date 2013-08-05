@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.inventory.ContainerSafe;
+import ccm.trade_stuffs.inventory.ContainerEmpty;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -43,7 +43,7 @@ public class GuiSafePassLock extends GuiContainer
      */
     public GuiSafePassLock(final InventoryPlayer player, final TileEntitySafe safe)
     {
-        super(new ContainerSafe(player, safe));
+        super(new ContainerEmpty(player));
         this.safe = safe;
     }
 
@@ -126,6 +126,7 @@ public class GuiSafePassLock extends GuiContainer
             {
                 safe.setPass(tmpPass.toString());
                 tmpPass = new StringBuilder();
+                sendPassUpdate();
                 player.sendChatMessage("Your Password has been Set");
                 player.sendChatMessage("Please Input it again");
             }
@@ -136,7 +137,7 @@ public class GuiSafePassLock extends GuiContainer
                     canOpen = true;
                     enter.enabled = canOpen;
                     rest.enabled = canOpen;
-                    openGUI(button);
+                    // openGUI(button);
                 }
                 else
                 {
@@ -160,7 +161,7 @@ public class GuiSafePassLock extends GuiContainer
         final DataOutputStream dos = new DataOutputStream(bos);
         try
         {
-            dos.writeInt(11);
+            dos.writeInt(12);
             dos.writeInt(safe.xCoord);
             dos.writeInt(safe.yCoord);
             dos.writeInt(safe.zCoord);
