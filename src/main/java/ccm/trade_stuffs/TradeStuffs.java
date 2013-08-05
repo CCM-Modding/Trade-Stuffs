@@ -25,6 +25,8 @@ import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
+import ccm.trade_stuffs.utils.registry.CoinAdditionRegistry;
+import ccm.trade_stuffs.utils.registry.SackAdditionRegistry;
 
 /**
  * TradeStuffs
@@ -55,6 +57,8 @@ public class TradeStuffs
         ModBlocks.init();
 
         ModItems.init();
+
+        CoinAdditionRegistry.addCoins();
     }
 
     @EventHandler
@@ -69,6 +73,10 @@ public class TradeStuffs
         MinecraftForge.EVENT_BUS.register(new ItemHandler());
 
         MinecraftForge.EVENT_BUS.register(new EntityHandler());
+
+        CoinAdditionRegistry.addMobDrops();
+
+        SackAdditionRegistry.addMobDrops();
     }
 
     @EventHandler
