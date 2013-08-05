@@ -5,7 +5,7 @@ package ccm.trade_stuffs.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import ccm.trade_stuffs.inventory.slot.InputSlot;
+import ccm.trade_stuffs.inventory.slot.SlotInput;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
@@ -23,7 +23,7 @@ public class ContainerWallet extends ContainerBase {
 		super(player.inventory);
 		wallet = new InventoryWallet(item);
 		addPlayerInventory(8, 51);
-		addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
+		addSlotToContainer(new SlotInput(wallet, 0, 8, 29));
 	}
 
 	@Override

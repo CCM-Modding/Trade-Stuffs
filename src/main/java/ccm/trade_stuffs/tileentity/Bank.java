@@ -9,7 +9,15 @@ package ccm.trade_stuffs.tileentity;
  * 
  * @author Captain_Shadows
  */
-public class Bank extends BaseInventory
-{
+public class Bank extends BaseInventory {
 
+	@Override
+	public String getInvName() {
+		return "inventory.bank";
+	}
+	
+	@Override
+	public boolean isInvNameLocalized() {
+		return false;
+	}
 }

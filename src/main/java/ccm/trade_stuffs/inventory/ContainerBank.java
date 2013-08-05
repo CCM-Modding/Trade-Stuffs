@@ -13,13 +13,13 @@ import ccm.trade_stuffs.tileentity.Bank;
  * 
  * @author Captain_Shadows
  */
-public class ContainerBank extends ContainerBase
-{
-    private final Bank bank;
+public class ContainerBank extends ContainerBase {
+	
+	private Bank bank;
 
-    public ContainerBank(final InventoryPlayer player, final Bank tile)
-    {
-        super(player);
-        bank = tile;
-    }
+	public ContainerBank(InventoryPlayer player, Bank tile) {
+		super(player);
+		bank = tile;
+		addPlayerInventory(15, 139);
+	}
 }

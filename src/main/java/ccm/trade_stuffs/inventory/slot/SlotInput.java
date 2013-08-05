@@ -15,9 +15,9 @@ import ccm.trade_stuffs.items.ModItems;
  * 
  * @author Captain_Shadows
  */
-public class InputSlot extends Slot {
+public class SlotInput extends Slot {
 	
-	public InputSlot(final IInventory inventory, final int index, final int x, final int y) {
+	public SlotInput(final IInventory inventory, final int index, final int x, final int y) {
 		super(inventory, index, x, y);
 	}
 
