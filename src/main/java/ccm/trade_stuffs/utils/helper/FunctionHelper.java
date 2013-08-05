@@ -48,7 +48,7 @@ public final class FunctionHelper
         int maxValue = 0;
         for (final CoinType type : CoinTypes.getTypes())
         {
-            maxValue += type.getValue() * Properties.WALLET_STACKS_PER_COIN;
+            maxValue += (type.getValue() * Properties.WALLET_STACKS_PER_COIN) * 64;
         }
         return maxValue;
     }
