@@ -21,6 +21,7 @@ import ccm.trade_stuffs.blocks.ModBlocks;
 import ccm.trade_stuffs.configuration.Config;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.proxy.CommonProxy;
+import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
@@ -66,6 +67,8 @@ public class TradeStuffs
         proxy.initRenderingStuffs();
 
         MinecraftForge.EVENT_BUS.register(new ItemHandler());
+
+        MinecraftForge.EVENT_BUS.register(new EntityHandler());
     }
 
     @EventHandler

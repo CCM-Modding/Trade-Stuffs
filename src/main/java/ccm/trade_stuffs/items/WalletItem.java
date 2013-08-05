@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.WalletInventory;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;

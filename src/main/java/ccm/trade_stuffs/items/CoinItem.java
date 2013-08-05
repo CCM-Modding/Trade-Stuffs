@@ -14,8 +14,8 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.trade_stuffs.api.CoinType;
-import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.api.coins.CoinType;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 
 /**
  * CoinItem

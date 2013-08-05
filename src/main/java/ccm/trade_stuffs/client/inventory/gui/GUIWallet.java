@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.trade_stuffs.api.CoinTypes;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.items.WalletItem;
 import ccm.trade_stuffs.utils.helper.NBTHelper;

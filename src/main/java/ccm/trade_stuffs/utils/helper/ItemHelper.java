@@ -19,6 +19,13 @@ public class ItemHelper
             dropItem(final ItemStack item, final EntityPlayer player, final EntityLivingBase entity)
     {
         if (FunctionHelper.shouldDropItem(entity))
-        {}
+        {
+            final double rand = Math.random();
+
+            if (rand < 0)
+            {
+                entity.dropItem(item.itemID, amount);
+            }
+        }
     }
 }
