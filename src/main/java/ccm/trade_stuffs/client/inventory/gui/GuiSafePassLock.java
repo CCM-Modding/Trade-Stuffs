@@ -97,7 +97,7 @@ public class GuiSafePassLock extends GuiContainer
      */
     private void reset(final GuiButton button)
     {
-        safe.setPass(" ");
+        safe.setPass(0);
         player.sendChatMessage("Your Password has been Reseted");
     }
 
@@ -119,25 +119,26 @@ public class GuiSafePassLock extends GuiContainer
 
     private void pass(final GuiButton button)
     {
-        final String pass = safe.getPass();
+        final int pass = safe.getPass();
         if (tmpPass.length() == 4)
         {
-            if (pass.equalsIgnoreCase(" "))
+            if (pass == 0)
             {
-                safe.setPass(tmpPass.toString());
+                final int tmpPassword = Integer.valueOf(tmpPass.toString());
+                System.out.println(tmpPassword);
+                sendPassUpdate(tmpPassword);
+                // safe.setPass(tmpPassword);
                 tmpPass = new StringBuilder();
-                sendPassUpdate();
                 player.sendChatMessage("Your Password has been Set");
                 player.sendChatMessage("Please Input it again");
             }
             else
-                if (pass.equalsIgnoreCase(tmpPass.toString()))
+                if (pass == Integer.valueOf(tmpPass.toString()))
                 {
                     tmpPass = new StringBuilder();
                     canOpen = true;
                     enter.enabled = canOpen;
                     rest.enabled = canOpen;
-                    // openGUI(button);
                 }
                 else
                 {
@@ -152,10 +153,14 @@ public class GuiSafePassLock extends GuiContainer
             {
                 tmpPass.append(button.displayString);
             }
+            else
+            {
+                // openGUI(button);
+            }
         }
     }
 
-    public void sendPassUpdate()
+    public void sendPassUpdate(final int pass)
     {
         final ByteArrayOutputStream bos = new ByteArrayOutputStream();
         final DataOutputStream dos = new DataOutputStream(bos);
@@ -166,7 +171,7 @@ public class GuiSafePassLock extends GuiContainer
             dos.writeInt(safe.yCoord);
             dos.writeInt(safe.zCoord);
 
-            dos.writeInt(Integer.valueOf(safe.getPass()));
+            dos.writeInt(pass);
         } catch (final Exception e)
         {
             e.printStackTrace();

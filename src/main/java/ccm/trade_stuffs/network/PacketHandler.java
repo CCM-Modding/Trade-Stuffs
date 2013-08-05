@@ -101,6 +101,6 @@ public class PacketHandler implements IPacketHandler
             tile = new TileEntitySafe();
             world.setBlockTileEntity(x, y, z, tile);
         }
-        tile.setPass(String.valueOf(dat.readInt()));
+        tile.setPass(dat.readInt());
     }
 }

@@ -13,27 +13,21 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntitySafe extends BaseInventory
 {
-    private String pass = " ";
+    private int pass;
 
     /**
      * @param pass
      *            The pass to set
      */
-    public void setPass(final String pass)
+    public void setPass(final int pass)
     {
-        if (!pass.isEmpty())
-        {
-            if (pass.length() == 4)
-            {
-                this.pass = pass;
-            }
-        }
+        this.pass = pass;
     }
 
     /**
      * @return
      */
-    public String getPass()
+    public int getPass()
     {
         return pass;
     }
@@ -44,8 +38,10 @@ public class TileEntitySafe extends BaseInventory
     public void writeToNBT(final NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setString(SAFE_PASS, pass);
-        //System.out.println(nbt);
+        nbt.setInteger(SAFE_PASS, pass);
+        System.out.println("WRITING!");
+        System.out.println(pass);
+        System.out.println(nbt);
     }
 
     @Override
@@ -54,8 +50,15 @@ public class TileEntitySafe extends BaseInventory
         super.readFromNBT(nbt);
         if (nbt.hasKey(SAFE_PASS))
         {
-            pass = nbt.getString(SAFE_PASS);
+            pass = nbt.getInteger(SAFE_PASS);
         }
-        //System.out.println(nbt);
+        else
+        {
+            nbt.setInteger(SAFE_PASS, 0);
+            pass = 0;
+        }
+        System.out.println("READING!");
+        System.out.println(pass);
+        System.out.println(nbt);
     }
 }
