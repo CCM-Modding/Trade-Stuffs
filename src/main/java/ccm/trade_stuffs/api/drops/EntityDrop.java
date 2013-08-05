@@ -3,8 +3,6 @@
  */
 package ccm.trade_stuffs.api.drops;
 
-import java.util.Random;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
@@ -16,8 +14,6 @@ import net.minecraft.item.ItemStack;
  */
 public class EntityDrop
 {
-    public static final Random                      rand = new Random();
-
     /**
      * Name of the mod registering this coin
      */
@@ -108,8 +104,16 @@ public class EntityDrop
         return entity.equals(this.entity);
     }
 
-    public void dropItem()
+    public void dropItem(final EntityLivingBase entity)
     {
+        if (shouldDrop(entity.getClass()))
+        {
+            final double rand = Math.random();
 
+            if (rand < dropRate)
+            {
+                entity.dropItem(item.itemID, amount);
+            }
+        }
     }
 }
