@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.ContainerSafe;
-import ccm.trade_stuffs.tileentity.Safe;
+import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -29,14 +29,14 @@ import ccm.trade_stuffs.utils.lib.Guis;
 public class GUISafe extends GuiContainer
 {
     EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-    private final Safe   safe;
+    private final TileEntitySafe   safe;
     GuiButton            enter;
     GuiButton            rest;
 
     /**
      * @param container
      */
-    public GUISafe(final InventoryPlayer player, final Safe safe)
+    public GUISafe(final InventoryPlayer player, final TileEntitySafe safe)
     {
         super(new ContainerSafe(player, safe));
         this.safe = safe;

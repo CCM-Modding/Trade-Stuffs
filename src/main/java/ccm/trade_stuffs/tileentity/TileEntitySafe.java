@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
  * 
  * @author Captain_Shadows
  */
-public class Safe extends BaseInventory
+public class TileEntitySafe extends BaseInventory
 {
     private String pass = " ";
 

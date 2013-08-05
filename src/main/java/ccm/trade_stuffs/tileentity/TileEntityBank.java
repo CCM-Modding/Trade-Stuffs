@@ -15,7 +15,7 @@ import ccm.trade_stuffs.bank.BankAccount;
  * 
  * @author Captain_Shadows
  */
-public class Bank extends BaseInventory {
+public class TileEntityBank extends BaseInventory {
 
 	public HashMap<String, BankAccount> accounts = new HashMap<String, BankAccount>();
 	

@@ -8,5 +8,5 @@ package ccm.trade_stuffs.tileentity;
  * 
  * @author Captain_Shadows
  */
-public class TradeStation extends BaseInventory
+public class TileEntityTradeStation extends BaseInventory
 {}

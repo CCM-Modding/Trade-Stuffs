@@ -6,7 +6,7 @@ package ccm.trade_stuffs.inventory;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 
-import ccm.trade_stuffs.tileentity.Bank;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
 
 /**
  * ContainerTrade
@@ -16,9 +16,9 @@ import ccm.trade_stuffs.tileentity.Bank;
  */
 public class ContainerBank extends ContainerBase {
 
-	private Bank bank;
+	private TileEntityBank bank;
 
-	public ContainerBank(InventoryPlayer player, Bank tile) {
+	public ContainerBank(InventoryPlayer player, TileEntityBank tile) {
 		super(player);
 		bank = tile;
 		addPlayerInventory(15, 139);

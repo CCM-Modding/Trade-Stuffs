@@ -13,9 +13,9 @@ import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.ContainerSafe;
 import ccm.trade_stuffs.inventory.ContainerTrade;
 import ccm.trade_stuffs.inventory.ContainerWallet;
-import ccm.trade_stuffs.tileentity.Bank;
-import ccm.trade_stuffs.tileentity.Safe;
-import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
+import ccm.trade_stuffs.tileentity.TileEntitySafe;
+import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -31,9 +31,9 @@ public abstract class CommonProxy implements IGuiHandler
 
     public void registerTileEntitys()
     {
-        GameRegistry.registerTileEntity(TradeStation.class, "CCM.TILE.ENTITY.TRADE.STATION");
-        GameRegistry.registerTileEntity(Bank.class, "CCM.TILE.ENTITY.BANK");
-        GameRegistry.registerTileEntity(Safe.class, "CCM.TILE.ENTITY.SAFE");
+        GameRegistry.registerTileEntity(TileEntityTradeStation.class, "CCM.TILE.ENTITY.TRADE.STATION");
+        GameRegistry.registerTileEntity(TileEntityBank.class, "CCM.TILE.ENTITY.BANK");
+        GameRegistry.registerTileEntity(TileEntitySafe.class, "CCM.TILE.ENTITY.SAFE");
     }
 
     @Override
@@ -47,13 +47,13 @@ public abstract class CommonProxy implements IGuiHandler
         switch (ID)
         {
             case Guis.GUI_TRADE:
-                return new ContainerTrade(player.inventory, (TradeStation) world.getBlockTileEntity(x, y, z));
+                return new ContainerTrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_BANK:
-                return new ContainerBank(player.inventory, (Bank) world.getBlockTileEntity(x, y, z));
+                return new ContainerBank(player.inventory, (TileEntityBank) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_WALLET:
                 return new ContainerWallet(player.getCurrentEquippedItem(), player);
             case Guis.GUI_SAFE:
-                return new ContainerSafe(player.inventory, (Safe) world.getBlockTileEntity(x, y, z));
+                return new ContainerSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
             default:
                 return null;
         }

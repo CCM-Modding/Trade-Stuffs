@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -74,7 +74,7 @@ public class TradeStationBlock extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(final World world)
     {
-        return new TradeStation();
+        return new TileEntityTradeStation();
     }
 
     @Override

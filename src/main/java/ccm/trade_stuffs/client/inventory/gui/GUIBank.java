@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.items.ModItems;
-import ccm.trade_stuffs.tileentity.Bank;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Guis;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,14 +27,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GUIBank extends GuiContainer {
 
-	private Bank bank;
+	private TileEntityBank bank;
 	
 	public int selectedTab = 0;
 	
 	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
 	private ItemStack displayItems  = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GUIBank(InventoryPlayer player, Bank tile) {
+	public GUIBank(InventoryPlayer player, TileEntityBank tile) {
 		super(new ContainerBank(player, tile));
 		bank = tile;
 		xSize = 190;

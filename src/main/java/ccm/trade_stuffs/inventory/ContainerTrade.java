@@ -5,7 +5,7 @@ package ccm.trade_stuffs.inventory;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
-import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
 
 /**
  * ContainerTrade
@@ -15,9 +15,9 @@ import ccm.trade_stuffs.tileentity.TradeStation;
  */
 public class ContainerTrade extends ContainerBase
 {
-    private final TradeStation trade;
+    private final TileEntityTradeStation trade;
 
-    public ContainerTrade(final InventoryPlayer player, final TradeStation tile)
+    public ContainerTrade(final InventoryPlayer player, final TileEntityTradeStation tile)
     {
         super(player);
         trade = tile;

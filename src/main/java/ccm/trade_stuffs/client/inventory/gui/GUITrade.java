@@ -10,7 +10,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.inventory.ContainerTrade;
-import ccm.trade_stuffs.tileentity.TradeStation;
+import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
 
 /**
  * GUITrade
@@ -21,12 +21,12 @@ import ccm.trade_stuffs.tileentity.TradeStation;
 @SideOnly(Side.CLIENT)
 public class GUITrade extends GuiContainer
 {
-    private final TradeStation trade;
+    private final TileEntityTradeStation trade;
 
     /**
      * @param container
      */
-    public GUITrade(final InventoryPlayer player, final TradeStation tile)
+    public GUITrade(final InventoryPlayer player, final TileEntityTradeStation tile)
     {
         super(new ContainerTrade(player, tile));
         trade = tile;

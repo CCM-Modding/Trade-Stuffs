@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.tileentity.Bank;
+import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -76,7 +76,7 @@ public class BankBlock extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(final World world)
     {
-        return new Bank();
+        return new TileEntityBank();
     }
 
     @Override

@@ -5,7 +5,7 @@ package ccm.trade_stuffs.inventory;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
-import ccm.trade_stuffs.tileentity.Safe;
+import ccm.trade_stuffs.tileentity.TileEntitySafe;
 
 /**
  * ContainerTrade
@@ -15,9 +15,9 @@ import ccm.trade_stuffs.tileentity.Safe;
  */
 public class ContainerSafe extends ContainerBase
 {
-    private final Safe safe;
+    private final TileEntitySafe safe;
 
-    public ContainerSafe(final InventoryPlayer player, final Safe tile)
+    public ContainerSafe(final InventoryPlayer player, final TileEntitySafe tile)
     {
         super(player);
         safe = tile;
