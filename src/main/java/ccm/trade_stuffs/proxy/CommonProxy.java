@@ -47,12 +47,15 @@ public abstract class CommonProxy implements IGuiHandler
         switch (ID)
         {
             case Guis.GUI_TRADE:
-                return new ContainerTrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
+                return new ContainerTrade(player.inventory,
+                                          (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_BANK:
                 return new ContainerBank(player.inventory, (TileEntityBank) world.getBlockTileEntity(x, y, z));
             case Guis.GUI_WALLET:
                 return new ContainerWallet(player.getCurrentEquippedItem(), player);
             case Guis.GUI_SAFE:
+                return new ContainerSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
+            case Guis.GUI_SAFE_INVENTORY:
                 return new ContainerSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
             default:
                 return null;
