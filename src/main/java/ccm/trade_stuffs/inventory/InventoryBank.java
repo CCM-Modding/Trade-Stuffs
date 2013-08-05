@@ -3,10 +3,8 @@
  */
 package ccm.trade_stuffs.inventory;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 
 /**
@@ -21,6 +19,30 @@ public class InventoryBank extends InventoryBase {
 
 	public InventoryBank() {
 		super("inventory.bank", 72);
+	}
+	
+	@Override
+	public ItemStack decrStackSize(int index, int amount) {
+		ItemStack ret = super.decrStackSize(index, amount);
+		if(this instanceof InventoryBankCoins) {
+			associatedBank.countCoins();
+		} else if(this instanceof InventoryBankItems) {
+			associatedBank.countItems();
+		}
+		return ret;
+	}
+	
+	@Override
+	public void setInventorySlotContents(int index, ItemStack item) {
+		boolean flag = item != null;
+		super.setInventorySlotContents(index, item);
+		if(flag) {
+			if(this instanceof InventoryBankCoins) {
+				associatedBank.countCoins();
+			} else if(this instanceof InventoryBankItems) {
+				associatedBank.countItems();
+			}
+		}
 	}
 
 	public InventoryBank setBank(TileEntityBank bank) {

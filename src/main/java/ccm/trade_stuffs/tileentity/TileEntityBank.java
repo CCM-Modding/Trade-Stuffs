@@ -7,14 +7,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.bank.BankAccount;
+import ccm.trade_stuffs.api.coins.CoinType;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.bank.Bank;
+import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
@@ -32,6 +34,8 @@ public class TileEntityBank extends TileEntity {
 	private byte selectedTab = 0;
 
 	public BankAccount currentAccount;
+	private int coinBalance;
+	private int itemCount;
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -104,7 +108,37 @@ public class TileEntityBank extends TileEntity {
 	public void setSelectedTab(byte tab) {
 		selectedTab = tab;
 	}
-
+	
+	public int getCoinBalance() {
+		return coinBalance;
+	}
+	
+	public void countCoins() {
+		coinBalance = 0;
+		ItemStack stack = null;
+		for(int i = 0; i < 72; i++) {
+			stack = currentAccount.getCoins().getStackInSlot(i);
+			if(stack != null) {
+				coinBalance += CoinTypes.getCoinType(stack.getItemDamage()).getValue() * stack.stackSize;
+			}
+		}
+	}
+	
+	public int getItemCount() {
+		return itemCount;
+	}
+	
+	public void countItems() {
+		itemCount = 0;
+		ItemStack stack = null;
+		for(int i = 0; i < 72; i++) {
+			stack = currentAccount.getItems().getStackInSlot(i);
+			if(stack != null) {
+				itemCount += stack.stackSize;
+			}
+		}
+	}
+	
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);

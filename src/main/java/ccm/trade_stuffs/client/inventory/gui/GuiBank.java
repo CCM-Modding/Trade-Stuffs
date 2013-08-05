@@ -18,6 +18,7 @@ import org.lwjgl.opengl.GL11;
 
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.InventoryBank;
+import ccm.trade_stuffs.inventory.InventoryBankCoins;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -115,5 +116,11 @@ public class GuiBank extends GuiContainer {
 		fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName() : I18n.func_135053_a(lowerInventory.getInvName()), 8, ySize - 93, 4210752);
 		fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName() : I18n.func_135053_a(upperInventory.getInvName()), 8, 6, 4210752);
 		fontRenderer.drawString(mc.thePlayer.username, 80, 6, 4210752);
+		
+		if(upperInventory instanceof InventoryBankCoins) {
+			fontRenderer.drawString("Coins: " + Integer.toString(bank.getCoinBalance()), 80, ySize - 93, 4210752);
+		} else if(upperInventory instanceof InventoryBankCoins) {
+			fontRenderer.drawString("Items: " + Integer.toString(bank.getItemCount()), 80, ySize - 93, 4210752);
+		}
 	}
 }
