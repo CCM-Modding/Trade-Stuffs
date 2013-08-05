@@ -14,6 +14,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.ContainerSafe;
 import ccm.trade_stuffs.tileentity.Safe;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -83,10 +84,6 @@ public class GUISafe extends GuiContainer
         {
             pass(button);
         }
-        if (button.id == enter.id)
-        {
-            openGUI(button);
-        }
         super.actionPerformed(button);
     }
 
@@ -106,17 +103,24 @@ public class GUISafe extends GuiContainer
     {
         if (canOpen)
         {
-
+            player.openGui(TradeStuffs.instance,
+                           Guis.GUI_SAFE_INVENTORY,
+                           safe.worldObj,
+                           safe.xCoord,
+                           safe.yCoord,
+                           safe.zCoord);
         }
     }
 
     private void pass(final GuiButton button)
     {
         final String pass = safe.getPass();
-        if (pass.equalsIgnoreCase(" "))
-        {
-            canOpen = true;
-        }
+        /*
+         * if (pass.equalsIgnoreCase(" "))
+         * {
+         * canOpen = true;
+         * }
+         */
         if (tmpPass.length() == 4)
         {
             if (pass.equalsIgnoreCase(" "))
@@ -133,6 +137,7 @@ public class GUISafe extends GuiContainer
                     canOpen = true;
                     enter.enabled = canOpen;
                     rest.enabled = canOpen;
+                    openGUI(button);
                 }
                 else
                 {

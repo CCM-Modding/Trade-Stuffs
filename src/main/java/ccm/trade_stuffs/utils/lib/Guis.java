@@ -16,19 +16,22 @@ import net.minecraft.util.ResourceLocation;
 public final class Guis
 {
 
-    public static final int              GUI_TRADE          = 0;
-    public static final ResourceLocation TEXTURE_GUI_TRADE  = new ResourceLocation(Archive.MOD_ID,
-                                                                                   GUI_LOC + "guiTrade.png");
+    public static final int              GUI_TRADE                  = 0;
+    public static final ResourceLocation TEXTURE_GUI_TRADE          = new ResourceLocation(Archive.MOD_ID,
+                                                                                           GUI_LOC + "guiTrade.png");
 
-    public static final int              GUI_WALLET         = 1;
-    public static final ResourceLocation TEXTURE_GUI_WALLET = new ResourceLocation(Archive.MOD_ID,
-                                                                                   GUI_LOC + "guiWallet.png");
+    public static final int              GUI_WALLET                 = 1;
+    public static final ResourceLocation TEXTURE_GUI_WALLET         = new ResourceLocation(Archive.MOD_ID,
+                                                                                           GUI_LOC + "guiWallet.png");
 
-    public static final int              GUI_BANK           = 2;
-    public static final ResourceLocation TEXTURE_GUI_BANK   = new ResourceLocation(Archive.MOD_ID,
-                                                                                   GUI_LOC + "guiBank.png");
+    public static final int              GUI_BANK                   = 2;
+    public static final ResourceLocation TEXTURE_GUI_BANK           = new ResourceLocation(Archive.MOD_ID,
+                                                                                           GUI_LOC + "guiBank.png");
 
-    public static final int              GUI_SAFE           = 3;
-    public static final ResourceLocation TEXTURE_GUI_SAFE   = new ResourceLocation(Archive.MOD_ID,
-                                                                                   GUI_LOC + "guiSafe.png");
+    public static final int              GUI_SAFE                   = 3;
+    public static final ResourceLocation TEXTURE_GUI_SAFE           = new ResourceLocation(Archive.MOD_ID,
+                                                                                           GUI_LOC + "guiSafe.png");
+    public static final int              GUI_SAFE_INVENTORY         = 4;
+    public static final ResourceLocation TEXTURE_GUI_SAFE_INVENTORY = new ResourceLocation(Archive.MOD_ID,
+                                                                                           GUI_LOC + "guiSafeInventory.png");
 }
