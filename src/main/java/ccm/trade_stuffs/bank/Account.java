@@ -1,7 +1,7 @@
 /**
  * CCM Modding, ModJam
  */
-package ccm.trade_stuffs.bank.stuffs;
+package ccm.trade_stuffs.bank;
 
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -52,5 +52,15 @@ public class Account
     public String getOwner()
     {
         return player;
+    }
+
+    public InventoryBankCoins getCoins()
+    {
+        return coins;
+    }
+
+    public InventoryBankItems getItems()
+    {
+        return items;
     }
 }

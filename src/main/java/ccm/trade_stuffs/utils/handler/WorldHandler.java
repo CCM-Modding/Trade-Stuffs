@@ -1,25 +1,34 @@
 package ccm.trade_stuffs.utils.handler;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 
-public class WorldHandler {
+import ccm.trade_stuffs.bank.Bank;
+import ccm.trade_stuffs.utils.helper.SaveHelper;
 
-	@ForgeSubscribe
-	public void worldLoad(WorldEvent.Load event) {
-		if(event.world.isRemote) {
-			return;
-		}
-		SaveHandler sm = new SaveHandler(event.world.getSaveHandler(), event.world);
-		sm.loadBank();
-	}
+public class WorldHandler
+{
 
-	@ForgeSubscribe
-	public void worldSave(WorldEvent.Save event) {
-		if(event.world.isRemote) {
-			return;
-		}
-		SaveHandler sm = new SaveHandler(event.world.getSaveHandler(), event.world);
-		sm.saveBank();
-	}
+    @ForgeSubscribe
+    public void worldLoad(final WorldEvent.Load event)
+    {
+        if (event.world.isRemote)
+        {
+            return;
+        }
+        Bank.readFromNBT(SaveHelper.readData("bank"));
+    }
+
+    @ForgeSubscribe
+    public void worldSave(final WorldEvent.Save event)
+    {
+        if (event.world.isRemote)
+        {
+            return;
+        }
+        final NBTTagCompound nbt = new NBTTagCompound();
+        Bank.writeToNBT(nbt);
+        SaveHelper.saveData("bank", nbt);
+    }
 }

@@ -43,7 +43,7 @@ public abstract class CommonProxy implements IGuiHandler {
 		case Guis.GUI_BANK:
 			TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
 			tile.openChest();
-			return new ContainerBank(player.inventory, tile.account.coins, tile);
+			return new ContainerBank(player.inventory, tile.currentAccount.getCoins(), tile);
 		case Guis.GUI_WALLET:
 			return new ContainerWallet(player.getCurrentEquippedItem(), player);
 		case Guis.GUI_SAFE:

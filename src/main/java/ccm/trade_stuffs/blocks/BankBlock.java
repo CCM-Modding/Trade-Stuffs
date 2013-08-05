@@ -18,8 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.bank.Account;
 import ccm.trade_stuffs.bank.Bank;
-import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Guis;
@@ -128,9 +128,9 @@ public class BankBlock extends BlockContainer
             tile = new TileEntityBank();
             world.setBlockTileEntity(x, y, z, tile);
         }
-        if (!Bank.accounts.containsKey(player.username))
+        if (!Bank.hasAccount(player.username))
         {
-            Bank.accounts.put(player.username, new BankAccount(player.username));
+            Bank.addAcount(new Account(player.username));
         }
         if (!tile.isInUse())
         {

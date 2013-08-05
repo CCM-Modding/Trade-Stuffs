@@ -28,6 +28,7 @@ import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.handler.PlayerStalker;
 import ccm.trade_stuffs.utils.handler.WorldHandler;
+import ccm.trade_stuffs.utils.helper.SaveHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
 import ccm.trade_stuffs.utils.registry.CoinAdditionRegistry;
@@ -101,5 +102,7 @@ public class TradeStuffs
     public void serverStarting(final FMLServerStartingEvent event)
     {
         server = event.getServer();
+
+        SaveHelper.init();
     }
 }
