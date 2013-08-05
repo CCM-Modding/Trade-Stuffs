@@ -7,8 +7,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 /**
- * EntityDrop
+ * EntityDropHandler
  * <p>
+ * This class defines a new Drop handler
  * 
  * @author Captain_Shadows
  */
@@ -101,7 +102,8 @@ public class EntityDropHandler
 
     /**
      * @param entity
-     * @return
+     *            the entity class to check
+     * @return true if and ONLY if the entity class is the same as the class that this Handler "uses"
      */
     public boolean shouldDrop(final Class<? extends EntityLivingBase> entity)
     {
