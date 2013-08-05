@@ -60,6 +60,7 @@ public class ContainerWallet extends ContainerBase
     {
         ItemStack stack = null;
         final Slot slot = (Slot) inventorySlots.get(index);
+        System.out.println(index);
         if ((slot != null) && slot.getHasStack())
         {
             final ItemStack slotStack = slot.getStack();
