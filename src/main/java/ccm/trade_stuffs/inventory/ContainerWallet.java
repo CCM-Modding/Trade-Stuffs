@@ -44,7 +44,9 @@ public class ContainerWallet extends ContainerBase {
 				}
 			}
 		}
-		player.dropPlayerItem(wallet.getStackInSlotOnClosing(0));
+		if(wallet != null && wallet.getStackInSlot(0) != null) {
+			player.dropPlayerItem(wallet.getStackInSlotOnClosing(0));
+		}
 		super.onContainerClosed(player);
 	}
 
