@@ -26,7 +26,7 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public class WalletInventory implements IInventory {
+public class InventoryWallet implements IInventory {
 
 	public HashMap<CoinType, Integer> coins = new HashMap<CoinType, Integer>();
 	private ItemStack slotStack;
@@ -36,7 +36,7 @@ public class WalletInventory implements IInventory {
 
 	private int coinBalance = 0;
 
-	public WalletInventory(ItemStack wallet) {
+	public InventoryWallet(ItemStack wallet) {
 		this.wallet = wallet;
 		readFromNBT(wallet);
 	}

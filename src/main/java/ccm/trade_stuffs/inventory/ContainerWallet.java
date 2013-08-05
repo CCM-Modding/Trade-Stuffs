@@ -17,11 +17,11 @@ import ccm.trade_stuffs.utils.helper.NBTHelper;
  */
 public class ContainerWallet extends ContainerBase {
 
-	public final WalletInventory wallet;
+	public InventoryWallet wallet;
 
 	public ContainerWallet(ItemStack item, EntityPlayer player) {
 		super(player.inventory);
-		wallet = new WalletInventory(item);
+		wallet = new InventoryWallet(item);
 		addPlayerInventory(8, 51);
 		addSlotToContainer(new InputSlot(wallet, 0, 8, 29));
 	}
