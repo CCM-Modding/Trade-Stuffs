@@ -6,8 +6,6 @@ package ccm.trade_stuffs.client.inventory.gui;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -16,14 +14,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 import ccm.trade_stuffs.inventory.ContainerBank;
+import ccm.trade_stuffs.inventory.InventoryBank;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Guis;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * GUITrade
@@ -43,13 +43,13 @@ public class GuiBank extends GuiContainer {
 	private ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
 	private ItemStack displayItems = new ItemStack(Block.stone.blockID, 1, 0);
 
-	public GuiBank(InventoryPlayer lowerInventory, IInventory upperInventory, TileEntityBank tile, byte tab) {
+	public GuiBank(InventoryPlayer lowerInventory, InventoryBank upperInventory, TileEntityBank tile, byte tab) {
 		super(new ContainerBank(lowerInventory, upperInventory, tile, tab));
 		this.lowerInventory = lowerInventory;
 		this.upperInventory = upperInventory;
 		bank = tile;
 		xSize = 176;
-		ySize = 256;
+		ySize = 238;
 		allowUserInput = false;
 		selectedTab = tab;
 	}

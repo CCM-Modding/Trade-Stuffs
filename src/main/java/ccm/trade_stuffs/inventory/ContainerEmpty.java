@@ -11,10 +11,9 @@ import net.minecraft.entity.player.InventoryPlayer;
  * 
  * @author Captain_Shadows
  */
-public class ContainerEmpty extends ContainerBase
-{
-    public ContainerEmpty(final InventoryPlayer player)
-    {
-        super(player);
-    }
+public class ContainerEmpty extends ContainerBase {
+	
+	public ContainerEmpty(InventoryPlayer player) {
+		super(player);
+	}
 }

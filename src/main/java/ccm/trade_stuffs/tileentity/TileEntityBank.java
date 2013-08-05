@@ -13,7 +13,7 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
 import ccm.trade_stuffs.TradeStuffs;
-import ccm.trade_stuffs.bank.Account;
+import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.utils.lib.Guis;
 
@@ -31,7 +31,7 @@ public class TileEntityBank extends TileEntity {
 	private boolean inUse = false;
 	private byte selectedTab = 0;
 
-	public Account currentAccount;
+	public BankAccount currentAccount;
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -62,7 +62,7 @@ public class TileEntityBank extends TileEntity {
 	public void openChest() {
 		inUse = true;
 		if(!Bank.hasAccount(playerUsing)) {
-			Bank.addAcount(new Account(playerUsing));
+			Bank.addAcount(new BankAccount(playerUsing));
 		}
 		currentAccount = Bank.getAccount(playerUsing);
 	}
@@ -91,7 +91,14 @@ public class TileEntityBank extends TileEntity {
 
 	public void openTab(byte tab) {
 		selectedTab = tab;
-		worldObj.getPlayerEntityByName(playerUsing).openGui(TradeStuffs.instance, Guis.GUI_BANK_ITEMS, worldObj, xCoord, yCoord, zCoord);
+		EntityPlayer player = worldObj.getPlayerEntityByName(playerUsing);
+		if(player == null) {
+			System.out.println("PLAYER IS NULL");
+		}
+		player.closeScreen();
+		setPlayerUsing(player.username);
+        setInUse(true);
+		player.openGui(TradeStuffs.instance, tab == 0 ? Guis.GUI_BANK_COINS : Guis.GUI_BANK_ITEMS, worldObj, xCoord, yCoord, zCoord);
 	}
 	
 	public void setSelectedTab(byte tab) {

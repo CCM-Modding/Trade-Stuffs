@@ -3,7 +3,9 @@
  */
 package ccm.trade_stuffs.inventory;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 

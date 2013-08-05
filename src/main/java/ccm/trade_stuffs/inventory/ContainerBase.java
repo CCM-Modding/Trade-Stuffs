@@ -14,35 +14,27 @@ import net.minecraft.inventory.Slot;
  * 
  * @author Captain_Shadows
  */
-public class ContainerBase extends Container
-{
-    protected InventoryPlayer player;
+public class ContainerBase extends Container {
+	
+	protected InventoryPlayer player;
 
-    public ContainerBase(final InventoryPlayer player)
-    {
-        this.player = player;
-    }
+	public ContainerBase(InventoryPlayer player) {
+		this.player = player;
+	}
 
-    public void addPlayerInventory(final int x, final int y)
-    {
-        // Player's Inventory
-        for (int row = 0; row < 3; row++)
-        {
-            for (int column = 0; column < 9; column++)
-            {
-                addSlotToContainer(new Slot(player, column + (row * 9) + 9, x + (column * 18), y + (row * 18)));
-            }
-        }
-        // Player's Hot Bar
-        for (int index = 0; index < 9; index++)
-        {
-            addSlotToContainer(new Slot(player, index, x + (index * 18), y + 58));
-        }
-    }
+	public void addPlayerInventory(int x, int y) {
+		for(int row = 0; row < 3; row++) {
+			for(int column = 0; column < 9; column++) {
+				addSlotToContainer(new Slot(player, column + (row * 9) + 9, x + (column * 18), y + (row * 18)));
+			}
+		}
+		for(int index = 0; index < 9; index++) {
+			addSlotToContainer(new Slot(player, index, x + (index * 18), y + 58));
+		}
+	}
 
-    @Override
-    public boolean canInteractWith(final EntityPlayer player)
-    {
-        return true;
-    }
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return true;
+	}
 }
