@@ -13,7 +13,8 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntitySafe extends BaseInventory
 {
-    private String pass = " ";
+    private String     pass        = " ";
+    private final byte selectedTab = 0;
 
     /**
      * @param pass

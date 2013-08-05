@@ -3,6 +3,9 @@
  */
 package ccm.trade_stuffs.client.inventory.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -10,7 +13,9 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.network.packet.Packet250CustomPayload;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -147,6 +152,29 @@ public class GuiSafePassLock extends GuiContainer
                 tmpPass.append(button.displayString);
             }
         }
+    }
+
+    public void sendPassUpdate()
+    {
+        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        final DataOutputStream dos = new DataOutputStream(bos);
+        try
+        {
+            dos.writeInt(11);
+            dos.writeInt(safe.xCoord);
+            dos.writeInt(safe.yCoord);
+            dos.writeInt(safe.zCoord);
+
+            dos.writeInt(Integer.valueOf(safe.getPass()));
+        } catch (final Exception e)
+        {
+            e.printStackTrace();
+        }
+        final Packet250CustomPayload packet = new Packet250CustomPayload();
+        packet.channel = "TradeStuffs";
+        packet.data = bos.toByteArray();
+        packet.length = bos.size();
+        PacketDispatcher.sendPacketToServer(packet);
     }
 
     @Override

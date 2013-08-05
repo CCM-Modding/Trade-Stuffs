@@ -4,6 +4,7 @@
 package ccm.trade_stuffs.inventory;
 
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
 
@@ -17,9 +18,18 @@ public class ContainerSafe extends ContainerBase
 {
     private final TileEntitySafe safe;
 
-    public ContainerSafe(final InventoryPlayer player, final TileEntitySafe tile)
+    public ContainerSafe(final InventoryPlayer player, final TileEntitySafe safe)
     {
         super(player);
-        safe = tile;
+        this.safe = safe;
+        addPlayerInventory(15, 139);
+
+        for (int row = 0; row < 6; row++)
+        {
+            for (int column = 0; column < 9; column++)
+            {
+                addSlotToContainer(new Slot(safe, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
+            }
+        }
     }
 }

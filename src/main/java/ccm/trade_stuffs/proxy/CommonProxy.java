@@ -10,6 +10,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import ccm.trade_stuffs.inventory.ContainerBank;
+import ccm.trade_stuffs.inventory.ContainerBase;
 import ccm.trade_stuffs.inventory.ContainerSafe;
 import ccm.trade_stuffs.inventory.ContainerTrade;
 import ccm.trade_stuffs.inventory.ContainerWallet;
@@ -54,7 +55,7 @@ public abstract class CommonProxy implements IGuiHandler
             case Guis.GUI_WALLET:
                 return new ContainerWallet(player.getCurrentEquippedItem(), player);
             case Guis.GUI_SAFE:
-                return new ContainerSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
+                return new ContainerBase(player.inventory);
             case Guis.GUI_SAFE_INVENTORY:
                 return new ContainerSafe(player.inventory, (TileEntitySafe) world.getBlockTileEntity(x, y, z));
             default:
