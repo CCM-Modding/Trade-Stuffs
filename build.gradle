@@ -12,7 +12,7 @@ buildscript{
 apply plugin: "gmcp"
 
 group = 'ccm.trade_stuffs'
-version = "Beta.${System.env.BUILD_NUMBER}"
+version = "Beta.1"
 archivesBaseName = 'TradeStuffs'
 
 minecraft {
