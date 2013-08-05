@@ -18,6 +18,7 @@ import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.items.ModItems;
+import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
  * Bank
@@ -75,12 +76,14 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	@Override
 	public ItemStack decrStackSize(int slot, int amount) {
 		if(inventory[slot] != null) {
+			ItemStack stack = inventory[slot];
 			if(selectedTab == 0) {
-				
+				CoinType coinType = CoinTypes.getCoinType(stack);
+				account.removeCoins(coinType, amount);
 			} else if(selectedTab == 1) {
 				
 			}
-			ItemStack stack;
+			stack = null;
 			if(inventory[slot].stackSize <= amount) {
 				stack = inventory[slot];
 				inventory[slot] = null;
@@ -111,6 +114,40 @@ public class TileEntityBank extends TileEntity implements IInventory {
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
+		if(stack != null) {
+			if(selectedTab == 0) {
+				if(account == null) {
+					if(!Bank.accounts.containsKey(playerUsing)) {
+						Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
+					}
+					account = Bank.accounts.get(playerUsing);
+				}
+				if(CoinTypes.getCoinType(stack) != null) {
+					CoinType coinType = CoinTypes.getCoinType(stack);
+					if(account.coins.containsKey(coinType)) {
+						int balance = account.coins.get(coinType);
+						int canAdd = (Properties.BANK_STACKS_PER_COIN * 64) - stack.stackSize;
+						int added = 0;
+						if(stack.stackSize < canAdd) {
+							added = stack.stackSize;
+							stack.stackSize = 0;
+						} else {
+							added = canAdd;
+							stack.stackSize -= canAdd;
+						}
+						account.addCoins(coinType, added);
+						updateInventory();
+					} else {
+						account.addCoins(coinType, stack.stackSize);
+						updateInventory();
+					}
+				} else {
+					return;
+				}
+			} else if(selectedTab == 1) {
+				
+			}
+		}
 		inventory[slot] = stack;
 	}
 	
@@ -167,16 +204,17 @@ public class TileEntityBank extends TileEntity implements IInventory {
 	}
 	
 	public void setSelectedTab(byte tab) {
-		//TODO: save items
+		selectedTab = tab;
+		updateInventory();
+	}
+	
+	public void updateInventory() {
 		for(int i = 0; i < 72; i++) {
 			inventory[i] = null;
-		}
-		
-		selectedTab = tab;
+		}		
 		if(account == null) {
 			if(!Bank.accounts.containsKey(playerUsing)) {
 				Bank.accounts.put(playerUsing, new BankAccount(playerUsing));
-				
 			}
 			account = Bank.accounts.get(playerUsing);
 		}

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import ccm.trade_stuffs.items.CoinItem;
 
 /**
  * CoinTypes
@@ -121,9 +122,9 @@ public final class CoinTypes
      *            The ItemStack to get the {@link CoinType} from
      * @return The corresponding {@link CoinType}
      */
-    public static CoinType getCoinType(final ItemStack stack)
+    public static CoinType getCoinType(ItemStack stack)
     {
-        Class<?> coinClazz = null;
+       /* Class<?> coinClazz = null;
         try
         {
             coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
@@ -135,7 +136,10 @@ public final class CoinTypes
         if (coinClazz.isInstance(stack.getItem()))
         {
             return getCoinType(stack.getItemDamage());
-        }
+        }*/
+    	if(stack.getItem() instanceof CoinItem) {
+    		return getCoinType(stack.getItemDamage());
+    	}
         return null;
     }
     

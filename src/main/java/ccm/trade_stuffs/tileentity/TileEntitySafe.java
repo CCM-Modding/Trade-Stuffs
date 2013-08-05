@@ -45,7 +45,7 @@ public class TileEntitySafe extends BaseInventory
     {
         super.writeToNBT(nbt);
         nbt.setString(SAFE_PASS, pass);
-        System.out.println(nbt);
+        //System.out.println(nbt);
     }
 
     @Override
@@ -56,6 +56,6 @@ public class TileEntitySafe extends BaseInventory
         {
             pass = nbt.getString(SAFE_PASS);
         }
-        System.out.println(nbt);
+        //System.out.println(nbt);
     }
 }
