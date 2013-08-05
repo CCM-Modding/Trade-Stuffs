@@ -23,4 +23,6 @@ public class Properties
     public static int bankID;
 
     public static int safeID;
+    
+    public static int STACKS_PER_COIN = 8;
 }
