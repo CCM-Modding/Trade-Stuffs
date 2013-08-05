@@ -24,8 +24,8 @@ public class ModItems
 
     public static void init()
     {
-        coin = new CoinItem(Properties.coinsID);
-        wallet = new WalletItem(Properties.walletID);
+        coin = new ItemCoin(Properties.coinsID);
+        wallet = new ItemWallet(Properties.walletID);
 
         GameRegistry.registerItem(coin, "CCM.COIN", Archive.MOD_ID);
         GameRegistry.registerItem(wallet, "CCM.WALLET", Archive.MOD_ID);

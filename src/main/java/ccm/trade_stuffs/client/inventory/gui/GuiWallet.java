@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import ccm.trade_stuffs.inventory.ContainerWallet;
-import ccm.trade_stuffs.items.WalletItem;
+import ccm.trade_stuffs.items.ItemWallet;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Guis;
 import cpw.mods.fml.relauncher.Side;
@@ -76,11 +76,11 @@ public class GuiWallet extends GuiContainer {
 		if(mc.thePlayer != null) {
 			for(final ItemStack stack : mc.thePlayer.inventory.mainInventory) {
 				if(stack != null) {
-					if(NBTHelper.hasTag(stack, WalletItem.openedWallet)) {
-						if(NBTHelper.hasTag(stack, WalletItem.fullWallet)) {
-							NBTHelper.removeTag(stack, WalletItem.fullWallet);
+					if(NBTHelper.hasTag(stack, ItemWallet.openedWallet)) {
+						if(NBTHelper.hasTag(stack, ItemWallet.fullWallet)) {
+							NBTHelper.removeTag(stack, ItemWallet.fullWallet);
 						}
-						NBTHelper.removeTag(stack, WalletItem.openedWallet);
+						NBTHelper.removeTag(stack, ItemWallet.openedWallet);
 					}
 				}
 			}

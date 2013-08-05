@@ -13,13 +13,13 @@ import ccm.trade_stuffs.TradeStuffs;
  * 
  * @author Captain_Shadows
  */
-public class BaseItem extends Item
+public class ItemBase extends Item
 {
 
     /**
      * @param id
      */
-    public BaseItem(final int id)
+    public ItemBase(final int id)
     {
         super(id - 256);
         setCreativeTab(TradeStuffs.tradeStuffs);

@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import ccm.trade_stuffs.api.coins.CoinType;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.items.ModItems;
-import ccm.trade_stuffs.items.WalletItem;
+import ccm.trade_stuffs.items.ItemWallet;
 import ccm.trade_stuffs.utils.helper.InventoryHelper;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 import ccm.trade_stuffs.utils.lib.Properties;
@@ -186,7 +186,7 @@ public class InventoryWallet implements IInventory {
 	}
 
 	public void setHasMoney(boolean has) {
-		NBTHelper.setBoolean(wallet, WalletItem.fullWallet, has);
+		NBTHelper.setBoolean(wallet, ItemWallet.fullWallet, has);
 	}
 
 	@Override

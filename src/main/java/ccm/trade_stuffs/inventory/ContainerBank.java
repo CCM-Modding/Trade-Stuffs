@@ -23,7 +23,7 @@ public class ContainerBank extends ContainerBase {
 
 	private TileEntityBank bank;
 
-	public ContainerBank(InventoryPlayer player, IInventory inventory, TileEntityBank tile) {
+	public ContainerBank(InventoryPlayer player, IInventory inventory, TileEntityBank tile, byte tab) {
 		super(player);
 		bank = tile;
 		addPlayerInventory(8, 174);
@@ -33,6 +33,7 @@ public class ContainerBank extends ContainerBase {
 				addSlotToContainer(new Slot(inventory, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
 			}
 		}
+		bank.setSelectedTab(tab);
 	}
 
 	@Override

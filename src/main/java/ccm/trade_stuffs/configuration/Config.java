@@ -15,24 +15,18 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public final class Config
-{
+public final class Config {
 
-    public static void load(final FMLPreInitializationEvent event)
-    {
-        final Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-
+    public static void load(FMLPreInitializationEvent event) {
+        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
 
         Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
-
         Properties.bankID = config.getBlock("Bank", 401).getInt();
-
         Properties.safeID = config.getBlock("Safe", 402).getInt();
-
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
-
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
+        
         String cat = "RandomConfigs";
         config.addCustomCategoryComment(cat, "Random Configurations");
         Properties.WALLET_STACKS_PER_COIN = config.get(cat, "Maximum number of stacks per type of coin inside of the wallet", 8).getInt();

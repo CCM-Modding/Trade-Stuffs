@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import ccm.trade_stuffs.items.CoinItem;
+import ccm.trade_stuffs.items.ItemCoin;
 
 /**
  * CoinTypes
@@ -137,7 +137,7 @@ public final class CoinTypes
         {
             return getCoinType(stack.getItemDamage());
         }*/
-    	if(stack.getItem() instanceof CoinItem) {
+    	if(stack.getItem() instanceof ItemCoin) {
     		return getCoinType(stack.getItemDamage());
     	}
         return null;

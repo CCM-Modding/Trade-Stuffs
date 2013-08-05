@@ -9,7 +9,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 
-import ccm.trade_stuffs.items.WalletItem;
+import ccm.trade_stuffs.items.ItemWallet;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
 /**
@@ -23,26 +23,26 @@ public final class ItemHandler
     @ForgeSubscribe
     public void onItemPick(final EntityItemPickupEvent event)
     {
-        if (NBTHelper.hasTag(event.item.getEntityItem(), WalletItem.openedWallet))
+        if (NBTHelper.hasTag(event.item.getEntityItem(), ItemWallet.openedWallet))
         {
-            if (NBTHelper.hasTag(event.item.getEntityItem(), WalletItem.fullWallet))
+            if (NBTHelper.hasTag(event.item.getEntityItem(), ItemWallet.fullWallet))
             {
-                NBTHelper.removeTag(event.item.getEntityItem(), WalletItem.fullWallet);
+                NBTHelper.removeTag(event.item.getEntityItem(), ItemWallet.fullWallet);
             }
-            NBTHelper.removeTag(event.item.getEntityItem(), WalletItem.openedWallet);
+            NBTHelper.removeTag(event.item.getEntityItem(), ItemWallet.openedWallet);
         }
     }
 
     @ForgeSubscribe
     public void onItemDrop(final ItemTossEvent event)
     {
-        if (NBTHelper.hasTag(event.entityItem.getEntityItem(), WalletItem.openedWallet))
+        if (NBTHelper.hasTag(event.entityItem.getEntityItem(), ItemWallet.openedWallet))
         {
-            if (NBTHelper.hasTag(event.entityItem.getEntityItem(), WalletItem.fullWallet))
+            if (NBTHelper.hasTag(event.entityItem.getEntityItem(), ItemWallet.fullWallet))
             {
-                NBTHelper.removeTag(event.entityItem.getEntityItem(), WalletItem.fullWallet);
+                NBTHelper.removeTag(event.entityItem.getEntityItem(), ItemWallet.fullWallet);
             }
-            NBTHelper.removeTag(event.entityItem.getEntityItem(), WalletItem.openedWallet);
+            NBTHelper.removeTag(event.entityItem.getEntityItem(), ItemWallet.openedWallet);
         }
     }
 
@@ -51,13 +51,13 @@ public final class ItemHandler
     {
         for (final EntityItem item : event.drops)
         {
-            if (NBTHelper.hasTag(item.getEntityItem(), WalletItem.openedWallet))
+            if (NBTHelper.hasTag(item.getEntityItem(), ItemWallet.openedWallet))
             {
-                if (NBTHelper.hasTag(item.getEntityItem(), WalletItem.fullWallet))
+                if (NBTHelper.hasTag(item.getEntityItem(), ItemWallet.fullWallet))
                 {
-                    NBTHelper.removeTag(item.getEntityItem(), WalletItem.fullWallet);
+                    NBTHelper.removeTag(item.getEntityItem(), ItemWallet.fullWallet);
                 }
-                NBTHelper.removeTag(item.getEntityItem(), WalletItem.openedWallet);
+                NBTHelper.removeTag(item.getEntityItem(), ItemWallet.openedWallet);
             }
         }
     }

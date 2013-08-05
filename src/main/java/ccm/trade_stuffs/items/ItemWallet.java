@@ -27,7 +27,7 @@ import ccm.trade_stuffs.utils.lib.Guis;
  * 
  * @author Captain_Shadows
  */
-public class WalletItem extends BaseItem
+public class ItemWallet extends ItemBase
 {
     public static final String openedWallet = "CCM.WALLET.OPEN";
     public static final String fullWallet   = "CCM.WALLET.FULL";
@@ -37,7 +37,7 @@ public class WalletItem extends BaseItem
     /**
      * @param id
      */
-    public WalletItem(final int id)
+    public ItemWallet(final int id)
     {
         super(id);
         setMaxDamage(0);

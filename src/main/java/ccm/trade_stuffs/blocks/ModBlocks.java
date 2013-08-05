@@ -16,15 +16,15 @@ import ccm.trade_stuffs.utils.lib.Properties;
 public class ModBlocks
 {
 
-    public static TradeStationBlock tradeStation;
-    public static BankBlock         bank;
-    public static SafeBlock         safe;
+    public static BlockTradeStation tradeStation;
+    public static BlockBank         bank;
+    public static BlockSafe         safe;
 
     public static void init()
     {
-        tradeStation = new TradeStationBlock(Properties.tradeStationID);
-        bank = new BankBlock(Properties.bankID);
-        safe = new SafeBlock(Properties.safeID);
+        tradeStation = new BlockTradeStation(Properties.tradeStationID);
+        bank = new BlockBank(Properties.bankID);
+        safe = new BlockSafe(Properties.safeID);
 
         GameRegistry.registerBlock(tradeStation, "CCM.TRADE.BLOCK");
         GameRegistry.registerBlock(bank, "CCM.BANK.BLOCK");

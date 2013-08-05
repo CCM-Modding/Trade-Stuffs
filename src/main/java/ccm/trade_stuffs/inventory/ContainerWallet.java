@@ -8,8 +8,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import ccm.trade_stuffs.inventory.slot.SlotInput;
-import ccm.trade_stuffs.items.CoinItem;
-import ccm.trade_stuffs.items.WalletItem;
+import ccm.trade_stuffs.items.ItemCoin;
+import ccm.trade_stuffs.items.ItemWallet;
 import ccm.trade_stuffs.utils.helper.NBTHelper;
 
 /**
@@ -34,12 +34,12 @@ public class ContainerWallet extends ContainerBase {
 		if(!player.worldObj.isRemote) {
 			for(final ItemStack stack : player.inventory.mainInventory) {
 				if(stack != null) {
-					if(NBTHelper.hasTag(stack, WalletItem.openedWallet)) {
-						if(NBTHelper.hasTag(stack, WalletItem.fullWallet)) {
-							NBTHelper.removeTag(stack, WalletItem.fullWallet);
+					if(NBTHelper.hasTag(stack, ItemWallet.openedWallet)) {
+						if(NBTHelper.hasTag(stack, ItemWallet.fullWallet)) {
+							NBTHelper.removeTag(stack, ItemWallet.fullWallet);
 						}
 						wallet.writeToNBT(stack);
-						NBTHelper.removeTag(stack, WalletItem.openedWallet);
+						NBTHelper.removeTag(stack, ItemWallet.openedWallet);
 					}
 				}
 			}
@@ -63,7 +63,7 @@ public class ContainerWallet extends ContainerBase {
 				if(!mergeItemStack(slotStack, 1, inventorySlots.size(), true)) {
 					return null;
 				}
-			} else if(slotStack.getItem() instanceof CoinItem) {
+			} else if(slotStack.getItem() instanceof ItemCoin) {
 				if(!mergeItemStack(slotStack, 0, wallet.getSizeInventory(), false)) {
 					return null;
 				}

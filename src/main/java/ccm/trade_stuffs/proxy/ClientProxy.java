@@ -22,34 +22,33 @@ import ccm.trade_stuffs.utils.lib.Guis;
  * 
  * @author Captain_Shadows
  */
-public class ClientProxy extends CommonProxy
-{
+public class ClientProxy extends CommonProxy {
 
-    @Override
-    public void initRenderingStuffs()
-    {
-        // TradeStationBlock.renderID = RenderingRegistry.getNextAvailableRenderId();
+	@Override
+	public void initRenderingStuffs() {
+		//TradeStationBlock.renderID = RenderingRegistry.getNextAvailableRenderId();
+		//MinecraftForgeClient.registerItemRenderer(Properties.tradeStationID, new TradeItemRenderer());
+	}
 
-        // MinecraftForgeClient.registerItemRenderer(Properties.tradeStationID, new TradeItemRenderer());
-    }
+	@Override
+	public void registerTileEntitys() {
+		super.registerTileEntitys();
+		//ClientRegistry.bindTileEntitySpecialRenderer(TradeStation.class, new TradeTileRenderer());
+	}
 
-    @Override
-    public void registerTileEntitys()
-    {
-        super.registerTileEntitys();
-
-        // ClientRegistry.bindTileEntitySpecialRenderer(TradeStation.class, new TradeTileRenderer());
-    }
-
-    @Override
-	public Object getClientGuiElement(final int ID, final EntityPlayer player, final World world, final int x, final int y, final int z) {
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		switch(ID) {
 		case Guis.GUI_TRADE:
 			return new GuiTrade(player.inventory, (TileEntityTradeStation) world.getBlockTileEntity(x, y, z));
-		case Guis.GUI_BANK:
-			final TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+		case Guis.GUI_BANK_COINS:
+			TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
 			tile.openChest();
-			return new GuiBank(player.inventory, tile.currentAccount.getCoins().setBank(tile), tile);
+			return new GuiBank(player.inventory, tile.currentAccount.getCoins().setBank(tile), tile, (byte) 0);
+		case Guis.GUI_BANK_ITEMS:
+			TileEntityBank tile2 = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+			tile2.openChest();
+			return new GuiBank(player.inventory, tile2.currentAccount.getItems().setBank(tile2), tile2, (byte) 1);
 		case Guis.GUI_WALLET:
 			return new GuiWallet(player.getCurrentEquippedItem(), player);
 		case Guis.GUI_SAFE:

@@ -46,26 +46,6 @@ public class PacketHandler implements IPacketHandler {
 		}
 	}
 	
-	private void handleServerPacket(int packetID, ByteArrayDataInput dat) {
-		switch(packetID) {
-		case 10:
-			handleBankTabUpdate(dat);
-			break;
-		case 11:
-			handleSafeTabUpdate(dat);
-			break;
-		case 12:
-			handleSafePassReset(dat);
-			break;
-		case 13:
-			handleSafePassNew(dat);
-			break;
-		case 14: 
-			handleSafePassGood(dat);
-			break;
-		}
-	}
-
 	private void handleTileEntityBank(World world, ByteArrayDataInput dat) {
 		int x = dat.readInt();
 		int y = dat.readInt();
@@ -93,6 +73,26 @@ public class PacketHandler implements IPacketHandler {
 		tile.setHasPass(dat.readBoolean());
 		tile.guiPassLock = dat.readBoolean();
 	}
+	
+	private void handleServerPacket(int packetID, ByteArrayDataInput dat) {
+		switch(packetID) {
+		case 10:
+			handleBankTabUpdate(dat);
+			break;
+		case 11:
+			handleSafeTabUpdate(dat);
+			break;
+		case 12:
+			handleSafePassReset(dat);
+			break;
+		case 13:
+			handleSafePassNew(dat);
+			break;
+		case 14: 
+			handleSafePassGood(dat);
+			break;
+		}
+	}
 
 	private void handleBankTabUpdate(ByteArrayDataInput dat) {
 		int x = dat.readInt();
@@ -106,7 +106,7 @@ public class PacketHandler implements IPacketHandler {
 			tile = new TileEntityBank();
 			worldServer.setBlockTileEntity(x, y, z, tile);
 		}
-		tile.setSelectedTab(dat.readByte());
+		tile.openTab(dat.readByte());
 	}
 
 	private void handleSafeTabUpdate(ByteArrayDataInput dat) {
@@ -121,7 +121,7 @@ public class PacketHandler implements IPacketHandler {
 			tile = new TileEntitySafe();
 			worldServer.setBlockTileEntity(x, y, z, tile);
 		}
-		//tile.setSelectedTab(dat.readByte());
+		//tile.openTab(dat.readByte());
 	}
 
 	private void handleSafePassReset(ByteArrayDataInput dat) {

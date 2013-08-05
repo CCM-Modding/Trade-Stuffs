@@ -39,70 +39,57 @@ import ccm.trade_stuffs.utils.registry.SackAdditionRegistry;
  * 
  * @author Captain_Shadows
  */
-@Mod(modid = Archive.MOD_ID,
-     name = Archive.MOD_NAME,
-     version = Archive.MOD_VERSION)
-@NetworkMod(clientSideRequired = true,
-            serverSideRequired = false,
-            packetHandler = PacketHandler.class,
-            channels = { "TradeStuffs" })
-public class TradeStuffs
-{
-    @Instance(Archive.MOD_ID)
-    public static TradeStuffs  instance;
+@Mod(modid = Archive.MOD_ID, name = Archive.MOD_NAME, version = Archive.MOD_VERSION)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {"TradeStuffs"})
+public class TradeStuffs {
+	@Instance(Archive.MOD_ID)
+	public static TradeStuffs instance;
 
-    @SidedProxy(serverSide = Locations.SERVER_PROXY,
-                clientSide = Locations.CLIENT_PROXY)
-    public static CommonProxy  proxy;
+	@SidedProxy(serverSide = Locations.SERVER_PROXY, clientSide = Locations.CLIENT_PROXY)
+	public static CommonProxy proxy;
 
-    public static CreativeTabs tradeStuffs = new TradeTab();
+	public static CreativeTabs tradeStuffs = new TradeTab();
 
-    public MinecraftServer     server;
+	public MinecraftServer server;
 
-    @EventHandler
-    public void preInit(final FMLPreInitializationEvent event)
-    {
-        Config.load(event);
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		Config.load(event);
 
-        ModBlocks.init();
+		ModBlocks.init();
+		ModItems.init();
 
-        ModItems.init();
+		CoinAdditionRegistry.addCoins();
+	}
 
-        CoinAdditionRegistry.addCoins();
-    }
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.registerTileEntitys();
+		proxy.initRenderingStuffs();
+		
+		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
-    @EventHandler
-    public void init(final FMLInitializationEvent event)
-    {
-        NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+		PlayerStalker playerStalker = new PlayerStalker();
 
-        proxy.registerTileEntitys();
+		MinecraftForge.EVENT_BUS.register(new ItemHandler());
+		MinecraftForge.EVENT_BUS.register(new EntityHandler());
+		MinecraftForge.EVENT_BUS.register(new WorldHandler());
+		MinecraftForge.EVENT_BUS.register(playerStalker);
+		
+		GameRegistry.registerPlayerTracker(playerStalker);
 
-        proxy.initRenderingStuffs();
+		CoinAdditionRegistry.addMobDrops();
+		SackAdditionRegistry.addMobDrops();
+	}
 
-        final PlayerStalker playerStalker = new PlayerStalker();
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+	}
 
-        MinecraftForge.EVENT_BUS.register(new ItemHandler());
-        MinecraftForge.EVENT_BUS.register(new EntityHandler());
-        MinecraftForge.EVENT_BUS.register(new WorldHandler());
-        MinecraftForge.EVENT_BUS.register(playerStalker);
+	@EventHandler
+	public void serverStarting(FMLServerStartingEvent event) {
+		server = event.getServer();
 
-        GameRegistry.registerPlayerTracker(playerStalker);
-
-        CoinAdditionRegistry.addMobDrops();
-
-        SackAdditionRegistry.addMobDrops();
-    }
-
-    @EventHandler
-    public void postInit(final FMLPostInitializationEvent event)
-    {}
-
-    @EventHandler
-    public void serverStarting(final FMLServerStartingEvent event)
-    {
-        server = event.getServer();
-
-        SaveHelper.init();
-    }
+		SaveHelper.init();
+	}
 }

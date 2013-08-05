@@ -23,13 +23,13 @@ import ccm.trade_stuffs.api.coins.CoinTypes;
  * 
  * @author Captain_Shadows
  */
-public class CoinItem extends BaseItem
+public class ItemCoin extends ItemBase
 {
 
     /**
      * @param id
      */
-    public CoinItem(final int id)
+    public ItemCoin(final int id)
     {
         super(id);
         setHasSubtypes(true);
