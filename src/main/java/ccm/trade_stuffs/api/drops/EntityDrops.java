@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -18,7 +20,10 @@ import net.minecraft.item.ItemStack;
  */
 public class EntityDrops
 {
-    private static final List<EntityDrop> drops = new ArrayList<EntityDrop>();
+    private static final List<EntityDrop>             drops   = new ArrayList<EntityDrop>();
+
+    public static final List<Class<EntityLivingBase>> allMobs = Arrays.asList(EntityCreeper.class,
+                                                                              EntitySkeleton.class);
 
     /**
      * Registers a EntityDrop
@@ -41,7 +46,7 @@ public class EntityDrops
     public static EntityDrop registerDrop(final String modID,
                                           final ItemStack item,
                                           final float dropRate,
-                                          final List<EntityLivingBase> entitys)
+                                          final List<Class<EntityLivingBase>> entitys)
     {
         final EntityDrop tmp = new EntityDrop(modID, item, dropRate, entitys);
         registerDrop(tmp);
@@ -61,7 +66,7 @@ public class EntityDrops
     public static EntityDrop registerDrop(final String modID,
                                           final ItemStack item,
                                           final float dropRate,
-                                          final EntityLivingBase[] entitys)
+                                          final Class<EntityLivingBase>[] entitys)
     {
         return registerDrop(modID, item, dropRate, Arrays.asList(entitys));
     }
@@ -79,12 +84,8 @@ public class EntityDrops
     public static EntityDrop registerDrop(final String modID,
                                           final ItemStack item,
                                           final float dropRate,
-                                          final EntityLivingBase entity)
+                                          final Class<EntityLivingBase> entity)
     {
-        return registerDrop(modID, item, dropRate, Arrays.asList(entity));
+        return registerDrop(modID, item, dropRate, entity);
     }
-
-    private static final String modID = "trade_stuffs";
-    public static final ItemStack COIN_SACK;
-    public static final EntityDrop COIN_SACK_DROP = registerDrop(modID, null, 0, null)
 }

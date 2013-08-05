@@ -8,6 +8,7 @@ import net.minecraft.item.ItemReed;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import ccm.trade_stuffs.api.drops.EntityDrops;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Properties;
 
@@ -29,6 +30,7 @@ public class ModItems
     {
         coin = new CoinItem(Properties.coinsID);
         wallet = new WalletItem(Properties.walletID);
+        EntityDrops.registerDrop(Archive.MOD_ID, new ItemStack(coin), );
 
         GameRegistry.registerItem(coin, "CCM.COIN", Archive.MOD_ID);
         GameRegistry.registerItem(wallet, "CCM.WALLET", Archive.MOD_ID);

@@ -20,20 +20,20 @@ public class EntityDrop
     /**
      * Name of the mod registering this coin
      */
-    private final String                 modID;
+    private final String                        modID;
 
     /**
      * Item to drop
      */
-    private final ItemStack              item;
+    private final ItemStack                     item;
     /**
      * The drop rate of it
      */
-    private final float                  dropRate;
+    private final float                         dropRate;
     /**
      * A list of entity's that should drop it
      */
-    private final List<EntityLivingBase> entitys;
+    private final List<Class<EntityLivingBase>> entitys;
 
     /**
      * @param modID
@@ -48,7 +48,7 @@ public class EntityDrop
     public EntityDrop(final String modID,
                       final ItemStack item,
                       final float dropRate,
-                      final List<EntityLivingBase> entitys)
+                      final List<Class<EntityLivingBase>> entitys)
     {
         this.modID = modID;
         this.item = item;
@@ -83,8 +83,8 @@ public class EntityDrop
     /**
      * @return A list of all EntityLivingBase that are allowed to drop this item
      */
-    public List<EntityLivingBase> entitys()
+    public List<Class<EntityLivingBase>> entitys()
     {
-        return new ArrayList<EntityLivingBase>(entitys);
+        return new ArrayList<Class<EntityLivingBase>>(entitys);
     }
 }
