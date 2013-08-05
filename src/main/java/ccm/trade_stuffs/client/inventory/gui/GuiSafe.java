@@ -51,6 +51,7 @@ public class GuiSafe extends GuiContainer {
 			dos.writeInt(safe.xCoord);
 			dos.writeInt(safe.yCoord);
 			dos.writeInt(safe.zCoord);
+			dos.writeInt(safe.worldObj.provider.dimensionId);
 
 			dos.writeByte(selectedTab);
 		} catch(final Exception e) {

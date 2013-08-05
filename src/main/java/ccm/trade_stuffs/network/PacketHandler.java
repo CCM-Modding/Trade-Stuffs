@@ -34,10 +34,10 @@ public class PacketHandler implements IPacketHandler {
 			break;
 		// CLIENT TO SERVER
 		case 10:
-			handleBankTabUpdate(world, dat);
+			handleBankTabUpdate(dat);
 			break;
 		case 11:
-			handleSafeTabUpdate(world, dat);
+			handleSafeTabUpdate(dat);
 			break;
 		case 12:
 			handleSafePassReset(dat);
@@ -79,30 +79,32 @@ public class PacketHandler implements IPacketHandler {
 		tile.guiPassLock = dat.readBoolean();
 	}
 
-	//TODO: needs fixing
-	private void handleBankTabUpdate(World world, ByteArrayDataInput dat) {
+	private void handleBankTabUpdate(ByteArrayDataInput dat) {
 		int x = dat.readInt();
 		int y = dat.readInt();
 		int z = dat.readInt();
+		int dim = dat.readInt();
 
-		TileEntityBank tile = (TileEntityBank) world.getBlockTileEntity(x, y, z);
+		WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
+		TileEntityBank tile = (TileEntityBank) worldServer.getBlockTileEntity(x, y, z);
 		if(tile == null) {
 			tile = new TileEntityBank();
-			world.setBlockTileEntity(x, y, z, tile);
+			worldServer.setBlockTileEntity(x, y, z, tile);
 		}
 		tile.setSelectedTab(dat.readByte());
 	}
 
-	//TODO: needs fixing
-	private void handleSafeTabUpdate(World world, ByteArrayDataInput dat) {
+	private void handleSafeTabUpdate(ByteArrayDataInput dat) {
 		int x = dat.readInt();
 		int y = dat.readInt();
 		int z = dat.readInt();
-
-		TileEntitySafe tile = (TileEntitySafe) world.getBlockTileEntity(x, y, z);
+		int dim = dat.readInt();
+		
+		WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
+		TileEntitySafe tile = (TileEntitySafe) worldServer.getBlockTileEntity(x, y, z);
 		if(tile == null) {
 			tile = new TileEntitySafe();
-			world.setBlockTileEntity(x, y, z, tile);
+			worldServer.setBlockTileEntity(x, y, z, tile);
 		}
 		//tile.setSelectedTab(dat.readByte());
 	}

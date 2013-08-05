@@ -75,6 +75,7 @@ public class GuiBank extends GuiContainer {
 			dos.writeInt(bank.xCoord);
 			dos.writeInt(bank.yCoord);
 			dos.writeInt(bank.zCoord);
+			dos.writeInt(bank.worldObj.provider.dimensionId);
 
 			dos.writeByte(selectedTab);
 		} catch(final Exception e) {
