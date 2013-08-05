@@ -122,7 +122,7 @@ public class EntityDropHandler
 
             if (rand < dropRate)
             {
-                entity.dropItem(item.itemID, amount);
+                entity.entityDropItem(new ItemStack(item.itemID, amount, item.getItemDamage()), 0.0F);
             }
         }
     }
