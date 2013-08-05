@@ -11,6 +11,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -53,6 +54,16 @@ public class GuiBank extends GuiContainer {
 		ySize = 238;
 		allowUserInput = false;
 		selectedTab = tab;
+	}
+	
+	@Override
+	protected void drawSlotInventory(Slot slot) {
+		super.drawSlotInventory(slot);
+		if(slot.getStack() == null) {
+			System.out.println(slot.slotNumber + ": null");
+		} else {
+			System.out.println(slot.slotNumber + ": " + slot.getStack().itemID + ":" + slot.getStack().getItemDamage() + " " + slot.getStack().stackSize);
+		}
 	}
 
 	@Override

@@ -69,6 +69,8 @@ public class TileEntityBank extends TileEntity {
 			Bank.addAcount(new BankAccount(playerUsing));
 		}
 		currentAccount = Bank.getAccount(playerUsing);
+		countCoins();
+		countItems();
 	}
 
 	public void closeChest() {
@@ -96,9 +98,6 @@ public class TileEntityBank extends TileEntity {
 	public void openTab(byte tab) {
 		selectedTab = tab;
 		EntityPlayer player = worldObj.getPlayerEntityByName(playerUsing);
-		if(player == null) {
-			System.out.println("PLAYER IS NULL");
-		}
 		player.closeScreen();
 		setPlayerUsing(player.username);
         setInUse(true);
