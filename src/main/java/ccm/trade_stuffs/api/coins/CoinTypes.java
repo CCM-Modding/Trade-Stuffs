@@ -3,13 +3,11 @@
  */
 package ccm.trade_stuffs.api.coins;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemCloth;
 import net.minecraft.item.ItemStack;
-
-import ccm.trade_stuffs.items.CoinItem;
 
 /**
  * CoinTypes
@@ -21,7 +19,7 @@ import ccm.trade_stuffs.items.CoinItem;
  * 
  * @author Captain_Shadows
  */
-public final class CoinTypes implements Serializable
+public final class CoinTypes
 {
     /**
      * long, serialVersionUID
@@ -60,6 +58,11 @@ public final class CoinTypes implements Serializable
         types.add(type);
     }
 
+    /**
+     * @param type
+     *            The coin type to check
+     * @return true if and ONLY if it is the Highest value registered
+     */
     public static boolean isHigest(final CoinType type)
     {
         final int val = type.getValue();
@@ -73,24 +76,26 @@ public final class CoinTypes implements Serializable
         return true;
     }
 
+    /**
+     * @param type
+     *            The type who's value you want to convert
+     * @param wantedType
+     *            The type to which you want to convert it to
+     * @return If the value of the first argument is NOT bigger than the second it returns 1
+     *         <p>
+     *         Other wise it returns {@code wantedType.value / type.value}
+     */
     public static int getReleatedValue(final CoinType type, final CoinType wantedType)
     {
-        if (wantedType.equals(COPPER))
+        final int typeValue = type.getValue();
+        final int otherValue = wantedType.getValue();
+        if (typeValue > otherValue)
         {
-            return type.getValue();
+            return otherValue / typeValue;
         }
         else
         {
-            final int typeValue = type.getValue();
-            final int otherValue = wantedType.getValue();
-            if (typeValue > otherValue)
-            {
-                return otherValue / typeValue;
-            }
-            else
-            {
-                return 1;
-            }
+            return 1;
         }
     }
 
@@ -104,9 +109,18 @@ public final class CoinTypes implements Serializable
 
     public static CoinType getCoinType(final ItemStack stack)
     {
-        if (stack.getItem() instanceof CoinItem)
+        Class<?> coinClazz = null;
+        try
         {
-            return getTypes().get(stack.getItemDamage());
+            coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
+        } catch (final ClassNotFoundException e)
+        {
+            System.err.println("You need Trade Stuffs for you to see the coins!");
+            e.printStackTrace();
+        }
+        if (stack.getItem() instanceof ItemCloth)
+        {
+            return getCoinType(stack.getItemDamage());
         }
         return null;
     }

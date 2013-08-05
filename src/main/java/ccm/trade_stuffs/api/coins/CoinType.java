@@ -112,6 +112,9 @@ public final class CoinType
         return "coin_" + name;
     }
 
+    /**
+     * @return A Title Cased version of the Name
+     */
     public String getTypeName()
     {
         return JavaHelper.tileCase(name);
