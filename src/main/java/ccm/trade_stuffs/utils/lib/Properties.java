@@ -3,13 +3,15 @@
  */
 package ccm.trade_stuffs.utils.lib;
 
+import ccm.nucleum_omnium.base.BaseNIC;
+
 /**
  * Properties
  * <p>
  * 
  * @author Captain_Shadows
  */
-public class Properties
+public final class Properties extends BaseNIC
 {
 
     public static int    tradeStationID;

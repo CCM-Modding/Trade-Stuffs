@@ -7,10 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import ccm.nucleum_omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.inventory.slot.SlotCoins;
 import ccm.trade_stuffs.items.ItemCoin;
-import ccm.trade_stuffs.items.ItemWallet;
-import ccm.trade_stuffs.utils.helper.NBTHelper;
+import ccm.trade_stuffs.utils.lib.NBTConstants;
 
 /**
  * ContainerWallet
@@ -40,14 +40,14 @@ public class ContainerWallet extends ContainerBase
             {
                 if (stack != null)
                 {
-                    if (NBTHelper.hasTag(stack, ItemWallet.openedWallet))
+                    if (NBTHelper.hasTag(stack, NBTConstants.NBT_WALLET_OPEN))
                     {
-                        if (NBTHelper.hasTag(stack, ItemWallet.fullWallet))
+                        if (NBTHelper.hasTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
                         {
-                            NBTHelper.removeTag(stack, ItemWallet.fullWallet);
+                            NBTHelper.removeTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL);
                         }
                         wallet.writeToNBT(stack);
-                        NBTHelper.removeTag(stack, ItemWallet.openedWallet);
+                        NBTHelper.removeTag(stack, NBTConstants.NBT_WALLET_OPEN);
                     }
                 }
             }

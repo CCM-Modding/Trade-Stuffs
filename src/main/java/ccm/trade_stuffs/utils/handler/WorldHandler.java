@@ -1,13 +1,15 @@
 package ccm.trade_stuffs.utils.handler;
 
+import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_FILE_BANK;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 
+import ccm.nucleum_omnium.utils.helper.DataHelper;
+import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.bank.Bank;
-import ccm.trade_stuffs.utils.helper.SaveHelper;
 
-public class WorldHandler
+public final class WorldHandler
 {
 
     @ForgeSubscribe
@@ -17,7 +19,7 @@ public class WorldHandler
         {
             return;
         }
-        Bank.readFromNBT(SaveHelper.readData("bank"));
+        Bank.readFromNBT(DataHelper.readData(TradeStuffs.instance, NBT_FILE_BANK));
     }
 
     @ForgeSubscribe
@@ -29,6 +31,6 @@ public class WorldHandler
         }
         final NBTTagCompound nbt = new NBTTagCompound();
         Bank.writeToNBT(nbt);
-        SaveHelper.saveData("bank", nbt);
+        DataHelper.saveData(TradeStuffs.instance, NBT_FILE_BANK, nbt);
     }
 }

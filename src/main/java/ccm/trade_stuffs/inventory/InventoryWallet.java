@@ -10,11 +10,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import ccm.nucleum_omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.api.coins.CoinType;
 import ccm.trade_stuffs.api.coins.CoinTypes;
-import ccm.trade_stuffs.items.ItemWallet;
 import ccm.trade_stuffs.items.ModItems;
-import ccm.trade_stuffs.utils.helper.NBTHelper;
+import ccm.trade_stuffs.utils.lib.NBTConstants;
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -214,9 +214,9 @@ public class InventoryWallet implements IInventory
         coins = new HashMap<CoinType, Integer>();
         for (final CoinType coinType : CoinTypes.getTypes())
         {
-            if (nbt.hasKey("COIN-" + coinType.getName()))
+            if (nbt.hasKey("CCM.COIN-" + coinType.getName()))
             {
-                coins.put(coinType, nbt.getInteger("COIN-" + coinType.getName()));
+                coins.put(coinType, nbt.getInteger("CCM.COIN-" + coinType.getName()));
             }
         }
         countCoinBalance();
@@ -228,13 +228,13 @@ public class InventoryWallet implements IInventory
         final NBTTagCompound nbt = stack.getTagCompound();
         for (final CoinType coinType : coins.keySet())
         {
-            nbt.setInteger("COIN-" + coinType.getName(), coins.get(coinType));
+            nbt.setInteger("CCM.COIN-" + coinType.getName(), coins.get(coinType));
         }
     }
 
     public void setHasMoney(final boolean has)
     {
-        NBTHelper.setBoolean(wallet, ItemWallet.fullWallet, has);
+        NBTHelper.setBoolean(wallet, NBTConstants.NBT_WALLET_OPEN_FULL, has);
     }
 
     @Override

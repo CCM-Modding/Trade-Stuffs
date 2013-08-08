@@ -12,6 +12,8 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
 import ccm.trade_stuffs.inventory.InventoryBaseTile;
+import ccm.trade_stuffs.utils.lib.Archive;
+import ccm.trade_stuffs.utils.lib.NBTConstants;
 
 /**
  * Safe
@@ -106,7 +108,7 @@ public class TileEntitySafe extends InventoryBaseTile
             e.printStackTrace();
         }
         final Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "TradeStuffs";
+        packet.channel = Archive.MOD_CHANNEL;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
         packet.isChunkDataPacket = true;
@@ -117,9 +119,9 @@ public class TileEntitySafe extends InventoryBaseTile
     public void readFromNBT(final NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        pass = nbt.getInteger("Password");
-        hasPass = nbt.getBoolean("HasPass");
-        safeName = nbt.getString("SafeName");
+        pass = nbt.getInteger(NBTConstants.NBT_SAFE_PASSWORD);
+        hasPass = nbt.getBoolean(NBTConstants.NBT_SAFE_HAS_PASSWORD);
+        safeName = nbt.getString(NBTConstants.NBT_SAFE_NAME);
         countItems();
     }
 
@@ -127,9 +129,9 @@ public class TileEntitySafe extends InventoryBaseTile
     public void writeToNBT(final NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setInteger("Password", pass);
-        nbt.setBoolean("HasPass", hasPass);
-        nbt.setString("SafeName", safeName);
+        nbt.setInteger(NBTConstants.NBT_SAFE_PASSWORD, pass);
+        nbt.setBoolean(NBTConstants.NBT_SAFE_HAS_PASSWORD, hasPass);
+        nbt.setString(NBTConstants.NBT_SAFE_NAME, safeName);
     }
 
     @Override

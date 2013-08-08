@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.nucleum_omnium.utils.helper.InventoryHelper;
 
 /**
  * InventoryBase
@@ -46,7 +46,7 @@ public abstract class InventoryBase implements IInventory
     @Override
     public ItemStack decrStackSize(final int index, final int amount)
     {
-        return InventoryHelper.decreaseStackSize(this, index, amount);
+        return InventoryHelper.decrStackSize(this, index, amount);
     }
 
     String slot = "CCM.SLOT";

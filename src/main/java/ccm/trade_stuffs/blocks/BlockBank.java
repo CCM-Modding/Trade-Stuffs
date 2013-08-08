@@ -41,7 +41,7 @@ public class BlockBank extends BlockContainer
     public BlockBank(final int id)
     {
         super(id, Material.iron);
-        setCreativeTab(TradeStuffs.tradeStuffs);
+        setCreativeTab(TradeStuffs.tab);
         setUnlocalizedName(Archive.MOD_ID_BLOCK + "bank");
         setResistance(6000000.0F);
         setStepSound(soundStoneFootstep);

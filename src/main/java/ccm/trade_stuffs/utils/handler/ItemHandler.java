@@ -3,14 +3,16 @@
  */
 package ccm.trade_stuffs.utils.handler;
 
+import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_WALLET_OPEN;
+import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_WALLET_OPEN_FULL;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 
-import ccm.trade_stuffs.items.ItemWallet;
-import ccm.trade_stuffs.utils.helper.NBTHelper;
+import ccm.nucleum_omnium.utils.helper.NBTHelper;
 
 /**
  * ItemEventHandler
@@ -23,26 +25,26 @@ public final class ItemHandler
     @ForgeSubscribe
     public void onItemPick(final EntityItemPickupEvent event)
     {
-        if (NBTHelper.hasTag(event.item.getEntityItem(), ItemWallet.openedWallet))
+        if (NBTHelper.hasTag(event.item.getEntityItem(), NBT_WALLET_OPEN))
         {
-            if (NBTHelper.hasTag(event.item.getEntityItem(), ItemWallet.fullWallet))
+            if (NBTHelper.hasTag(event.item.getEntityItem(), NBT_WALLET_OPEN_FULL))
             {
-                NBTHelper.removeTag(event.item.getEntityItem(), ItemWallet.fullWallet);
+                NBTHelper.removeTag(event.item.getEntityItem(), NBT_WALLET_OPEN_FULL);
             }
-            NBTHelper.removeTag(event.item.getEntityItem(), ItemWallet.openedWallet);
+            NBTHelper.removeTag(event.item.getEntityItem(), NBT_WALLET_OPEN);
         }
     }
 
     @ForgeSubscribe
     public void onItemDrop(final ItemTossEvent event)
     {
-        if (NBTHelper.hasTag(event.entityItem.getEntityItem(), ItemWallet.openedWallet))
+        if (NBTHelper.hasTag(event.entityItem.getEntityItem(), NBT_WALLET_OPEN))
         {
-            if (NBTHelper.hasTag(event.entityItem.getEntityItem(), ItemWallet.fullWallet))
+            if (NBTHelper.hasTag(event.entityItem.getEntityItem(), NBT_WALLET_OPEN_FULL))
             {
-                NBTHelper.removeTag(event.entityItem.getEntityItem(), ItemWallet.fullWallet);
+                NBTHelper.removeTag(event.entityItem.getEntityItem(), NBT_WALLET_OPEN_FULL);
             }
-            NBTHelper.removeTag(event.entityItem.getEntityItem(), ItemWallet.openedWallet);
+            NBTHelper.removeTag(event.entityItem.getEntityItem(), NBT_WALLET_OPEN);
         }
     }
 
@@ -51,13 +53,13 @@ public final class ItemHandler
     {
         for (final EntityItem item : event.drops)
         {
-            if (NBTHelper.hasTag(item.getEntityItem(), ItemWallet.openedWallet))
+            if (NBTHelper.hasTag(item.getEntityItem(), NBT_WALLET_OPEN))
             {
-                if (NBTHelper.hasTag(item.getEntityItem(), ItemWallet.fullWallet))
+                if (NBTHelper.hasTag(item.getEntityItem(), NBT_WALLET_OPEN_FULL))
                 {
-                    NBTHelper.removeTag(item.getEntityItem(), ItemWallet.fullWallet);
+                    NBTHelper.removeTag(item.getEntityItem(), NBT_WALLET_OPEN_FULL);
                 }
-                NBTHelper.removeTag(item.getEntityItem(), ItemWallet.openedWallet);
+                NBTHelper.removeTag(item.getEntityItem(), NBT_WALLET_OPEN);
             }
         }
     }

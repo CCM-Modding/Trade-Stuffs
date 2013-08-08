@@ -22,6 +22,6 @@ public class ItemBase extends Item
     public ItemBase(final int id)
     {
         super(id - 256);
-        setCreativeTab(TradeStuffs.tradeStuffs);
+        setCreativeTab(TradeStuffs.tab);
     }
 }

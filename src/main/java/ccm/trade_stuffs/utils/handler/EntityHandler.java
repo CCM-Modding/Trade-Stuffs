@@ -16,7 +16,7 @@ import ccm.trade_stuffs.api.drops.EntityDrops;
  * 
  * @author Captain_Shadows
  */
-public class EntityHandler
+public final class EntityHandler
 {
     @ForgeSubscribe
     public void onEntityLivingDeath(final LivingDeathEvent event)

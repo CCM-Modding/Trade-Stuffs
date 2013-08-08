@@ -3,13 +3,15 @@
  */
 package ccm.trade_stuffs.utils.lib;
 
+import ccm.nucleum_omnium.base.BaseNIC;
+
 /**
  * Locations
  * <p>
  * 
  * @author Captain_Shadows
  */
-public class Locations
+public class Locations extends BaseNIC
 {
 
     public static final String PROXY        = "ccm.trade_stuffs.proxy.";

@@ -44,7 +44,7 @@ public class BlockSafe extends BlockContainer
     public BlockSafe(final int id)
     {
         super(id, Material.iron);
-        setCreativeTab(TradeStuffs.tradeStuffs);
+        setCreativeTab(TradeStuffs.tab);
         setUnlocalizedName(Archive.MOD_ID_BLOCK + "safe");
         setHardness(40);
         setResistance(1000);

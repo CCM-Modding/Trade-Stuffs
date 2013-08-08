@@ -3,6 +3,9 @@
  */
 package ccm.trade_stuffs.utils.handler;
 
+import static ccm.trade_stuffs.utils.lib.Archive.MOD_ID;
+import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_PLAYER;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.IPlayerTracker;
 
 import ccm.trade_stuffs.items.ModItems;
-import ccm.trade_stuffs.utils.lib.Archive;
 
 /**
  * Tracker
@@ -18,22 +20,20 @@ import ccm.trade_stuffs.utils.lib.Archive;
  * 
  * @author Captain_Shadows
  */
-public class PlayerStalker implements IPlayerTracker
+public final class PlayerStalker implements IPlayerTracker
 {
-    public static final String PLAYER_NBT = "CCM.PLAYER.WALLET";
 
     @Override
     public void onPlayerLogin(final EntityPlayer player)
     {
         final NBTTagCompound tag = player.getEntityData();
-        System.out.println(tag);
-        if (!tag.hasKey(Archive.MOD_ID))
+        if (!tag.hasKey(MOD_ID))
         {
-            tag.setCompoundTag(Archive.MOD_ID, new NBTTagCompound());
+            tag.setCompoundTag(MOD_ID, new NBTTagCompound());
         }
-        if (!tag.getCompoundTag(Archive.MOD_ID).getBoolean(PLAYER_NBT))
+        if (!tag.getCompoundTag(MOD_ID).getBoolean(NBT_PLAYER))
         {
-            tag.getCompoundTag(Archive.MOD_ID).setBoolean(PLAYER_NBT, true);
+            tag.getCompoundTag(MOD_ID).setBoolean(NBT_PLAYER, true);
             player.inventory.addItemStackToInventory(new ItemStack(ModItems.wallet));
         }
     }

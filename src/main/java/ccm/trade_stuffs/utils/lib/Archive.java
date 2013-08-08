@@ -3,16 +3,20 @@
  */
 package ccm.trade_stuffs.utils.lib;
 
+import ccm.nucleum_omnium.base.BaseNIC;
+
 /**
  * Archive
  * <p>
  * 
  * @author Captain_Shadows
  */
-public final class Archive
+public final class Archive extends BaseNIC
 {
 
     public static final String MOD_ID       = "trade_stuffs";
+
+    public static final String MOD_CHANNEL  = "CCM";
 
     public static final String MOD_ID_BLOCK = "trade_stuffs:";
 

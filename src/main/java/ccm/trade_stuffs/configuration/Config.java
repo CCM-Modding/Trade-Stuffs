@@ -3,10 +3,8 @@
  */
 package ccm.trade_stuffs.configuration;
 
-import net.minecraftforge.common.Configuration;
-
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-
+import ccm.nucleum_omnium.configuration.AdvConfiguration;
+import ccm.nucleum_omnium.utils.handler.config.IConfig;
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -15,46 +13,65 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public final class Config
+public final class Config implements IConfig
 {
+    AdvConfiguration config;
 
-    public static void load(final FMLPreInitializationEvent event)
+    @Override
+    public AdvConfiguration getConfiguration()
     {
-        final Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-        config.load();
+        return config;
+    }
 
+    @Override
+    public IConfig setConfiguration(final AdvConfiguration config)
+    {
+        this.config = config;
+        return this;
+    }
+
+    @Override
+    public void init()
+    {
+        loadItemsBlocks();
+
+        loadCoinDrops();
+        loadBagDrops();
+        loadRandom();
+    }
+
+    private void loadItemsBlocks()
+    {
         Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
         Properties.bankID = config.getBlock("Bank", 401).getInt();
         Properties.safeID = config.getBlock("Safe", 402).getInt();
         Properties.coinsID = config.getItem("Coins", 4000).getInt();
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
+    }
 
-        String cat = "RandomConfigs";
-        config.addCustomCategoryComment(cat, "Random Configurations");
-        Properties.WALLET_STACKS_PER_COIN = config.get(cat,
-                                                       "Maximum number of stacks per type of coin inside of the wallet",
-                                                       8)
-                                                  .getInt();
-        // Changes the max stacks per coin type.
-        Properties.BANK_STACKS_PER_COIN = config.get(cat,
-                                                     "Maximum number of stacks per type of coin inside of the Bank",
-                                                     ((Integer.MAX_VALUE + 1) / 64) - 64)
-                                                .getInt();
-        // Changes the amount of items in each stack.
-        Properties.BANK_ITEMS_PER_ITEM = config.get(cat, "Maximum number of items per stack", 256).getInt();
-
-        cat = "CoinDrops";
+    private void loadCoinDrops()
+    {
+        final String cat = "CoinDrops";
         config.addCustomCategoryComment(cat,
                                         "Coin Type,Drop Chance, Min/Max Drops are all editable here per mob. " + "Coin Type (Type of coin)"
-                                                + "	0 = Copper (Value of 1)"
-                                                + "	1 = Silver (Value of 25)"
-                                                + "	2 = Gold (Value of 50)"
-                                                + "	3 = Platnum (Value of 100)"
+                                                + "     0 = Copper (Value of 1)"
+                                                + "     1 = Silver (Value of 25)"
+                                                + "     2 = Gold (Value of 50)"
+                                                + "     3 = Platnum (Value of 100)"
                                                 + "Drop Chance (Keep in 0.00 Format unless set to 1!)"
                                                 + "Minimum Drop (The most amount of coins one mob can drop.)"
                                                 + "Maximum Drop (The least amount of coins one mob can drop.)");
 
-        cat = "CoinDrops.Passive";
+        loadPassive();
+
+        loadHostile();
+
+        loadBoss();
+    }
+
+    private void loadPassive()
+    {
+        String cat = "CoinDrops.Passive";
         config.addCustomCategoryComment(cat, "Values For Passive Mobs");
 
         cat = "CoinDrops.Passive.Villager";
@@ -122,8 +139,11 @@ public final class Config
         Properties.COIN_PIG_DROP_CHANCE = config.get(cat, "Coin_Drop_Chance", 0.05).getDouble(0.05);
         Properties.COIN_PIG_MIN_DROP = config.get(cat, "Coin_Minimum_Drop", 1).getInt();
         Properties.COIN_PIG_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 5).getInt();
+    }
 
-        cat = "CoinDrops.Hostile";
+    private void loadHostile()
+    {
+        String cat = "CoinDrops.Hostile";
         config.addCustomCategoryComment(cat, "Values For Hostile Mobs");
 
         cat = "CoinDrops.Hostile.Witch";
@@ -209,8 +229,11 @@ public final class Config
         Properties.COIN_CREEPER_DROP_CHANCE = config.get(cat, "Coin_Drop_Chance", 0.40).getDouble(0.40);
         Properties.COIN_CREEPER_MIN_DROP = config.get(cat, "Coin_Minimum_Drop", 15).getInt();
         Properties.COIN_CREEPER_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 30).getInt();
+    }
 
-        cat = "CoinDrops.Boss";
+    private void loadBoss()
+    {
+        String cat = "CoinDrops.Boss";
         config.addCustomCategoryComment(cat, "Values for Boss Mobs");
 
         cat = "CoinDrops.Boss.EnderDragon";
@@ -224,8 +247,11 @@ public final class Config
         Properties.COIN_WITHER_DROP_CHANCE = config.get(cat, "Coin_Drop_Chance", 0.75).getDouble(0.75);
         Properties.COIN_WITHER_MIN_DROP = config.get(cat, "Coin_Minimum_Drop", 75).getInt();
         Properties.COIN_WITHER_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 225).getInt();
+    }
 
-        cat = "BagDrops";
+    private void loadBagDrops()
+    {
+        String cat = "BagDrops";
         config.addCustomCategoryComment(cat,
                                         "All of the Bag Drops are set in this category. (Boss mobs only. Unless someone else changes it.) If you want a boss to drop a garenteed drop you need to use the same numbers in min/max and one in the chance.");
         // List of all the config options for Bag drops.
@@ -239,10 +265,22 @@ public final class Config
         Properties.WALLET_WITHER_DROP_CHANCE = config.get(cat, "Bag_Drop_Chance", 0.50).getDouble(0.50);
         Properties.WALLET_WITHER_MIN_DROP = config.get(cat, "Bag_Minimum_Drop", 1).getInt();
         Properties.WALLET_WITHER_MAX_DROP = config.get(cat, "Bag_Maximum_Drop", 1).getInt();
+    }
 
-        if (config.hasChanged())
-        {
-            config.save();
-        }
+    private void loadRandom()
+    {
+        final String cat = "RandomConfigs";
+        config.addCustomCategoryComment(cat, "Random Configurations");
+        Properties.WALLET_STACKS_PER_COIN = config.get(cat,
+                                                       "Maximum number of stacks per type of coin inside of the wallet",
+                                                       8)
+                                                  .getInt();
+        // Changes the max stacks per coin type.
+        Properties.BANK_STACKS_PER_COIN = config.get(cat,
+                                                     "Maximum number of stacks per type of coin inside of the Bank",
+                                                     ((Integer.MAX_VALUE + 1) / 64) - 64)
+                                                .getInt();
+        // Changes the amount of items in each stack.
+        Properties.BANK_ITEMS_PER_ITEM = config.get(cat, "Maximum number of items per stack", 256).getInt();
     }
 }

@@ -17,7 +17,8 @@ import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
-import ccm.trade_stuffs.utils.lib.Guis;
+import ccm.trade_stuffs.utils.lib.Archive;
+import ccm.trade_stuffs.utils.lib.NBTConstants;
 
 /**
  * Bank
@@ -56,7 +57,7 @@ public class TileEntityBank extends TileEntity
             e.printStackTrace();
         }
         final Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "TradeStuffs";
+        packet.channel = Archive.MOD_CHANNEL;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
         packet.isChunkDataPacket = true;
@@ -169,13 +170,13 @@ public class TileEntityBank extends TileEntity
     public void readFromNBT(final NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        bankName = nbt.getString("BankName");
+        bankName = nbt.getString(NBTConstants.NBT_BANK_NAME);
     }
 
     @Override
     public void writeToNBT(final NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setString("BankName", bankName);
+        nbt.setString(NBTConstants.NBT_BANK_NAME, bankName);
     }
 }

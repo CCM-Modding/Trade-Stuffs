@@ -12,7 +12,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.nucleum_omnium.utils.helper.InventoryHelper;
 
 /**
  * BaseInventory
@@ -39,7 +39,7 @@ public abstract class BaseInventory extends TileEntity implements IInventory
     @Override
     public ItemStack decrStackSize(final int slot, final int amount)
     {
-        return InventoryHelper.decreaseStackSize(this, slot, amount);
+        return InventoryHelper.decrStackSize(this, slot, amount);
     }
 
     @Override

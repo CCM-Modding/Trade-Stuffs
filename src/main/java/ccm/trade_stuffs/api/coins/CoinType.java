@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-import ccm.trade_stuffs.utils.helper.java.JavaHelper;
+import ccm.nucleum_omnium.utils.helper.JavaHelper;
 
 /**
  * CoinType

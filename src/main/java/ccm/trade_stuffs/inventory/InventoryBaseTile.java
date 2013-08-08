@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-import ccm.trade_stuffs.utils.helper.InventoryHelper;
+import ccm.nucleum_omnium.utils.helper.InventoryHelper;
 
 public abstract class InventoryBaseTile extends TileEntity implements IInventory
 {
@@ -39,7 +39,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
     @Override
     public ItemStack decrStackSize(final int index, final int amount)
     {
-        return InventoryHelper.decreaseStackSize(this, index, amount);
+        return InventoryHelper.decrStackSize(this, index, amount);
     }
 
     String slot = "CCM.SLOT";
