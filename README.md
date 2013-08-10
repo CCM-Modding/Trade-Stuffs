@@ -14,7 +14,7 @@ IMPORTANT: Please report any issues you have, there might be some problems with 
 ***
 #### Prerequisites
 1. **WARNING:  Make sure you know EXACTLY what you're doing!  It's not any of our faults if your OS crashes, becomes corrupted, etc.**
-2. Download and install the Java JDK [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).  Scroll down, accept the `Oracle Binary Code License Agreement for Java SE`, and download the one pertaining to your OS (necessary for MCP).
+2. Download and install the Java JDK [here](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html).  Scroll down, accept the `Oracle Binary Code License Agreement for Java SE`, and download the one pertaining to your OS (necessary for GMCP).
   * Go to `Control Panel\System and Security\System`, and click on `Advanced System Settings` on the left-hand side.
 	* Click on `Environment Variables`.
   * Under `System Variables`, click `New`.
@@ -27,7 +27,7 @@ IMPORTANT: Please report any issues you have, there might be some problems with 
   * Again, go to `Environment Variables` just like you did for the Java JDK.
   * Under `System Variables`, click `New`.
   * For `Variable Name`, input `GRADLE_HOME`.
-  * For `Variable Value`, input `C:\Gradle\gradle-1.7-rc-2` (or your Gadle directory\gradle-1.7-rc-2).
+  * For `Variable Value`, input `C:\Gradle\gradle-1.7-rc-2` (or your Gradle directory\gradle-1.7-rc-2).
   * Scroll down to `Path`, and double-click on it.
   * Append `;C:\gradle\bin` exactly as shown to the end (or your Gadle directory\gradle-1.7-rc-2\bin).
 4. Download and install Github [here](http://windows.github.com/) (Windows) or [here](http://mac.github.com/) (Mac OS X 10.7+).  For Linux, you can use a different Git application.  NOTE:  Github For Windows/Mac is OPTIONAL.  You can use your own Git application.
