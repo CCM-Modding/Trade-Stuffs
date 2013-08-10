@@ -39,7 +39,7 @@ IMPORTANT: Please report any issues you have, there might be some problems with 
 1. Open a Command Prompt
 2. Type `cd PATH_TO_Modjam` which is the path to were ever you cloned Trade Stuffs into
 3. Press Enter
-4. Type `gradle build`
+4. Type `gradle clean build`
 5. Press Enter
 6. Wait for everything to download and set up
 7. Enjoy!
