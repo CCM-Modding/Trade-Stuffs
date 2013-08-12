@@ -5,7 +5,7 @@ package ccm.trade_stuffs.api.drops;
 
 import java.util.Random;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -20,28 +20,28 @@ public final class EntityDropHandler
     /**
      * Name of the mod registering this coin
      */
-    private final String                            modID;
+    private final String                  modID;
 
     /**
      * Item to drop
      */
-    private final ItemStack                         item;
+    private final ItemStack               item;
     /**
      * The drop rate of it
      */
-    private final float                             dropRate;
+    private final float                   dropRate;
     /**
      * The Maximum to drop
      */
-    private final int                               maxValue;
+    private final int                     maxValue;
     /**
      * The Minimum to drop
      */
-    private final int                               minValue;
+    private final int                     minValue;
     /**
      * The entity that should drop it
      */
-    private final Class<? extends EntityLivingBase> entity;
+    private final Class<? extends Entity> entity;
 
     /**
      * @param modID
@@ -62,7 +62,7 @@ public final class EntityDropHandler
                              final float dropRate,
                              final int minValue,
                              final int maxValue,
-                             final Class<? extends EntityLivingBase> entity)
+                             final Class<? extends Entity> entity)
     {
         this.modID = modID;
         this.item = item;
@@ -99,7 +99,7 @@ public final class EntityDropHandler
     /**
      * @return The entity that should drop it
      */
-    public Class<? extends EntityLivingBase> getEntity()
+    public Class<? extends Entity> getEntity()
     {
         return entity;
     }
@@ -109,7 +109,7 @@ public final class EntityDropHandler
      *            the entity class to check
      * @return true if and ONLY if the entity class is the same as the class that this Handler "uses"
      */
-    public boolean shouldDrop(final Class<? extends EntityLivingBase> entity)
+    public boolean shouldDrop(final Class<? extends Entity> entity)
     {
         return entity.equals(this.entity);
     }
@@ -120,7 +120,7 @@ public final class EntityDropHandler
      * @param entity
      *            Drops the Item
      */
-    public void dropItem(final EntityLivingBase entity)
+    public void dropItem(final Entity entity)
     {
         if (shouldDrop(entity.getClass()))
         {

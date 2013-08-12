@@ -21,7 +21,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.trade_stuffs.inventory.ContainerEmpty;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GUITrade

@@ -6,7 +6,7 @@ package ccm.trade_stuffs.api.drops;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -45,7 +45,7 @@ public class EntityDrops
                                                  final float dropRate,
                                                  final int minValue,
                                                  final int maxValue,
-                                                 final Class<? extends EntityLivingBase> entity)
+                                                 final Class<? extends Entity> entity)
     {
         final EntityDropHandler tmp = new EntityDropHandler(modID, item, dropRate, minValue, maxValue, entity);
         registerDrop(tmp);
@@ -67,7 +67,7 @@ public class EntityDrops
                                                  final double dropRate,
                                                  final int minValue,
                                                  final int maxValue,
-                                                 final Class<? extends EntityLivingBase> entity)
+                                                 final Class<? extends Entity> entity)
     {
         return registerDrop(modID, item, (float) dropRate, minValue, maxValue, entity);
     }
@@ -77,7 +77,7 @@ public class EntityDrops
      *            The entity that is dropping the Item
      * @return true if and ONLY if there is a DropHandler registered to that entity
      */
-    public static boolean isEntityRegistered(final EntityLivingBase entity)
+    public static boolean isEntityRegistered(final Entity entity)
     {
         boolean registered = false;
         for (final EntityDropHandler drop : drops)
@@ -95,7 +95,7 @@ public class EntityDrops
      * @param entity
      *            The entity that is dropping the Item
      */
-    public static void dropItem(final EntityLivingBase entity)
+    public static void dropItem(final Entity entity)
     {
         if (EntityDrops.isEntityRegistered(entity))
         {

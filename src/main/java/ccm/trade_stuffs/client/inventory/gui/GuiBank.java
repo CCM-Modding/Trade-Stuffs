@@ -25,7 +25,6 @@ import ccm.trade_stuffs.inventory.InventoryBankCoins;
 import ccm.trade_stuffs.inventory.InventoryBankItems;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GUITrade

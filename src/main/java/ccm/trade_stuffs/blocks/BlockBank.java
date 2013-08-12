@@ -22,7 +22,6 @@ import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.utils.lib.Archive;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * BankBlock

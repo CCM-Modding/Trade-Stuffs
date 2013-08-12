@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import ccm.trade_stuffs.inventory.ContainerSafe;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GuiSafe

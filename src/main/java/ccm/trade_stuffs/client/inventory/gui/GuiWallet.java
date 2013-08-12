@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ccm.nucleum_omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.items.ItemWallet;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GUIWallet

@@ -1,6 +1,7 @@
 package ccm.trade_stuffs.utils.handler;
 
 import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_FILE_BANK;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;

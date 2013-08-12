@@ -20,7 +20,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
 import ccm.trade_stuffs.utils.lib.Archive;
-import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * SafeBlock

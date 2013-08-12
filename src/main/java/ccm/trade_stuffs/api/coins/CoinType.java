@@ -117,7 +117,7 @@ public final class CoinType
      */
     public String getTypeName()
     {
-        return JavaHelper.tileCase(name);
+        return JavaHelper.titleCase(name);
     }
 
     /**
