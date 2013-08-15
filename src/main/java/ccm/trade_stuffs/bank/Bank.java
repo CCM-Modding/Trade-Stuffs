@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 public class Bank
 {
 
-    private static Bank                        instance = new Bank();
+    private static Bank instance = new Bank();
 
     private final HashMap<String, BankAccount> accounts;
 

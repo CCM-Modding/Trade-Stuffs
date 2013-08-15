@@ -20,24 +20,24 @@ public final class EntityDropHandler
     /**
      * Name of the mod registering this coin
      */
-    private final String                  modID;
+    private final String modID;
 
     /**
      * Item to drop
      */
-    private final ItemStack               item;
+    private final ItemStack item;
     /**
      * The drop rate of it
      */
-    private final float                   dropRate;
+    private final float dropRate;
     /**
      * The Maximum to drop
      */
-    private final int                     maxValue;
+    private final int maxValue;
     /**
      * The Minimum to drop
      */
-    private final int                     minValue;
+    private final int minValue;
     /**
      * The entity that should drop it
      */
@@ -57,12 +57,7 @@ public final class EntityDropHandler
      * @param entitys
      *            the entity's that are allowed to drop it
      */
-    public EntityDropHandler(final String modID,
-                             final ItemStack item,
-                             final float dropRate,
-                             final int minValue,
-                             final int maxValue,
-                             final Class<? extends Entity> entity)
+    public EntityDropHandler(final String modID, final ItemStack item, final float dropRate, final int minValue, final int maxValue, final Class<? extends Entity> entity)
     {
         this.modID = modID;
         this.item = item;
@@ -140,12 +135,10 @@ public final class EntityDropHandler
         if (val > max)
         {
             val = max;
+        } else if (val < min)
+        {
+            val = min;
         }
-        else
-            if (val < min)
-            {
-                val = min;
-            }
         return val;
     }
 }

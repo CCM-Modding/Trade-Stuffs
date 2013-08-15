@@ -29,15 +29,15 @@ import ccm.trade_stuffs.utils.lib.NBTConstants;
 public class TileEntityBank extends TileEntity
 {
 
-    public String      bankName    = "";
+    public String bankName = "";
 
-    private String     playerUsing = "";
-    private boolean    inUse       = false;
-    private byte       selectedTab = 0;
+    private String playerUsing = "";
+    private boolean inUse = false;
+    private byte selectedTab = 0;
 
     public BankAccount currentAccount;
-    private int        coinBalance;
-    private int        itemCount;
+    private int coinBalance;
+    private int itemCount;
 
     @Override
     public Packet getDescriptionPacket()
@@ -115,12 +115,7 @@ public class TileEntityBank extends TileEntity
         player.closeScreen();
         setPlayerUsing(player.username);
         setInUse(true);
-        player.openGui(TradeStuffs.instance,
-                       tab == 0 ? Guis.GUI_BANK_COINS : Guis.GUI_BANK_ITEMS,
-                       worldObj,
-                       xCoord,
-                       yCoord,
-                       zCoord);
+        player.openGui(TradeStuffs.instance, tab == 0 ? Guis.GUI_BANK_COINS : Guis.GUI_BANK_ITEMS, worldObj, xCoord, yCoord, zCoord);
     }
 
     public void setSelectedTab(final byte tab)

@@ -21,8 +21,8 @@ public class ModBlocks
 {
 
     public static BlockTradeStation tradeStation;
-    public static BlockBank         bank;
-    public static BlockSafe         safe;
+    public static BlockBank bank;
+    public static BlockSafe safe;
 
     public static void init()
     {
@@ -35,14 +35,7 @@ public class ModBlocks
         GameRegistry.registerBlock(safe, "CCM.SAFE.BLOCK");
 
         // TODO: change recipe
-        GameRegistry.addRecipe(new ItemStack(safe), new Object[] { "OIO",
-                "ICI",
-                "OIO",
-                'O',
-                Block.obsidian,
-                'I',
-                Item.ingotIron,
-                'C',
-                Block.chest });
+        GameRegistry.addRecipe(new ItemStack(safe), new Object[]
+        { "OIO", "ICI", "OIO", 'O', Block.obsidian, 'I', Item.ingotIron, 'C', Block.chest });
     }
 }

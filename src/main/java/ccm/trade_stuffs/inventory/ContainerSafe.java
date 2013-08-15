@@ -52,17 +52,14 @@ public class ContainerSafe extends ContainerBase
                 {
                     return null;
                 }
+            } else if (!mergeItemStack(itemstack, 0, 72, false))
+            {
+                return null;
             }
-            else
-                if (!mergeItemStack(itemstack, 0, 72, false))
-                {
-                    return null;
-                }
             if (itemstack.stackSize == 0)
             {
                 slot.putStack((ItemStack) null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }

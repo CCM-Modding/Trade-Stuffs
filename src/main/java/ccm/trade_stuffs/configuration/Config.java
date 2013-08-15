@@ -52,15 +52,9 @@ public final class Config implements IConfig
     private void loadCoinDrops()
     {
         final String cat = "CoinDrops";
-        config.addCustomCategoryComment(cat,
-                                        "Coin Type,Drop Chance, Min/Max Drops are all editable here per mob. " + "Coin Type (Type of coin)"
-                                                + "     0 = Copper (Value of 1)"
-                                                + "     1 = Silver (Value of 25)"
-                                                + "     2 = Gold (Value of 50)"
-                                                + "     3 = Platnum (Value of 100)"
-                                                + "Drop Chance (Keep in 0.00 Format unless set to 1!)"
-                                                + "Minimum Drop (The most amount of coins one mob can drop.)"
-                                                + "Maximum Drop (The least amount of coins one mob can drop.)");
+        config.addCustomCategoryComment(cat, "Coin Type,Drop Chance, Min/Max Drops are all editable here per mob. " + "Coin Type (Type of coin)" + "     0 = Copper (Value of 1)"
+                + "     1 = Silver (Value of 25)" + "     2 = Gold (Value of 50)" + "     3 = Platnum (Value of 100)" + "Drop Chance (Keep in 0.00 Format unless set to 1!)"
+                + "Minimum Drop (The most amount of coins one mob can drop.)" + "Maximum Drop (The least amount of coins one mob can drop.)");
 
         loadPassive();
 
@@ -252,8 +246,9 @@ public final class Config implements IConfig
     private void loadBagDrops()
     {
         String cat = "BagDrops";
-        config.addCustomCategoryComment(cat,
-                                        "All of the Bag Drops are set in this category. (Boss mobs only. Unless someone else changes it.) If you want a boss to drop a garenteed drop you need to use the same numbers in min/max and one in the chance.");
+        config.addCustomCategoryComment(
+                cat,
+                "All of the Bag Drops are set in this category. (Boss mobs only. Unless someone else changes it.) If you want a boss to drop a garenteed drop you need to use the same numbers in min/max and one in the chance.");
         // List of all the config options for Bag drops.
 
         cat = "BagDrops.EnderDragon";
@@ -271,15 +266,9 @@ public final class Config implements IConfig
     {
         final String cat = "RandomConfigs";
         config.addCustomCategoryComment(cat, "Random Configurations");
-        Properties.WALLET_STACKS_PER_COIN = config.get(cat,
-                                                       "Maximum number of stacks per type of coin inside of the wallet",
-                                                       8)
-                                                  .getInt();
+        Properties.WALLET_STACKS_PER_COIN = config.get(cat, "Maximum number of stacks per type of coin inside of the wallet", 8).getInt();
         // Changes the max stacks per coin type.
-        Properties.BANK_STACKS_PER_COIN = config.get(cat,
-                                                     "Maximum number of stacks per type of coin inside of the Bank",
-                                                     ((Integer.MAX_VALUE + 1) / 64) - 64)
-                                                .getInt();
+        Properties.BANK_STACKS_PER_COIN = config.get(cat, "Maximum number of stacks per type of coin inside of the Bank", ((Integer.MAX_VALUE + 1) / 64) - 64).getInt();
         // Changes the amount of items in each stack.
         Properties.BANK_ITEMS_PER_ITEM = config.get(cat, "Maximum number of items per stack", 256).getInt();
     }

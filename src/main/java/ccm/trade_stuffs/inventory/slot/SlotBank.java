@@ -25,12 +25,10 @@ public class SlotBank extends Slot
         if (inventory instanceof InventoryBankCoins)
         {
             return CoinTypes.getCoinType(stack) != null;
+        } else if (inventory instanceof InventoryBankItems)
+        {
+            return CoinTypes.getCoinType(stack) == null;
         }
-        else
-            if (inventory instanceof InventoryBankItems)
-            {
-                return CoinTypes.getCoinType(stack) == null;
-            }
         return false;
     }
 }

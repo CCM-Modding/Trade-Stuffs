@@ -16,11 +16,7 @@ public class TradeTileRenderer extends TileEntitySpecialRenderer
 {
 
     @Override
-    public void renderTileEntityAt(final TileEntity tile,
-                                   final double x,
-                                   final double y,
-                                   final double z,
-                                   final float tick)
+    public void renderTileEntityAt(final TileEntity tile, final double x, final double y, final double z, final float tick)
     {
 
     }

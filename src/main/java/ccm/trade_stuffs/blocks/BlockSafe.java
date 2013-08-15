@@ -64,16 +64,13 @@ public class BlockSafe extends BlockContainer
         if (side == ForgeDirection.UP.ordinal())
         {
             return top;
+        } else if (side == ForgeDirection.DOWN.ordinal())
+        {
+            return top;
+        } else
+        {
+            return blockIcon;
         }
-        else
-            if (side == ForgeDirection.DOWN.ordinal())
-            {
-                return top;
-            }
-            else
-            {
-                return blockIcon;
-            }
     }
 
     @Override
@@ -83,12 +80,7 @@ public class BlockSafe extends BlockContainer
     }
 
     @Override
-    public void onBlockPlacedBy(final World world,
-                                final int x,
-                                final int y,
-                                final int z,
-                                final EntityLivingBase entity,
-                                final ItemStack stack)
+    public void onBlockPlacedBy(final World world, final int x, final int y, final int z, final EntityLivingBase entity, final ItemStack stack)
     {
         if (!world.isRemote && stack.hasDisplayName())
         {
@@ -103,15 +95,8 @@ public class BlockSafe extends BlockContainer
     }
 
     @Override
-    public boolean onBlockActivated(final World world,
-                                    final int x,
-                                    final int y,
-                                    final int z,
-                                    final EntityPlayer player,
-                                    final int stuff,
-                                    final float clickX,
-                                    final float clickY,
-                                    final float clickZ)
+    public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int stuff, final float clickX, final float clickY,
+            final float clickZ)
     {
         if (world.isRemote)
         {

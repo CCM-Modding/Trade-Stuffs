@@ -34,12 +34,10 @@ public class InventoryBank extends InventoryBase
         if (this instanceof InventoryBankCoins)
         {
             associatedBank.countCoins();
+        } else if (this instanceof InventoryBankItems)
+        {
+            associatedBank.countItems();
         }
-        else
-            if (this instanceof InventoryBankItems)
-            {
-                associatedBank.countItems();
-            }
         return ret;
     }
 
@@ -54,13 +52,11 @@ public class InventoryBank extends InventoryBase
             {
                 associatedBank.countCoins();
                 // formatCoins();
+            } else if (this instanceof InventoryBankItems)
+            {
+                associatedBank.countItems();
+                // formatItems();
             }
-            else
-                if (this instanceof InventoryBankItems)
-                {
-                    associatedBank.countItems();
-                    // formatItems();
-                }
         }
     }
 
@@ -85,8 +81,7 @@ public class InventoryBank extends InventoryBase
             if (newStacks[stack.getItemDamage()] != null)
             {
                 newStacks[stack.getItemDamage()].stackSize += stack.stackSize;
-            }
-            else
+            } else
             {
                 newStacks[stack.getItemDamage()] = stack.copy();
             }
@@ -129,8 +124,7 @@ public class InventoryBank extends InventoryBase
     @Override
     public boolean isUseableByPlayer(final EntityPlayer par1EntityPlayer)
     {
-        return (associatedBank != null) && !associatedBank.isUseableByPlayer(par1EntityPlayer) ? false
-                                                                                              : super.isUseableByPlayer(par1EntityPlayer);
+        return (associatedBank != null) && !associatedBank.isUseableByPlayer(par1EntityPlayer) ? false : super.isUseableByPlayer(par1EntityPlayer);
     }
 
     @Override

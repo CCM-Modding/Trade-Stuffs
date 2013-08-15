@@ -40,12 +40,8 @@ public class EntityDrops
      * @param entitys
      *            the entity's that are allowed to drop it
      */
-    public static EntityDropHandler registerDrop(final String modID,
-                                                 final ItemStack item,
-                                                 final float dropRate,
-                                                 final int minValue,
-                                                 final int maxValue,
-                                                 final Class<? extends Entity> entity)
+    public static EntityDropHandler registerDrop(final String modID, final ItemStack item, final float dropRate, final int minValue, final int maxValue,
+            final Class<? extends Entity> entity)
     {
         final EntityDropHandler tmp = new EntityDropHandler(modID, item, dropRate, minValue, maxValue, entity);
         registerDrop(tmp);
@@ -62,12 +58,8 @@ public class EntityDrops
      * @param entitys
      *            the entity's that are allowed to drop it
      */
-    public static EntityDropHandler registerDrop(final String modID,
-                                                 final ItemStack item,
-                                                 final double dropRate,
-                                                 final int minValue,
-                                                 final int maxValue,
-                                                 final Class<? extends Entity> entity)
+    public static EntityDropHandler registerDrop(final String modID, final ItemStack item, final double dropRate, final int minValue, final int maxValue,
+            final Class<? extends Entity> entity)
     {
         return registerDrop(modID, item, (float) dropRate, minValue, maxValue, entity);
     }

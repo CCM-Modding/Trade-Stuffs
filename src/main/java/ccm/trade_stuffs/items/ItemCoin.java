@@ -76,10 +76,7 @@ public class ItemCoin extends ItemBase
     }
 
     @Override
-    public void addInformation(final ItemStack item,
-                               final EntityPlayer palyer,
-                               final List list,
-                               final boolean color)
+    public void addInformation(final ItemStack item, final EntityPlayer palyer, final List list, final boolean color)
     {
         final CoinType current = CoinTypes.getTypes().get(item.getItemDamage());
         StringBuilder s = new StringBuilder();

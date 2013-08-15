@@ -76,20 +76,17 @@ public class ContainerWallet extends ContainerBase
                 {
                     return null;
                 }
-            }
-            else
-                if (slotStack.getItem() instanceof ItemCoin)
+            } else if (slotStack.getItem() instanceof ItemCoin)
+            {
+                if (!mergeItemStack(slotStack, 0, wallet.getSizeInventory(), false))
                 {
-                    if (!mergeItemStack(slotStack, 0, wallet.getSizeInventory(), false))
-                    {
-                        return null;
-                    }
+                    return null;
                 }
+            }
             if (slotStack.stackSize == 0)
             {
                 slot.putStack((ItemStack) null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }

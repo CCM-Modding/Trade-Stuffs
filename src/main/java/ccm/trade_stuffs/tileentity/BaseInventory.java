@@ -50,8 +50,7 @@ public abstract class BaseInventory extends TileEntity implements IInventory
             final ItemStack itemStack = inventory[slot];
             inventory[slot] = null;
             return itemStack;
-        }
-        else
+        } else
         {
             return null;
         }

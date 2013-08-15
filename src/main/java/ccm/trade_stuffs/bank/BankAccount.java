@@ -17,7 +17,7 @@ import ccm.trade_stuffs.inventory.InventoryBankItems;
 public class BankAccount
 {
 
-    private String                   player;
+    private String player;
 
     private final InventoryBankCoins coins;
     private final InventoryBankItems items;

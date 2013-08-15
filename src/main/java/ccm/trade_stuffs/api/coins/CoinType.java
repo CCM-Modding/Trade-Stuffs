@@ -12,11 +12,9 @@ import ccm.nucleum_omnium.utils.helper.JavaHelper;
 /**
  * CoinType
  * <p>
- * This class defines the name and value of any coin and thus they are stored that way in CoinTypes, It also
- * defines a couple things that are used internally to crate the item
+ * This class defines the name and value of any coin and thus they are stored that way in CoinTypes, It also defines a couple things that are used internally to crate the item
  * <p>
- * If you want to add a Coin type, you DO NOT need to create an Item for it, the mod WILL add it to its
- * current list, just create the texture and lang file. Which should be: coin_X
+ * If you want to add a Coin type, you DO NOT need to create an Item for it, the mod WILL add it to its current list, just create the texture and lang file. Which should be: coin_X
  * <p>
  * 'X' being the name of the type that you added
  * 
@@ -32,20 +30,20 @@ public final class CoinType
     /**
      * Name of the mod registering this coin
      */
-    private final String      modID;
+    private final String modID;
 
     /**
      * Name of the coin
      */
-    private final String      name;
+    private final String name;
     /**
      * Value of the coin
      */
-    private final int         value;
+    private final int value;
     /**
      * Icon of the coin
      */
-    private Icon              icon;
+    private Icon icon;
 
     /**
      * @param modID
@@ -172,36 +170,30 @@ public final class CoinType
             {
                 return false;
             }
+        } else if (!icon.equals(other.icon))
+        {
+            return false;
         }
-        else
-            if (!icon.equals(other.icon))
-            {
-                return false;
-            }
         if (modID == null)
         {
             if (other.modID != null)
             {
                 return false;
             }
+        } else if (!modID.equals(other.modID))
+        {
+            return false;
         }
-        else
-            if (!modID.equals(other.modID))
-            {
-                return false;
-            }
         if (name == null)
         {
             if (other.name != null)
             {
                 return false;
             }
+        } else if (!name.equals(other.name))
+        {
+            return false;
         }
-        else
-            if (!name.equals(other.name))
-            {
-                return false;
-            }
         if (value != other.value)
         {
             return false;

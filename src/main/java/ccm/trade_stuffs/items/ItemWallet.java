@@ -32,8 +32,9 @@ import ccm.trade_stuffs.utils.lib.NBTConstants;
  */
 public class ItemWallet extends ItemBase
 {
-    String[] types = new String[] { "wallet", "wallet_empty", "wallet_full" };
-    Icon[]   icons = new Icon[types.length];
+    String[] types = new String[]
+    { "wallet", "wallet_empty", "wallet_full" };
+    Icon[] icons = new Icon[types.length];
 
     /**
      * @param id
@@ -54,12 +55,7 @@ public class ItemWallet extends ItemBase
             if (!world.isRemote)
             {
                 NBTHelper.setBoolean(stack, NBTConstants.NBT_WALLET_OPEN, true);
-                player.openGui(TradeStuffs.instance,
-                               Guis.GUI_WALLET,
-                               player.worldObj,
-                               (int) player.posX,
-                               (int) player.posY,
-                               (int) player.posZ);
+                player.openGui(TradeStuffs.instance, Guis.GUI_WALLET, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         }
 
@@ -67,16 +63,8 @@ public class ItemWallet extends ItemBase
     }
 
     @Override
-    public boolean onItemUse(final ItemStack item,
-                             final EntityPlayer player,
-                             final World world,
-                             final int x,
-                             final int y,
-                             final int z,
-                             final int wut,
-                             final float clickX,
-                             final float clickY,
-                             final float clickZ)
+    public boolean onItemUse(final ItemStack item, final EntityPlayer player, final World world, final int x, final int y, final int z, final int wut, final float clickX,
+            final float clickY, final float clickZ)
     {
         final TileEntity tile = world.getBlockTileEntity((int) clickX, (int) clickY, (int) clickZ);
         if (tile != null)
@@ -85,12 +73,10 @@ public class ItemWallet extends ItemBase
             if (tile instanceof TileEntityBank)
             {
 
-            }
-            else
-                if (tile instanceof TileEntitySafe)
-                {
+            } else if (tile instanceof TileEntitySafe)
+            {
 
-                }
+            }
         }
         return false;
     }
@@ -104,14 +90,12 @@ public class ItemWallet extends ItemBase
             {
                 setDamage(stack, 2);
                 return icons[2];
-            }
-            else
+            } else
             {
                 setDamage(stack, 1);
                 return icons[1];
             }
-        }
-        else
+        } else
         {
             setDamage(stack, 0);
             return icons[0];
@@ -150,10 +134,7 @@ public class ItemWallet extends ItemBase
     }
 
     @Override
-    public void addInformation(final ItemStack item,
-                               final EntityPlayer palyer,
-                               final List list,
-                               final boolean color)
+    public void addInformation(final ItemStack item, final EntityPlayer palyer, final List list, final boolean color)
     {
         final InventoryWallet wallet = new InventoryWallet(item);
         final StringBuilder sb = new StringBuilder();
@@ -168,8 +149,7 @@ public class ItemWallet extends ItemBase
             sb.append(" in this ");
             sb.append(list.get(0));
 
-        }
-        else
+        } else
         {
             sb.append("You have a Sack Full o' Coins");
         }

@@ -24,12 +24,12 @@ import ccm.trade_stuffs.utils.lib.NBTConstants;
 public class TileEntitySafe extends InventoryBaseTile
 {
 
-    public String   safeName    = "";
-    private int     pass        = 0;
-    private boolean hasPass     = false;
-    public boolean  guiPassLock = true;
+    public String safeName = "";
+    private int pass = 0;
+    private boolean hasPass = false;
+    public boolean guiPassLock = true;
 
-    private int     itemCount;
+    private int itemCount;
 
     public TileEntitySafe()
     {

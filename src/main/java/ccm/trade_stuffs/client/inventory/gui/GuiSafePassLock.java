@@ -32,14 +32,14 @@ import ccm.trade_stuffs.tileentity.TileEntitySafe;
 public class GuiSafePassLock extends GuiContainer
 {
 
-    private final EntityClientPlayerMP player  = Minecraft.getMinecraft().thePlayer;
-    private final TileEntitySafe       safe;
-    private GuiButton                  enter;
-    private GuiButton                  reset;
-    private GuiButton                  open;
-    private StringBuilder              tmpPass = new StringBuilder();
-    private final boolean              canOpen = false;
-    private String                     message = "";
+    private final EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+    private final TileEntitySafe safe;
+    private GuiButton enter;
+    private GuiButton reset;
+    private GuiButton open;
+    private StringBuilder tmpPass = new StringBuilder();
+    private final boolean canOpen = false;
+    private String message = "";
 
     public GuiSafePassLock(final InventoryPlayer player, final TileEntitySafe safe)
     {
@@ -61,12 +61,7 @@ public class GuiSafePassLock extends GuiContainer
         {
             for (int row = 0; row < 3; row++)
             {
-                buttonList.add(new GuiButton(i,
-                                             ((22 * row) + guiLeft) + 27,
-                                             ((22 * column) + guiTop) + 14,
-                                             20,
-                                             20,
-                                             "" + i));
+                buttonList.add(new GuiButton(i, ((22 * row) + guiLeft) + 27, ((22 * column) + guiTop) + 14, 20, 20, "" + i));
                 i++;
             }
         }
@@ -88,21 +83,16 @@ public class GuiSafePassLock extends GuiContainer
         if (button.id == reset.id)
         {
             reset();
+        } else if (button.id == enter.id)
+        {
+            enter();
+        } else if (button.id == open.id)
+        {
+            openGui();
+        } else
+        {
+            enterNumber(button.displayString);
         }
-        else
-            if (button.id == enter.id)
-            {
-                enter();
-            }
-            else
-                if (button.id == open.id)
-                {
-                    openGui();
-                }
-                else
-                {
-                    enterNumber(button.displayString);
-                }
         super.actionPerformed(button);
     }
 
@@ -129,8 +119,7 @@ public class GuiSafePassLock extends GuiContainer
                 open.enabled = true;
                 reset.enabled = true;
             }
-        }
-        else
+        } else
         {
             sendNewPassword(password);
         }
@@ -158,8 +147,7 @@ public class GuiSafePassLock extends GuiContainer
         {
             message = "Set Password";
             fontRenderer.drawString(message, guiLeft + 25, guiTop - 12, 0xFFFFFF);
-        }
-        else
+        } else
         {
             message = "Enter Password";
             fontRenderer.drawString(message, guiLeft + 20, guiTop - 12, 0xFFFFFF);

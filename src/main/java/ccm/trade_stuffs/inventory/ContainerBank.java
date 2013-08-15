@@ -25,10 +25,7 @@ public class ContainerBank extends ContainerBase
 
     private final TileEntityBank bank;
 
-    public ContainerBank(final InventoryPlayer player,
-                         final InventoryBank inventory,
-                         final TileEntityBank tile,
-                         final byte tab)
+    public ContainerBank(final InventoryPlayer player, final InventoryBank inventory, final TileEntityBank tile, final byte tab)
     {
         super(player);
         bank = tile;
@@ -38,10 +35,7 @@ public class ContainerBank extends ContainerBase
         {
             for (int column = 0; column < 9; column++)
             {
-                addSlotToContainer(new SlotBank(inventory,
-                                                column + (row * 9) + 9,
-                                                8 + (column * 18),
-                                                18 + (row * 18)));
+                addSlotToContainer(new SlotBank(inventory, column + (row * 9) + 9, 8 + (column * 18), 18 + (row * 18)));
             }
         }
         bank.setSelectedTab(tab);
@@ -74,17 +68,14 @@ public class ContainerBank extends ContainerBase
                 {
                     return null;
                 }
+            } else if (!mergeItemStack(itemstack, 0, 72, false))
+            {
+                return null;
             }
-            else
-                if (!mergeItemStack(itemstack, 0, 72, false))
-                {
-                    return null;
-                }
             if (itemstack.stackSize == 0)
             {
                 slot.putStack((ItemStack) null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }

@@ -27,18 +27,14 @@ import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.Locations;
 import ccm.trade_stuffs.utils.registry.Registry;
 
-@Mod(modid = Archive.MOD_ID,
-     name = Archive.MOD_NAME,
-     version = Archive.MOD_VERSION)
-@NetworkMod(clientSideRequired = true,
-            serverSideRequired = false)
+@Mod(modid = Archive.MOD_ID, name = Archive.MOD_NAME, useMetadata = true)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class TradeStuffs extends BaseMod implements IMod
 {
     @Instance(Archive.MOD_ID)
     public static TradeStuffs instance;
 
-    @SidedProxy(serverSide = Locations.SERVER_PROXY,
-                clientSide = Locations.CLIENT_PROXY)
+    @SidedProxy(serverSide = Locations.SERVER_PROXY, clientSide = Locations.CLIENT_PROXY)
     public static CommonProxy proxy;
 
     public static CreativeTab tab = new CreativeTab(Archive.MOD_ID);

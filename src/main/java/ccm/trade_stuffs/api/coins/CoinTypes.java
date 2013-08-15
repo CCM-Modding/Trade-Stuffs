@@ -13,8 +13,8 @@ import ccm.trade_stuffs.items.ItemCoin;
 /**
  * CoinTypes
  * <p>
- * This class keeps track of all the registered Coin Types, if you want to add a new one call the
- * {@code registerCoinType} method and provide a texture and lang file. Which should be: coin_X
+ * This class keeps track of all the registered Coin Types, if you want to add a new one call the {@code registerCoinType} method and provide a texture and lang file. Which should
+ * be: coin_X
  * <p>
  * 'X' being the name of the type that you added
  * 
@@ -25,12 +25,12 @@ public final class CoinTypes
     /**
      * long, serialVersionUID
      */
-    private static final long           serialVersionUID = -2525214302579118813L;
+    private static final long serialVersionUID = -2525214302579118813L;
 
     /**
      * All of the registered {@link CoinType}s
      */
-    private static final List<CoinType> types            = new ArrayList<CoinType>();
+    private static final List<CoinType> types = new ArrayList<CoinType>();
 
     /**
      * @param type
@@ -49,8 +49,7 @@ public final class CoinTypes
      * @param value
      *            Value of the coin, based on copper coins (copper = 1)
      * @throws FailedToMakeCoinType
-     *             if any of the arguments are null, the mod id is not loaded, or if the value is less than
-     *             one
+     *             if any of the arguments are null, the mod id is not loaded, or if the value is less than one
      */
     public static CoinType registerCoinType(final String modID, final String name, final int value)
     {
@@ -93,8 +92,7 @@ public final class CoinTypes
         if (typeValue > otherValue)
         {
             return otherValue / typeValue;
-        }
-        else
+        } else
         {
             return 1;
         }
@@ -126,19 +124,9 @@ public final class CoinTypes
     public static CoinType getCoinType(final ItemStack stack)
     {
         /*
-         * Class<?> coinClazz = null;
-         * try
-         * {
-         * coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
-         * } catch (final ClassNotFoundException e)
-         * {
-         * System.err.println("You need Trade Stuffs for you to see the coins!");
-         * e.printStackTrace();
-         * }
-         * if (coinClazz.isInstance(stack.getItem()))
-         * {
-         * return getCoinType(stack.getItemDamage());
-         * }
+         * Class<?> coinClazz = null; try { coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem"); } catch (final ClassNotFoundException e) {
+         * System.err.println("You need Trade Stuffs for you to see the coins!"); e.printStackTrace(); } if (coinClazz.isInstance(stack.getItem())) { return
+         * getCoinType(stack.getItemDamage()); }
          */
         if (stack.getItem() instanceof ItemCoin)
         {

@@ -12,8 +12,8 @@ import ccm.nucleum_omnium.utils.helper.InventoryHelper;
 public abstract class InventoryBaseTile extends TileEntity implements IInventory
 {
 
-    private final String      inventoryTitle;
-    private final int         slotsCount;
+    private final String inventoryTitle;
+    private final int slotsCount;
     private final ItemStack[] inventoryContents;
 
     public InventoryBaseTile(final String name, final int inventorySize)
@@ -33,8 +33,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns
-     * them in a new stack.
+     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a new stack.
      */
     @Override
     public ItemStack decrStackSize(final int index, final int amount)
@@ -73,8 +72,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an
-     * EntityItem - like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
      */
     @Override
     public ItemStack getStackInSlotOnClosing(final int index)
@@ -84,8 +82,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
             final ItemStack itemstack = inventoryContents[index];
             inventoryContents[index] = null;
             return itemstack;
-        }
-        else
+        } else
         {
             return null;
         }
@@ -125,8 +122,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended.
-     * *Isn't this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     @Override
     public int getInventoryStackLimit()
@@ -159,8 +155,7 @@ public abstract class InventoryBaseTile extends TileEntity implements IInventory
     {}
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given
-     * slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
     @Override
     public boolean isItemValidForSlot(final int index, final ItemStack item)

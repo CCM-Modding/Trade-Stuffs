@@ -26,13 +26,13 @@ import ccm.trade_stuffs.utils.lib.Properties;
 public class InventoryWallet implements IInventory
 {
 
-    public HashMap<CoinType, Integer> coins       = new HashMap<CoinType, Integer>();
-    private ItemStack                 slotStack;
-    private ItemStack                 slotFakeCoins;
+    public HashMap<CoinType, Integer> coins = new HashMap<CoinType, Integer>();
+    private ItemStack slotStack;
+    private ItemStack slotFakeCoins;
 
-    private final ItemStack           wallet;
+    private final ItemStack wallet;
 
-    private int                       coinBalance = 0;
+    private int coinBalance = 0;
 
     public InventoryWallet(final ItemStack wallet)
     {
@@ -60,8 +60,7 @@ public class InventoryWallet implements IInventory
                     slotStack = null;
                     onInventoryChanged();
                     return stack;
-                }
-                else
+                } else
                 {
                     stack = slotStack.splitStack(amount);
                     if (slotStack.stackSize == 0)
@@ -71,8 +70,7 @@ public class InventoryWallet implements IInventory
                     onInventoryChanged();
                     return stack;
                 }
-            }
-            else
+            } else
             {
                 return null;
             }
@@ -86,12 +84,10 @@ public class InventoryWallet implements IInventory
         if (slot == 0)
         {
             return slotStack;
+        } else if (slot == 1)
+        {
+            return slotFakeCoins;
         }
-        else
-            if (slot == 1)
-            {
-                return slotFakeCoins;
-            }
         return null;
     }
 
@@ -103,14 +99,12 @@ public class InventoryWallet implements IInventory
             final ItemStack temp = slotStack;
             slotStack = null;
             return temp;
+        } else if (slot == 1)
+        {
+            final ItemStack temp = slotFakeCoins;
+            slotFakeCoins = null;
+            return temp;
         }
-        else
-            if (slot == 1)
-            {
-                final ItemStack temp = slotFakeCoins;
-                slotFakeCoins = null;
-                return temp;
-            }
         return null;
     }
 
@@ -135,28 +129,24 @@ public class InventoryWallet implements IInventory
                     {
                         added = stack.stackSize;
                         stack.stackSize = 0;
-                    }
-                    else
+                    } else
                     {
                         added = canAdd;
                         stack.stackSize -= canAdd;
                     }
                     coins.put(coinType, coinAmount + added);
-                }
-                else
+                } else
                 {
                     slotStack = stack;
                 }
                 if (stack.stackSize != 0)
                 {
                     slotStack = stack;
-                }
-                else
+                } else
                 {
                     slotStack = null;
                 }
-            }
-            else
+            } else
             {
                 slotStack = null;
             }

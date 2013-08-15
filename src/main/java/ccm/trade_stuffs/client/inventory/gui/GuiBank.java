@@ -36,19 +36,16 @@ import ccm.trade_stuffs.tileentity.TileEntityBank;
 public class GuiBank extends GuiContainer
 {
 
-    private final TileEntityBank  bank;
-    private final InventoryBank   upperInventory;
+    private final TileEntityBank bank;
+    private final InventoryBank upperInventory;
     private final InventoryPlayer lowerInventory;
 
-    public byte                   selectedTab  = 0;
+    public byte selectedTab = 0;
 
-    private final ItemStack       displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
-    private final ItemStack       displayItems = new ItemStack(Block.stone.blockID, 1, 0);
+    private final ItemStack displayCoins = new ItemStack(ModItems.coin.itemID, 1, 0);
+    private final ItemStack displayItems = new ItemStack(Block.stone.blockID, 1, 0);
 
-    public GuiBank(final InventoryPlayer lowerInventory,
-                   final InventoryBank upperInventory,
-                   final TileEntityBank tile,
-                   final byte tab)
+    public GuiBank(final InventoryPlayer lowerInventory, final InventoryBank upperInventory, final TileEntityBank tile, final byte tab)
     {
         super(new ContainerBank(lowerInventory, upperInventory, tile, tab));
         this.lowerInventory = lowerInventory;
@@ -70,13 +67,11 @@ public class GuiBank extends GuiContainer
             {
                 selectedTab = 0;
                 sendTabUpdate();
+            } else if ((mouseY > (guiTop + 38)) && (mouseY <= (guiTop + 59)))
+            {
+                selectedTab = 1;
+                sendTabUpdate();
             }
-            else
-                if ((mouseY > (guiTop + 38)) && (mouseY <= (guiTop + 59)))
-                {
-                    selectedTab = 1;
-                    sendTabUpdate();
-                }
         }
     }
 
@@ -114,16 +109,14 @@ public class GuiBank extends GuiContainer
         if (selectedTab == 0)
         {
             drawTexturedModalRect(guiLeft - 24, guiTop + 17, 229, 0, 27, 21);
-        }
-        else
+        } else
         {
             drawTexturedModalRect(guiLeft - 24, guiTop + 17, 229, 21, 27, 21);
         }
         if (selectedTab == 1)
         {
             drawTexturedModalRect(guiLeft - 24, guiTop + 17 + 21, 229, 0, 27, 21);
-        }
-        else
+        } else
         {
             drawTexturedModalRect(guiLeft - 24, guiTop + 17 + 21, 229, 21, 27, 21);
         }
@@ -135,32 +128,16 @@ public class GuiBank extends GuiContainer
         itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -18, 20);
         itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -18, 41);
 
-        fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName()
-                                                                   : I18n.func_135053_a(lowerInventory.getInvName()),
-                                8,
-                                ySize - 93,
-                                4210752);
-        fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName()
-                                                                   : I18n.func_135053_a(upperInventory.getInvName()),
-                                8,
-                                6,
-                                4210752);
+        fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName() : I18n.func_135053_a(lowerInventory.getInvName()), 8, ySize - 93, 4210752);
+        fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName() : I18n.func_135053_a(upperInventory.getInvName()), 8, 6, 4210752);
         fontRenderer.drawString(mc.thePlayer.username, 80, 6, 4210752);
 
         if (upperInventory instanceof InventoryBankCoins)
         {
-            fontRenderer.drawString("Coins: " + Integer.toString(bank.getCoinBalance()),
-                                    80,
-                                    ySize - 93,
-                                    4210752);
+            fontRenderer.drawString("Coins: " + Integer.toString(bank.getCoinBalance()), 80, ySize - 93, 4210752);
+        } else if (upperInventory instanceof InventoryBankItems)
+        {
+            fontRenderer.drawString("Items: " + Integer.toString(bank.getItemCount()), 80, ySize - 93, 4210752);
         }
-        else
-            if (upperInventory instanceof InventoryBankItems)
-            {
-                fontRenderer.drawString("Items: " + Integer.toString(bank.getItemCount()),
-                                        80,
-                                        ySize - 93,
-                                        4210752);
-            }
     }
 }

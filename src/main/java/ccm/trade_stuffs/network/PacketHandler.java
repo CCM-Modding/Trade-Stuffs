@@ -23,9 +23,7 @@ public class PacketHandler implements IPacketHandler
 {
 
     @Override
-    public void onPacketData(final INetworkManager manager,
-                             final Packet250CustomPayload packet,
-                             final Player player)
+    public void onPacketData(final INetworkManager manager, final Packet250CustomPayload packet, final Player player)
     {
         final ByteArrayDataInput dat = ByteStreams.newDataInput(packet.data);
         final int packetID = dat.readInt();
@@ -33,12 +31,10 @@ public class PacketHandler implements IPacketHandler
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
         {
             handleClientPacket(packetID, dat);
+        } else if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+        {
+            handleServerPacket(packetID, dat);
         }
-        else
-            if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
-            {
-                handleServerPacket(packetID, dat);
-            }
     }
 
     @SideOnly(Side.CLIENT)
@@ -118,9 +114,7 @@ public class PacketHandler implements IPacketHandler
         final int z = dat.readInt();
         final int dim = dat.readInt();
 
-        final WorldServer worldServer = FMLCommonHandler.instance()
-                                                        .getMinecraftServerInstance()
-                                                        .worldServerForDimension(dim);
+        final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
         TileEntityBank tile = (TileEntityBank) worldServer.getBlockTileEntity(x, y, z);
         if (tile == null)
         {
@@ -137,9 +131,7 @@ public class PacketHandler implements IPacketHandler
         final int z = dat.readInt();
         final int dim = dat.readInt();
 
-        final WorldServer worldServer = FMLCommonHandler.instance()
-                                                        .getMinecraftServerInstance()
-                                                        .worldServerForDimension(dim);
+        final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
         TileEntitySafe tile = (TileEntitySafe) worldServer.getBlockTileEntity(x, y, z);
         if (tile == null)
         {
@@ -156,9 +148,7 @@ public class PacketHandler implements IPacketHandler
         final int z = dat.readInt();
         final int dim = dat.readInt();
 
-        final WorldServer worldServer = FMLCommonHandler.instance()
-                                                        .getMinecraftServerInstance()
-                                                        .worldServerForDimension(dim);
+        final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
         TileEntitySafe tile = (TileEntitySafe) worldServer.getBlockTileEntity(x, y, z);
         if (tile == null)
         {
@@ -176,9 +166,7 @@ public class PacketHandler implements IPacketHandler
         final int z = dat.readInt();
         final int dim = dat.readInt();
 
-        final WorldServer worldServer = FMLCommonHandler.instance()
-                                                        .getMinecraftServerInstance()
-                                                        .worldServerForDimension(dim);
+        final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
         TileEntitySafe tile = (TileEntitySafe) worldServer.getBlockTileEntity(x, y, z);
         if (tile == null)
         {
@@ -197,14 +185,7 @@ public class PacketHandler implements IPacketHandler
         final int dim = dat.readInt();
         final String username = dat.readUTF();
 
-        final WorldServer worldServer = FMLCommonHandler.instance()
-                                                        .getMinecraftServerInstance()
-                                                        .worldServerForDimension(dim);
-        worldServer.getPlayerEntityByName(username).openGui(TradeStuffs.instance,
-                                                            Guis.GUI_SAFE_INVENTORY,
-                                                            worldServer,
-                                                            x,
-                                                            y,
-                                                            z);
+        final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
+        worldServer.getPlayerEntityByName(username).openGui(TradeStuffs.instance, Guis.GUI_SAFE_INVENTORY, worldServer, x, y, z);
     }
 }

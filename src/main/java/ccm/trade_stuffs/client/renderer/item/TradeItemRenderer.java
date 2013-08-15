@@ -22,9 +22,7 @@ public class TradeItemRenderer implements IItemRenderer
     }
 
     @Override
-    public boolean shouldUseRenderHelper(final ItemRenderType type,
-                                         final ItemStack item,
-                                         final ItemRendererHelper helper)
+    public boolean shouldUseRenderHelper(final ItemRenderType type, final ItemStack item, final ItemRendererHelper helper)
     {
         return true;
     }
