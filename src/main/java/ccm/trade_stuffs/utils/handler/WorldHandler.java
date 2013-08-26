@@ -6,7 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 
-import ccm.nucleum_omnium.utils.helper.DataHelper;
+import ccm.nucleum.omnium.utils.helper.DataHelper;
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.bank.Bank;
 

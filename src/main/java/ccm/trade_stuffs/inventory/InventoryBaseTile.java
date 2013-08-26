@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-import ccm.nucleum_omnium.utils.helper.InventoryHelper;
+import ccm.nucleum.omnium.utils.helper.InventoryHelper;
 
 public abstract class InventoryBaseTile extends TileEntity implements IInventory
 {

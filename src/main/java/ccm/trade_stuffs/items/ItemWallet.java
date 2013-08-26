@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.nucleum_omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.inventory.InventoryWallet;
 import ccm.trade_stuffs.tileentity.TileEntityBank;

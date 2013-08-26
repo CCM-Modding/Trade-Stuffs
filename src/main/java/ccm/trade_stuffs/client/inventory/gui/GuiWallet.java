@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.nucleum_omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.items.ItemWallet;
 

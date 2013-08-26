@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 
-import ccm.nucleum_omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTHelper;
 
 /**
  * ItemEventHandler

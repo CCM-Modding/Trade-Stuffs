@@ -10,7 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import ccm.nucleum_omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.api.coins.CoinType;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.items.ModItems;

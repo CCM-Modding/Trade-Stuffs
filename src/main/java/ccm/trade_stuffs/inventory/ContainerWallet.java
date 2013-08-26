@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import ccm.nucleum_omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTHelper;
 import ccm.trade_stuffs.inventory.slot.SlotCoins;
 import ccm.trade_stuffs.items.ItemCoin;
 import ccm.trade_stuffs.utils.lib.NBTConstants;

@@ -3,7 +3,7 @@
  */
 package ccm.trade_stuffs.utils.helper;
 
-import ccm.nucleum_omnium.base.BaseNIC;
+import ccm.nucleum.omnium.base.BaseNIC;
 import ccm.trade_stuffs.api.coins.CoinType;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.utils.lib.Properties;
