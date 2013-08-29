@@ -1,22 +1,33 @@
 // CCM Modding, Trade Stuffs
-
 buildscript{
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'com.github.abrarsyed.gmcp:GMCP:0.7.3'
-	}
+    repositories {
+        mavenCentral()
+            maven {
+                url 'https://oss.sonatype.org/content/repositories/snapshots'
+            }
+     }
+    dependencies { classpath 'com.github.abrarsyed.gmcp:GMCP:0.7.4-SNAPSHOT' }
 }
 
 apply plugin: "gmcp"
 
 group = 'ccm.trade_stuffs'
-version = "Beta.1"
+version = "beta.1.0.1"
 archivesBaseName = 'TradeStuffs'
 
 minecraft {
 	minecraftVersion = '1.6.2'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'common'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
 }
 
 processResources{
@@ -28,4 +39,8 @@ processResources{
 
 jar{
 	appendix = 'universal'
+	manifest { 	
+		attributes 'MCVersion' : project.minecraft.minecraftVersion
+		attributes 'Version' : project.version 
+	}
 }
