@@ -211,7 +211,7 @@ public final class CoinType
         builder.append("Value = ").append(value).append(", ");
         if (icon != null)
         {
-            builder.append("icon=").append(icon);
+            builder.append("Icon = ").append(icon);
         }
         builder.append("]");
         return builder.toString();

@@ -8,8 +8,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import ccm.trade_stuffs.items.ItemCoin;
-
 /**
  * CoinTypes
  * <p>
@@ -59,46 +57,6 @@ public final class CoinTypes
     }
 
     /**
-     * @param type
-     *            The {@link CoinType} to check
-     * @return true if and ONLY if it is the Highest value registered
-     */
-    public static boolean isHigest(final CoinType type)
-    {
-        final int val = type.getValue();
-        for (final CoinType coin : types)
-        {
-            if (coin.getValue() > val)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * @param type
-     *            The type who's value you want to convert
-     * @param wantedType
-     *            The type to which you want to convert it to
-     * @return If the value of the first argument is NOT bigger than the second it returns 1
-     *         <p>
-     *         Other wise it returns {@code wantedType.value / type.value}
-     */
-    public static int getReleatedValue(final CoinType type, final CoinType wantedType)
-    {
-        final int typeValue = type.getValue();
-        final int otherValue = wantedType.getValue();
-        if (typeValue > otherValue)
-        {
-            return otherValue / typeValue;
-        } else
-        {
-            return 1;
-        }
-    }
-
-    /**
      * @return a copy of the types
      */
     public static List<CoinType> getTypes()
@@ -107,13 +65,13 @@ public final class CoinTypes
     }
 
     /**
-     * @param itemDamage
+     * @param meta
      *            The meta data of the item that you want to get the CoinType of
      * @return The {@link CoinType}
      */
-    public static CoinType getCoinType(final int itemDamage)
+    public static CoinType getCoinType(final int meta)
     {
-        return getTypes().get(itemDamage);
+        return getTypes().get(meta);
     }
 
     /**
@@ -123,30 +81,45 @@ public final class CoinTypes
      */
     public static CoinType getCoinType(final ItemStack stack)
     {
-        /*
-         * Class<?> coinClazz = null; try { coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem"); } catch (final ClassNotFoundException e) {
-         * System.err.println("You need Trade Stuffs for you to see the coins!"); e.printStackTrace(); } if (coinClazz.isInstance(stack.getItem())) { return
-         * getCoinType(stack.getItemDamage()); }
-         */
-        if (stack.getItem() instanceof ItemCoin)
+        Class<?> coinClazz = null;
+        try
+        {
+            coinClazz = Class.forName("ccm.trade_stuffs.items.CoinItem");
+        } catch (final ClassNotFoundException e)
+        {
+            System.err.println("You need Trade Stuffs for you to see the coins!");
+            e.printStackTrace();
+        }
+        if (coinClazz.isInstance(stack.getItem()))
         {
             return getCoinType(stack.getItemDamage());
         }
         return null;
     }
 
-    public static int getCoinTypeID(final CoinType coinType)
+    /**
+     * @param maximum
+     *            The maximum stacks per coin type
+     * @return the maximum vaule of all the coins
+     */
+    public static int getStackValue(final ItemStack item)
     {
-        int id = 0;
-        for (final CoinType type : getTypes())
+        return getCoinType(item.getItemDamage()).getValue() * item.stackSize;
+    }
+
+    /**
+     * @param maximum
+     *            The maximum stacks per coin type
+     * @return the maximum vaule of all the coins
+     */
+    public static int getMaxPossibleValue(final int maximum)
+    {
+        int value = 0;
+        for (final CoinType type : CoinTypes.getTypes())
         {
-            if (coinType.getName().equalsIgnoreCase(type.getName()))
-            {
-                return id;
-            }
-            id++;
+            value += (type.getValue() * maximum) * 64;
         }
-        return -1;
+        return value;
     }
 
     /**

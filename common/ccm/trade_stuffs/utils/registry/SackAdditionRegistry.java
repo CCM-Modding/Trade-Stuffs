@@ -10,7 +10,7 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.item.ItemStack;
 
-import ccm.trade_stuffs.api.drops.EntityDrops;
+import ccm.nucleum.omnium.utils.handler.entity.drop.EntityDropHandler;
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
@@ -23,9 +23,9 @@ public final class SackAdditionRegistry
 {
     public static void addMobDrops()
     {
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), Properties.WALLET_DRAGON_DROP_CHANCE, Properties.WALLET_DRAGON_MIN_DROP, Properties.WALLET_DRAGON_MAX_DROP,
+        EntityDropHandler.registerDrop(MOD_ID, new ItemStack(wallet), Properties.WALLET_DRAGON_DROP_CHANCE, Properties.WALLET_DRAGON_MIN_DROP, Properties.WALLET_DRAGON_MAX_DROP,
                 EntityDragon.class);
-        EntityDrops.registerDrop(MOD_ID, new ItemStack(wallet), Properties.WALLET_WITHER_DROP_CHANCE, Properties.WALLET_WITHER_MIN_DROP, Properties.WALLET_WITHER_MAX_DROP,
+        EntityDropHandler.registerDrop(MOD_ID, new ItemStack(wallet), Properties.WALLET_WITHER_DROP_CHANCE, Properties.WALLET_WITHER_MIN_DROP, Properties.WALLET_WITHER_MAX_DROP,
                 EntityWither.class);
     }
 }

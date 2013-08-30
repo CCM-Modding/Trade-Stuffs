@@ -1,4 +1,4 @@
-// CCM Modding, Trade Stuffs
+// CCM Modding, Steve's Trade
 buildscript{
     repositories {
         mavenCentral()
@@ -11,9 +11,9 @@ buildscript{
 
 apply plugin: "gmcp"
 
-group = 'ccm.trade_stuffs'
-version = "beta.1.0.1"
-archivesBaseName = 'TradeStuffs'
+group = 'ccm.steves_trade'
+version = "1.0.0.${System.env.BUILD_NUMBER}.ALPHA"
+archivesBaseName = 'Steve\'s Trade'
 
 minecraft {
 	minecraftVersion = '1.6.2'

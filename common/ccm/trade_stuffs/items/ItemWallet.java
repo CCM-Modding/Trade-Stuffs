@@ -15,14 +15,15 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.nucleum.omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
 import ccm.trade_stuffs.TradeStuffs;
+import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.InventoryWallet;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
-import ccm.trade_stuffs.utils.helper.CoinHelper;
 import ccm.trade_stuffs.utils.lib.Archive;
 import ccm.trade_stuffs.utils.lib.NBTConstants;
+import ccm.trade_stuffs.utils.lib.Properties;
 
 /**
  * WalletItem
@@ -54,7 +55,7 @@ public class ItemWallet extends ItemBase
         {
             if (!world.isRemote)
             {
-                NBTHelper.setBoolean(stack, NBTConstants.NBT_WALLET_OPEN, true);
+                NBTItemHelper.setBoolean(stack, NBTConstants.NBT_OPENED_ITEM, true);
                 player.openGui(TradeStuffs.instance, Guis.GUI_WALLET, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         }
@@ -84,9 +85,9 @@ public class ItemWallet extends ItemBase
     @Override
     public Icon getIcon(final ItemStack stack, final int pass)
     {
-        if (NBTHelper.getBoolean(stack, NBTConstants.NBT_WALLET_OPEN))
+        if (NBTItemHelper.getBoolean(stack, NBTConstants.NBT_OPENED_ITEM))
         {
-            if (NBTHelper.getBoolean(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
+            if (NBTItemHelper.getBoolean(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
             {
                 setDamage(stack, 2);
                 return icons[2];
@@ -139,7 +140,7 @@ public class ItemWallet extends ItemBase
         final InventoryWallet wallet = new InventoryWallet(item);
         final StringBuilder sb = new StringBuilder();
         final int value = wallet.getCoinBalance();
-        if (value != CoinHelper.getMaxPossibleValue())
+        if (value != CoinTypes.getMaxPossibleValue(Properties.WALLET_STACKS_PER_COIN))
         {
             sb.append("You have a total of " + value + " coin");
             if (value != 1)

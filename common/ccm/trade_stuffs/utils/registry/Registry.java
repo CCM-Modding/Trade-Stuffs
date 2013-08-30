@@ -25,13 +25,12 @@ public class Registry
     {
         CoinAdditionRegistry.addCoins();
 
-        final PlayerStalker playerStalker = new PlayerStalker();
-
         MinecraftForge.EVENT_BUS.register(new ItemHandler());
         MinecraftForge.EVENT_BUS.register(new EntityHandler());
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
-        MinecraftForge.EVENT_BUS.register(playerStalker);
 
+        final PlayerStalker playerStalker = new PlayerStalker();
+        MinecraftForge.EVENT_BUS.register(playerStalker);
         GameRegistry.registerPlayerTracker(playerStalker);
 
         CoinAdditionRegistry.addMobDrops();

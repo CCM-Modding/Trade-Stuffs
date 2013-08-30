@@ -46,7 +46,7 @@ public class TradeStuffs extends BaseMod implements IMod
         {
             LogHandler.initLog(this);
 
-            config = initializeConfig(event);
+            initializeConfig(event);
             ConfigurationHandler.init(this, NOConfig.class);
 
             ModBlocks.init();

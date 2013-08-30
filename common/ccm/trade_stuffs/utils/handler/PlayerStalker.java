@@ -3,7 +3,7 @@
  */
 package ccm.trade_stuffs.utils.handler;
 
-import static ccm.trade_stuffs.utils.lib.Archive.MOD_ID;
+import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_MOD_PLAYER;
 import static ccm.trade_stuffs.utils.lib.NBTConstants.NBT_PLAYER;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,13 +27,13 @@ public final class PlayerStalker implements IPlayerTracker
     public void onPlayerLogin(final EntityPlayer player)
     {
         final NBTTagCompound tag = player.getEntityData();
-        if (!tag.hasKey(MOD_ID))
+        if (!tag.hasKey(NBT_MOD_PLAYER))
         {
-            tag.setCompoundTag(MOD_ID, new NBTTagCompound());
+            tag.setCompoundTag(NBT_MOD_PLAYER, new NBTTagCompound());
         }
-        if (!tag.getCompoundTag(MOD_ID).getBoolean(NBT_PLAYER))
+        if (!tag.getCompoundTag(NBT_MOD_PLAYER).getBoolean(NBT_PLAYER))
         {
-            tag.getCompoundTag(MOD_ID).setBoolean(NBT_PLAYER, true);
+            tag.getCompoundTag(NBT_MOD_PLAYER).setBoolean(NBT_PLAYER, true);
             player.inventory.addItemStackToInventory(new ItemStack(ModItems.wallet));
         }
     }

@@ -13,7 +13,7 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public final class Config implements IConfig
+public final class TradeConfig implements IConfig
 {
     AdvConfiguration config;
 
@@ -40,7 +40,7 @@ public final class Config implements IConfig
         loadRandom();
     }
 
-    private void loadItemsBlocks()
+    void loadItemsBlocks()
     {
         Properties.tradeStationID = config.getBlock("TradeStation", 400).getInt();
         Properties.bankID = config.getBlock("Bank", 401).getInt();
@@ -49,7 +49,7 @@ public final class Config implements IConfig
         Properties.walletID = config.getItem("Wallet", 4001).getInt();
     }
 
-    private void loadCoinDrops()
+    void loadCoinDrops()
     {
         final String cat = "CoinDrops";
         config.addCustomCategoryComment(cat, "Coin Type,Drop Chance, Min/Max Drops are all editable here per mob. " + "Coin Type (Type of coin)" + "     0 = Copper (Value of 1)"
@@ -63,7 +63,7 @@ public final class Config implements IConfig
         loadBoss();
     }
 
-    private void loadPassive()
+    void loadPassive()
     {
         String cat = "CoinDrops.Passive";
         config.addCustomCategoryComment(cat, "Values For Passive Mobs");
@@ -135,7 +135,7 @@ public final class Config implements IConfig
         Properties.COIN_PIG_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 5).getInt();
     }
 
-    private void loadHostile()
+    void loadHostile()
     {
         String cat = "CoinDrops.Hostile";
         config.addCustomCategoryComment(cat, "Values For Hostile Mobs");
@@ -225,7 +225,7 @@ public final class Config implements IConfig
         Properties.COIN_CREEPER_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 30).getInt();
     }
 
-    private void loadBoss()
+    void loadBoss()
     {
         String cat = "CoinDrops.Boss";
         config.addCustomCategoryComment(cat, "Values for Boss Mobs");
@@ -243,7 +243,7 @@ public final class Config implements IConfig
         Properties.COIN_WITHER_MAX_DROP = config.get(cat, "Coin_Maximum_Drop", 225).getInt();
     }
 
-    private void loadBagDrops()
+    void loadBagDrops()
     {
         String cat = "BagDrops";
         config.addCustomCategoryComment(
@@ -262,7 +262,7 @@ public final class Config implements IConfig
         Properties.WALLET_WITHER_MAX_DROP = config.get(cat, "Bag_Maximum_Drop", 1).getInt();
     }
 
-    private void loadRandom()
+    void loadRandom()
     {
         final String cat = "RandomConfigs";
         config.addCustomCategoryComment(cat, "Random Configurations");

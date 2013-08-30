@@ -137,7 +137,7 @@ public class TileEntityBank extends TileEntity
             stack = currentAccount.getCoins().getStackInSlot(i);
             if (stack != null)
             {
-                coinBalance += CoinTypes.getCoinType(stack.getItemDamage()).getValue() * stack.stackSize;
+                coinBalance += CoinTypes.getStackValue(stack);
             }
         }
     }
