@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.nucleum.omnium.utils.handler.gui.GuiHandler;
 import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
-import ccm.trade_stuffs.TradeStuffs;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.InventoryWallet;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
@@ -56,7 +56,7 @@ public class ItemWallet extends ItemBase
             if (!world.isRemote)
             {
                 NBTItemHelper.setBoolean(stack, NBTConstants.NBT_OPENED_ITEM, true);
-                player.openGui(TradeStuffs.instance, Guis.GUI_WALLET, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+                GuiHandler.openGui("", player, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         }
 

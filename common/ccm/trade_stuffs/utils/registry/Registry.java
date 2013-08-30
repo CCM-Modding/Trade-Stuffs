@@ -7,7 +7,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import ccm.trade_stuffs.utils.handler.EntityHandler;
 import ccm.trade_stuffs.utils.handler.ItemHandler;
 import ccm.trade_stuffs.utils.handler.PlayerStalker;
 import ccm.trade_stuffs.utils.handler.WorldHandler;
@@ -26,7 +25,6 @@ public class Registry
         CoinAdditionRegistry.addCoins();
 
         MinecraftForge.EVENT_BUS.register(new ItemHandler());
-        MinecraftForge.EVENT_BUS.register(new EntityHandler());
         MinecraftForge.EVENT_BUS.register(new WorldHandler());
 
         final PlayerStalker playerStalker = new PlayerStalker();
