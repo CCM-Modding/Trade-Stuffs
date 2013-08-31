@@ -1,5 +1,5 @@
 // CCM Modding, Steve's Trade
-buildscript{
+buildscript {
     repositories {
         mavenCentral()
             maven {
@@ -30,17 +30,27 @@ sourceSets {
     }
 }
 
-processResources{
+processResources {
 	eachFile { file ->
-		if(!(file.getPath().endsWith('png')))
+		if(!(file.getPath().endsWith('png'))){
 			expand version: version, mcversion: minecraft.minecraftVersion
+		}
 	}
 }
 
-jar{
+jar {
 	appendix = 'universal'
 	manifest { 	
 		attributes 'MCVersion' : project.minecraft.minecraftVersion
 		attributes 'Version' : project.version 
 	}
+}
+
+task sourceJar(type: Jar) {
+	from sourceSets.main.allSource
+	appendix = 'src'
+}
+
+artifacts {
+	archives sourceJar
 }
