@@ -16,7 +16,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 import ccm.nucleum.omnium.BaseMod;
 import ccm.nucleum.omnium.IMod;
 import ccm.nucleum.omnium.creativetab.CreativeTab;
-import ccm.nucleum.omnium.utils.handler.LogHandler;
 import ccm.nucleum.omnium.utils.handler.ModLoadingHandler;
 import ccm.nucleum.omnium.utils.handler.config.ConfigurationHandler;
 import ccm.nucleum.omnium.utils.handler.config.NOConfig;
@@ -42,18 +41,15 @@ public class TradeStuffs extends BaseMod implements IMod
     @EventHandler
     public void preInit(final FMLPreInitializationEvent event)
     {
-        if (!ModLoadingHandler.isModLoaded(this))
-        {
-            LogHandler.initLog(this);
+        ModLoadingHandler.loadMod(this);
 
-            initializeConfig(event);
-            ConfigurationHandler.init(this, NOConfig.class);
+        initializeConfig(event);
+        ConfigurationHandler.init(this, NOConfig.class);
 
-            ModBlocks.init();
-            ModItems.init();
+        ModBlocks.init();
+        ModItems.init();
 
-            tab.init(new ItemStack(ModItems.coin));
-        }
+        tab.init(new ItemStack(ModItems.coin));
     }
 
     @EventHandler
