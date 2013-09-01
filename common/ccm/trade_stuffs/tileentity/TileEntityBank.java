@@ -13,11 +13,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 
-import ccm.trade_stuffs.TradeStuffs;
+import ccm.nucleum.omnium.utils.handler.gui.GuiHandler;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.bank.Bank;
 import ccm.trade_stuffs.bank.BankAccount;
 import ccm.trade_stuffs.utils.lib.Archive;
+import ccm.trade_stuffs.utils.lib.Guis;
 import ccm.trade_stuffs.utils.lib.NBTConstants;
 
 /**
@@ -115,7 +116,7 @@ public class TileEntityBank extends TileEntity
         player.closeScreen();
         setPlayerUsing(player.username);
         setInUse(true);
-        player.openGui(TradeStuffs.instance, tab == 0 ? Guis.GUI_BANK_COINS : Guis.GUI_BANK_ITEMS, worldObj, xCoord, yCoord, zCoord);
+        GuiHandler.openGui(selectedTab == 0 ? Guis.GUI_BANK_COINS : Guis.GUI_BANK_ITEMS, player, xCoord, yCoord, zCoord);
     }
 
     public void setSelectedTab(final byte tab)

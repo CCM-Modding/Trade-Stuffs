@@ -19,12 +19,14 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.nucleum.omnium.utils.handler.ResourceHandler;
 import ccm.trade_stuffs.inventory.ContainerBank;
 import ccm.trade_stuffs.inventory.InventoryBank;
 import ccm.trade_stuffs.inventory.InventoryBankCoins;
 import ccm.trade_stuffs.inventory.InventoryBankItems;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GUITrade
@@ -103,7 +105,7 @@ public class GuiBank extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(final float opacity, final int mouseX, final int mouseY)
     {
         GL11.glColor4f(1, 1, 1, 1);
-        mc.func_110434_K().func_110577_a(Guis.TEXTURE_GUI_BANK);
+        ResourceHandler.bindGUI(mc, Guis.BANK_NAME);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         if (selectedTab == 0)

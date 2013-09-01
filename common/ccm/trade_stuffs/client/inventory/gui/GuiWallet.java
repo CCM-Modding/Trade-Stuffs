@@ -12,9 +12,11 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.nucleum.omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.handler.ResourceHandler;
+import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
 import ccm.trade_stuffs.inventory.ContainerWallet;
-import ccm.trade_stuffs.items.ItemWallet;
+import ccm.trade_stuffs.utils.lib.Guis;
+import ccm.trade_stuffs.utils.lib.NBTConstants;
 
 /**
  * GUIWallet
@@ -41,8 +43,7 @@ public class GuiWallet extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(final float opacity, final int x, final int y)
     {
         GL11.glColor4f(1, 1, 1, 1);
-
-        mc.func_110434_K().func_110577_a(Guis.TEXTURE_GUI_WALLET);
+        ResourceHandler.bindGUI(mc, Guis.WALLET_NAME);
 
         final int xStart = (width - xSize) / 2;
         final int yStart = (height - ySize) / 2;
@@ -89,13 +90,13 @@ public class GuiWallet extends GuiContainer
             {
                 if (stack != null)
                 {
-                    if (NBTHelper.hasTag(stack, ItemWallet.openedWallet))
+                    if (NBTItemHelper.hasTag(stack, NBTConstants.NBT_OPENED_ITEM))
                     {
-                        if (NBTHelper.hasTag(stack, ItemWallet.fullWallet))
+                        if (NBTItemHelper.hasTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
                         {
-                            NBTHelper.removeTag(stack, ItemWallet.fullWallet);
+                            NBTItemHelper.removeTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL);
                         }
-                        NBTHelper.removeTag(stack, ItemWallet.openedWallet);
+                        NBTItemHelper.removeTag(stack, NBTConstants.NBT_OPENED_ITEM);
                     }
                 }
             }

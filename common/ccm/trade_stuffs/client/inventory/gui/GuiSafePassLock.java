@@ -8,8 +8,6 @@ import java.io.DataOutputStream;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,8 +17,10 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import ccm.nucleum.omnium.utils.handler.ResourceHandler;
 import ccm.trade_stuffs.inventory.ContainerEmpty;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GUITrade
@@ -31,14 +31,13 @@ import ccm.trade_stuffs.tileentity.TileEntitySafe;
 @SideOnly(Side.CLIENT)
 public class GuiSafePassLock extends GuiContainer
 {
-
-    private final EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+    // private final EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
     private final TileEntitySafe safe;
     private GuiButton enter;
     private GuiButton reset;
     private GuiButton open;
     private StringBuilder tmpPass = new StringBuilder();
-    private final boolean canOpen = false;
+    // private final boolean canOpen = false;
     private String message = "";
 
     public GuiSafePassLock(final InventoryPlayer player, final TileEntitySafe safe)
@@ -140,7 +139,7 @@ public class GuiSafePassLock extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(final float opacity, final int x, final int y)
     {
         GL11.glColor4f(1, 1, 1, 1);
-        mc.func_110434_K().func_110577_a(Guis.TEXTURE_GUI_SAFE);
+        ResourceHandler.bindGUI(mc, Guis.SAFE_LOCK_NAME);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
         if (!safe.hasPass())

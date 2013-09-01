@@ -70,7 +70,7 @@ public class ItemWallet extends ItemBase
         final TileEntity tile = world.getBlockTileEntity((int) clickX, (int) clickY, (int) clickZ);
         if (tile != null)
         {
-            final InventoryWallet wallet = new InventoryWallet(item);
+            // final InventoryWallet wallet = new InventoryWallet(item);
             if (tile instanceof TileEntityBank)
             {
 

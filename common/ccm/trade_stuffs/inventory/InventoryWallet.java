@@ -10,7 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import ccm.nucleum.omnium.utils.helper.NBTHelper;
+import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
 import ccm.trade_stuffs.api.coins.CoinType;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.items.ModItems;
@@ -199,7 +199,7 @@ public class InventoryWallet implements IInventory
 
     public void readFromNBT(final ItemStack stack)
     {
-        NBTHelper.initCompound(stack);
+        NBTItemHelper.initCompound(stack);
         final NBTTagCompound nbt = stack.getTagCompound();
         coins = new HashMap<CoinType, Integer>();
         for (final CoinType coinType : CoinTypes.getTypes())
@@ -214,7 +214,7 @@ public class InventoryWallet implements IInventory
 
     public void writeToNBT(final ItemStack stack)
     {
-        NBTHelper.initCompound(stack);
+        NBTItemHelper.initCompound(stack);
         final NBTTagCompound nbt = stack.getTagCompound();
         for (final CoinType coinType : coins.keySet())
         {
@@ -224,7 +224,7 @@ public class InventoryWallet implements IInventory
 
     public void setHasMoney(final boolean has)
     {
-        NBTHelper.setBoolean(wallet, NBTConstants.NBT_WALLET_OPEN_FULL, has);
+        NBTItemHelper.setBoolean(wallet, NBTConstants.NBT_WALLET_OPEN_FULL, has);
     }
 
     @Override

@@ -21,7 +21,7 @@ import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
 @SideOnly(Side.CLIENT)
 public class GuiTrade extends GuiContainer
 {
-    private final TileEntityTradeStation trade;
+    // private final TileEntityTradeStation trade;
 
     /**
      * @param container
@@ -29,7 +29,7 @@ public class GuiTrade extends GuiContainer
     public GuiTrade(final InventoryPlayer player, final TileEntityTradeStation tile)
     {
         super(new ContainerTrade(player, tile));
-        trade = tile;
+        // trade = tile;
     }
 
     @Override

@@ -52,9 +52,17 @@ public final class TradeConfig implements IConfig
     void loadCoinDrops()
     {
         final String cat = "CoinDrops";
-        config.addCustomCategoryComment(cat, "Coin Type,Drop Chance, Min/Max Drops are all editable here per mob. " + "Coin Type (Type of coin)" + "     0 = Copper (Value of 1)"
-                + "     1 = Silver (Value of 25)" + "     2 = Gold (Value of 50)" + "     3 = Platnum (Value of 100)" + "Drop Chance (Keep in 0.00 Format unless set to 1!)"
-                + "Minimum Drop (The most amount of coins one mob can drop.)" + "Maximum Drop (The least amount of coins one mob can drop.)");
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Coin Type,Drop Chance, Min/Max Drops are all editable here per mob.\n");
+        sb.append("Coin Type (Type of coin)\n");
+        sb.append("     0 = Copper (Value of 1)\n");
+        sb.append("     1 = Silver (Value of 25)\n");
+        sb.append("     2 = Gold (Value of 50)\n");
+        sb.append("     3 = Platnum (Value of 100)\n");
+        sb.append("Drop Chance (Keep in 0.00 Format unless set to 1!)\n");
+        sb.append("Minimum Drop (The most amount of coins one mob can drop)\n");
+        sb.append("Maximum Drop (The least amount of coins one mob can drop)\n");
+        config.addCustomCategoryComment(cat, sb.toString());
 
         loadPassive();
 

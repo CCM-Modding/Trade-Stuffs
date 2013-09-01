@@ -15,11 +15,11 @@ import ccm.trade_stuffs.tileentity.TileEntityTradeStation;
  */
 public class ContainerTrade extends ContainerBase
 {
-    private final TileEntityTradeStation trade;
+    // private final TileEntityTradeStation trade;
 
     public ContainerTrade(final InventoryPlayer player, final TileEntityTradeStation tile)
     {
         super(player);
-        trade = tile;
+        // trade = tile;
     }
 }

@@ -5,15 +5,14 @@ package ccm.trade_stuffs.client.inventory.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 
+import ccm.nucleum.omnium.utils.handler.ResourceHandler;
 import ccm.trade_stuffs.inventory.ContainerSafe;
-import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 /**
  * GuiSafe
@@ -27,8 +26,8 @@ public class GuiSafe extends GuiContainer
     private final InventoryPlayer inventoryPlayer;
     private final TileEntitySafe safe;
 
-    private final ItemStack displayCoins = new ItemStack(ModItems.coin, 1);
-    private final ItemStack displayItems = new ItemStack(Block.stone, 1);
+    // private final ItemStack displayCoins = new ItemStack(ModItems.coin, 1);
+    // private final ItemStack displayItems = new ItemStack(Block.stone, 1);
 
     public GuiSafe(final InventoryPlayer player, final TileEntitySafe safe)
     {
@@ -44,7 +43,7 @@ public class GuiSafe extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(final float opacity, final int mouseX, final int mouseY)
     {
         GL11.glColor4f(1, 1, 1, 1);
-        mc.func_110434_K().func_110577_a(Guis.TEXTURE_GUI_BANK);
+        ResourceHandler.bindGUI(mc, Guis.SAFE_NAME);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
     }
 

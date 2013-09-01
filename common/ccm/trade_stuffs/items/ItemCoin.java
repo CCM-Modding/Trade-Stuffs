@@ -40,7 +40,7 @@ public class ItemCoin extends ItemBase
     public String getUnlocalizedName(final ItemStack item)
     {
         final CoinType type = CoinTypes.getTypes().get(item.getItemDamage());
-        return "item." + type.getModID() + ":" + type.getIconName();
+        return "item." + type.getMod().getModId() + ":" + type.getIconName();
     }
 
     /**

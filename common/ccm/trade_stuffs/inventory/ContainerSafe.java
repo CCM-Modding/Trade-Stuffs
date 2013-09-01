@@ -19,12 +19,12 @@ import ccm.trade_stuffs.tileentity.TileEntitySafe;
 public class ContainerSafe extends ContainerBase
 {
 
-    private final TileEntitySafe safe;
+    // private final TileEntitySafe safe;
 
     public ContainerSafe(final InventoryPlayer player, final TileEntitySafe safe)
     {
         super(player);
-        this.safe = safe;
+        // this.safe = safe;
         addPlayerInventory(8, 156);
 
         for (int row = 0; row < 7; row++)

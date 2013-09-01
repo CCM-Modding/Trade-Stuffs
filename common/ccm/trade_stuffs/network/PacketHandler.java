@@ -15,9 +15,10 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import ccm.trade_stuffs.TradeStuffs;
+import ccm.nucleum.omnium.utils.handler.gui.GuiHandler;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
 import ccm.trade_stuffs.tileentity.TileEntitySafe;
+import ccm.trade_stuffs.utils.lib.Guis;
 
 public class PacketHandler implements IPacketHandler
 {
@@ -186,6 +187,6 @@ public class PacketHandler implements IPacketHandler
         final String username = dat.readUTF();
 
         final WorldServer worldServer = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dim);
-        worldServer.getPlayerEntityByName(username).openGui(TradeStuffs.instance, Guis.GUI_SAFE_INVENTORY, worldServer, x, y, z);
+        GuiHandler.openGui(Guis.SAFE_NAME, worldServer.getPlayerEntityByName(username), x, y, z);
     }
 }
