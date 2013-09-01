@@ -13,7 +13,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-import ccm.nucleum.omnium.BaseMod;
+import ccm.nucleum.omnium.CCMMod;
 import ccm.nucleum.omnium.IMod;
 import ccm.nucleum.omnium.creativetab.CreativeTab;
 import ccm.nucleum.omnium.utils.handler.ModLoadingHandler;
@@ -28,7 +28,7 @@ import ccm.trade_stuffs.utils.registry.Registry;
 
 @Mod(modid = Archive.MOD_ID, name = Archive.MOD_NAME, useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class TradeStuffs extends BaseMod implements IMod
+public class TradeStuffs extends CCMMod implements IMod
 {
     @Instance(Archive.MOD_ID)
     public static TradeStuffs instance;
