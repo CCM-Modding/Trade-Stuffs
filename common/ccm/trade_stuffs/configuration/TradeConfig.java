@@ -3,7 +3,6 @@
  */
 package ccm.trade_stuffs.configuration;
 
-import ccm.nucleum.omnium.configuration.AdvConfiguration;
 import ccm.nucleum.omnium.utils.handler.config.IConfig;
 import ccm.trade_stuffs.utils.lib.Properties;
 
@@ -13,23 +12,8 @@ import ccm.trade_stuffs.utils.lib.Properties;
  * 
  * @author Captain_Shadows
  */
-public final class TradeConfig implements IConfig
+public final class TradeConfig extends IConfig
 {
-    AdvConfiguration config;
-
-    @Override
-    public AdvConfiguration getConfiguration()
-    {
-        return config;
-    }
-
-    @Override
-    public IConfig setConfiguration(final AdvConfiguration config)
-    {
-        this.config = config;
-        return this;
-    }
-
     @Override
     public void init()
     {
