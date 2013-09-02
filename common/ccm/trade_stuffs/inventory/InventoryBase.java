@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import ccm.nucleum.omnium.utils.helper.InventoryHelper;
+import ccm.nucleum.omnium.utils.helper.item.InventoryHelper;
 
 /**
  * InventoryBase
