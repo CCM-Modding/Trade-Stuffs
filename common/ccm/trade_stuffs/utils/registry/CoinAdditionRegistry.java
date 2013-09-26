@@ -119,6 +119,6 @@ public final class CoinAdditionRegistry
 
     static void register(final String name, final int value)
     {
-        CoinTypes.registerCoinType(TradeStuffs.instance, name, value);
+        CoinTypes.registerCoinType(TradeStuffs.instance.getModID(), name, value);
     }
 }

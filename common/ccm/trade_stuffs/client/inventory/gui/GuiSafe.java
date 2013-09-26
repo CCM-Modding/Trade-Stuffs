@@ -50,8 +50,8 @@ public class GuiSafe extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY)
     {
-        fontRenderer.drawString(inventoryPlayer.isInvNameLocalized() ? inventoryPlayer.getInvName() : I18n.func_135053_a(inventoryPlayer.getInvName()), 8, ySize - 93, 4210752);
-        fontRenderer.drawString(safe.isInvNameLocalized() ? safe.getInvName() : I18n.func_135053_a(safe.getInvName()), 8, 6, 4210752);
+        fontRenderer.drawString(inventoryPlayer.isInvNameLocalized() ? inventoryPlayer.getInvName() : I18n.getStringParams(inventoryPlayer.getInvName()), 8, ySize - 93, 4210752);
+        fontRenderer.drawString(safe.isInvNameLocalized() ? safe.getInvName() : I18n.getStringParams(safe.getInvName()), 8, 6, 4210752);
         fontRenderer.drawString(mc.thePlayer.username, 80, 6, 4210752);
 
         fontRenderer.drawString("Items: " + Integer.toString(safe.getItemCount()), 80, ySize - 93, 4210752);

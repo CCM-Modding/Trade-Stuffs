@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-import ccm.nucleum.omnium.IMod;
 import ccm.nucleum.omnium.utils.helper.JavaHelper;
 
 /**
@@ -31,7 +30,7 @@ public final class CoinType
     /**
      * Name of the mod registering this coin
      */
-    private final IMod modID;
+    private final String modID;
 
     /**
      * Name of the coin
@@ -54,7 +53,7 @@ public final class CoinType
      * @param value
      *            Value of the coin, based on copper coins (copper = 1)
      */
-    public CoinType(final IMod modID, final String name, final int value)
+    public CoinType(final String modID, final String name, final int value)
     {
         this.modID = modID;
         this.name = name;
@@ -64,7 +63,7 @@ public final class CoinType
     /**
      * @return The ID of the mod that registered this coin
      */
-    public IMod getMod()
+    public String getModID()
     {
         return modID;
     }

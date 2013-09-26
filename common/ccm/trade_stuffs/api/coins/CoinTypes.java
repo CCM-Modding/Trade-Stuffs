@@ -8,8 +8,6 @@ import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-import ccm.nucleum.omnium.IMod;
-
 /**
  * CoinTypes
  * <p>
@@ -51,9 +49,9 @@ public final class CoinTypes
      * @throws FailedToMakeCoinType
      *             if any of the arguments are null, the mod id is not loaded, or if the value is less than one
      */
-    public static CoinType registerCoinType(final IMod mod, final String name, final int value)
+    public static CoinType registerCoinType(final String modID, final String name, final int value)
     {
-        final CoinType tmp = new CoinType(mod, name, value);
+        final CoinType tmp = new CoinType(modID, name, value);
         registerCoinType(tmp);
         return tmp;
     }

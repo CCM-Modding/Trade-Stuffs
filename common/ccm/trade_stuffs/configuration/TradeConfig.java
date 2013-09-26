@@ -3,7 +3,7 @@
  */
 package ccm.trade_stuffs.configuration;
 
-import ccm.nucleum.omnium.utils.handler.config.IConfig;
+import ccm.nucleum.omnium.utils.handler.configuration.IConfig;
 import ccm.trade_stuffs.utils.lib.Properties;
 
 /**

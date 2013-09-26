@@ -3,7 +3,7 @@
  */
 package ccm.trade_stuffs.utils.lib;
 
-import ccm.nucleum.omnium.base.BaseNIC;
+import ccm.nucleum.omnium.BaseNIC;
 
 /**
  * Names

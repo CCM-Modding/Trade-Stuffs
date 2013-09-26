@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.nucleum.omnium.utils.handler.gui.GuiHandler;
-import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
+import ccm.nucleum.omnium.utils.helper.ItemNBTHelper;
 import ccm.trade_stuffs.api.coins.CoinTypes;
 import ccm.trade_stuffs.inventory.InventoryWallet;
 import ccm.trade_stuffs.tileentity.TileEntityBank;
@@ -55,7 +55,7 @@ public class ItemWallet extends ItemBase
         {
             if (!world.isRemote)
             {
-                NBTItemHelper.setBoolean(stack, NBTConstants.NBT_OPENED_ITEM, true);
+                ItemNBTHelper.setBoolean(stack, NBTConstants.NBT_OPENED_ITEM, true);
                 GuiHandler.openGui("", player, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         }
@@ -85,9 +85,9 @@ public class ItemWallet extends ItemBase
     @Override
     public Icon getIcon(final ItemStack stack, final int pass)
     {
-        if (NBTItemHelper.getBoolean(stack, NBTConstants.NBT_OPENED_ITEM))
+        if (ItemNBTHelper.getBoolean(stack, NBTConstants.NBT_OPENED_ITEM))
         {
-            if (NBTItemHelper.getBoolean(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
+            if (ItemNBTHelper.getBoolean(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
             {
                 setDamage(stack, 2);
                 return icons[2];

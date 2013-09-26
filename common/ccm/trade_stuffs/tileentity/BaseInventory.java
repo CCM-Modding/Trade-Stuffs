@@ -116,6 +116,6 @@ public abstract class BaseInventory extends TileEntity implements IInventory
     @Override
     public void onDataPacket(final INetworkManager net, final Packet132TileEntityData pkt)
     {
-        readFromNBT(pkt.customParam1);
+        readFromNBT(pkt.data);
     }
 }

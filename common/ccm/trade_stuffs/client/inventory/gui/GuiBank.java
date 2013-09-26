@@ -127,11 +127,11 @@ public class GuiBank extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(final int mouseX, final int mouseY)
     {
-        itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayCoins, -18, 20);
-        itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.func_110434_K(), displayItems, -18, 41);
+        itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.getTextureManager(), displayCoins, -18, 20);
+        itemRenderer.renderItemAndEffectIntoGUI(fontRenderer, mc.getTextureManager(), displayItems, -18, 41);
 
-        fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName() : I18n.func_135053_a(lowerInventory.getInvName()), 8, ySize - 93, 4210752);
-        fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName() : I18n.func_135053_a(upperInventory.getInvName()), 8, 6, 4210752);
+        fontRenderer.drawString(lowerInventory.isInvNameLocalized() ? lowerInventory.getInvName() : I18n.getStringParams(lowerInventory.getInvName()), 8, ySize - 93, 4210752);
+        fontRenderer.drawString(upperInventory.isInvNameLocalized() ? upperInventory.getInvName() : I18n.getStringParams(upperInventory.getInvName()), 8, 6, 4210752);
         fontRenderer.drawString(mc.thePlayer.username, 80, 6, 4210752);
 
         if (upperInventory instanceof InventoryBankCoins)

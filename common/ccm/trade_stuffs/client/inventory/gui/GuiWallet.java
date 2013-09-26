@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import ccm.nucleum.omnium.utils.handler.ResourceHandler;
-import ccm.nucleum.omnium.utils.helper.NBTItemHelper;
+import ccm.nucleum.omnium.utils.helper.ItemNBTHelper;
 import ccm.trade_stuffs.inventory.ContainerWallet;
 import ccm.trade_stuffs.utils.lib.Guis;
 import ccm.trade_stuffs.utils.lib.NBTConstants;
@@ -90,13 +90,13 @@ public class GuiWallet extends GuiContainer
             {
                 if (stack != null)
                 {
-                    if (NBTItemHelper.hasTag(stack, NBTConstants.NBT_OPENED_ITEM))
+                    if (ItemNBTHelper.hasTag(stack, NBTConstants.NBT_OPENED_ITEM))
                     {
-                        if (NBTItemHelper.hasTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
+                        if (ItemNBTHelper.hasTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL))
                         {
-                            NBTItemHelper.removeTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL);
+                            ItemNBTHelper.removeTag(stack, NBTConstants.NBT_WALLET_OPEN_FULL);
                         }
-                        NBTItemHelper.removeTag(stack, NBTConstants.NBT_OPENED_ITEM);
+                        ItemNBTHelper.removeTag(stack, NBTConstants.NBT_OPENED_ITEM);
                     }
                 }
             }

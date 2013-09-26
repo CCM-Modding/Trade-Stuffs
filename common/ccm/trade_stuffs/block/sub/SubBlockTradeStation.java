@@ -8,9 +8,9 @@ import net.minecraft.block.material.Material;
 import ccm.nucleum.omnium.block.MainBlock;
 import ccm.nucleum.omnium.block.interfaces.ITextureHelper;
 import ccm.nucleum.omnium.block.interfaces.ITileHelper;
+import ccm.nucleum.omnium.block.loader.texture.BasicTexture;
+import ccm.nucleum.omnium.block.loader.tile.NoTile;
 import ccm.nucleum.omnium.block.sub.SubBlock;
-import ccm.nucleum.omnium.block.texture.BasicTexture;
-import ccm.nucleum.omnium.block.tile.NoTile;
 
 /**
  * SubBlockTradeStationTradeStation

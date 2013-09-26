@@ -17,9 +17,8 @@ import ccm.nucleum.omnium.CCMMod;
 import ccm.nucleum.omnium.IMod;
 import ccm.nucleum.omnium.creativetab.CreativeTab;
 import ccm.nucleum.omnium.utils.handler.ModLoadingHandler;
-import ccm.nucleum.omnium.utils.handler.config.ConfigurationHandler;
-import ccm.nucleum.omnium.utils.handler.config.NOConfig;
 import ccm.trade_stuffs.blocks.ModBlocks;
+import ccm.trade_stuffs.configuration.TradeConfig;
 import ccm.trade_stuffs.items.ModItems;
 import ccm.trade_stuffs.proxy.CommonProxy;
 import ccm.trade_stuffs.utils.lib.Archive;
@@ -41,10 +40,7 @@ public class TradeStuffs extends CCMMod implements IMod
     @EventHandler
     public void preInit(final FMLPreInitializationEvent event)
     {
-        ModLoadingHandler.loadMod(this);
-
-        initializeConfig(event);
-        ConfigurationHandler.init(this, NOConfig.class);
+        ModLoadingHandler.loadMod(this, event, new TradeConfig());
 
         ModBlocks.init();
         ModItems.init();
